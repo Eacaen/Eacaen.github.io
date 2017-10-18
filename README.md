@@ -1,1 +1,3 @@
-It bases on the my jekyll theme [Yummy-Jekyll](https://github.com/DONGChuan/Yummy-Jekyll)
+
+It bases on DONGChuan's  jekyll theme [Yummy-Jekyll](https://github.com/DONGChuan/Yummy-Jekyll)
+Thanks a lot.

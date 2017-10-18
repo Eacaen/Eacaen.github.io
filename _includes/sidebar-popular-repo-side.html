@@ -1,6 +1,7 @@
+<div class="col-md-4 pull-right">
 <h3 class="sidebar-title">My Popular Repositories</h3>
 {% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
-{% for repo in sorted_repos | limit: site.side_bar_repo_limit %}
+{% for repo in sorted_repos | limit: site.side_bar_repo_limit_about %}
 <div class="card text-center">
     <div class="thumbnail">
         <div class="card-image geopattern" data-pattern-id="{{ repo.name }}">
@@ -42,3 +43,4 @@
 
     });
 </script>
+</div>

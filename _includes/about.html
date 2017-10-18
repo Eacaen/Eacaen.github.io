@@ -2,9 +2,9 @@
 
     <div class="col-md-8">
 
-        <h2>About ME</h2>
+        <h2>About Me</h2>
 
-        <p>I love coding. I like animal. I want to have four babies, one cat, one dog and two sheep. I would like to be a CTO in the future.</p>
+        <h3>I love coding, programming and controlling hardware and software, now majoring in solid mechanics</h3>
 
         <h2>Contact</h2>
 
@@ -28,49 +28,36 @@
         </div>
         {% endif %}
 
-        {% if site.skill_j2ee_keywords %}
+        {% if site.skill_hardware_chips %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">J2EE Developer Keywords</h3>
+                <h3 class="panel-title">Hardware Chip Keywords</h3>
             </div>
             <div class="panel-body">
-                {% for keyword in site.skill_j2ee_keywords %}
+                {% for keyword in site.skill_hardware_chips %}
                 <button class="btn btn-default" type="button">{{ keyword }}</button>
                 {% endfor %}
             </div>
         </div>
         {% endif %}
 
-        {% if site.skill_mobile_app_keywords %}
+        {% if site.skill_structure_keywords %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Mobile Developer Keywords</h3>
+                <h3 class="panel-title">Structure Analysis Keywords</h3>
             </div>
             <div class="panel-body">
-                {% for keyword in site.skill_mobile_app_keywords %}
+                {% for keyword in site.skill_structure_keywords %}
                 <button class="btn btn-default" type="button">{{ keyword }}</button>
                 {% endfor %}
             </div>
         </div>
         {% endif %}
-
-        {% if site.skill_web_keywords %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Web Developer Keywords</h3>
-            </div>
-            <div class="panel-body">
-                {% for keyword in site.skill_web_keywords %}
-                <button class="btn btn-default" type="button">{{ keyword }}</button>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-
     </div>
 
-    <div class="col-md-4">
+        {% include sidebar-popular-repo-side.html %}
+<!--     <div class="col-md-4">
         {% include sidebar-popular-repo.html %}
-    </div>
+    </div> -->
 
 </div>
