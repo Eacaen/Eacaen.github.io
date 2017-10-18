@@ -2,7 +2,7 @@
 layout: post
 title: "Composite Blade Design"
 tagline: "The composite materials,shear flow & normal stresses calculation for wind-turbine blade, Bachelor thesis in TUSB , Germany. "
-categories: junk
+categories: Python
 author: "Hu Tianyun"
 meta: "Springfield"
 ---

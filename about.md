@@ -1,13 +1,19 @@
 ---
 layout: page
-title: About
-tagline: A few more words about this theme
-permalink: /about.html
+title: About Me
+menu: about
+subtitle:   <h3>Download My CV</h3>
+            <a role="button" class="btn btn-primary hvr-grow-shadow" href="/assets/files/CV_Chuan_Dong_FR.pdf" target="_blanks">
+                <span class="flag-icon flag-icon-bl"></span> Français
+            </a>
+            <a role="button" class="btn btn-primary hvr-grow-shadow" href="/assets/files/CV_Chuan_Dong_FR.pdf" target="_blanks">
+                <span class="flag-icon flag-icon-gb"></span> English
+            </a>
+            <a role="button" class="btn btn-primary hvr-grow-shadow" href="/assets/files/CV_Chuan_Dong_CH.pdf" target="_blanks">
+                <span class="flag-icon flag-icon-cn"></span> 中文
+            </a>
+                            
+css: ['about.css', 'sidebar-popular-repo.css', '../../bower_components/flag-icon-css/css/flag-icon.min.css']
 ---
 
-This is the _Cayman Blog_ Jekyll theme. You can find out more info about customizing this theme, as well as basic usage documentation, and source code at: [cayman-blog](https://github.com/lorepirri/cayman-blog)
-
-You can find the source code for _Jekyll_ at [jekyll](https://github.com/jekyll/jekyll)
-
-
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
+{% include about.html %}
