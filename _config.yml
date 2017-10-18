@@ -10,8 +10,9 @@ title: Hu's Space !
 name: HuTianyun
 email: tianyunhu@gmail.com
 location: Xi'an, China
-company: NWPU
-company_url: http://www.nwpu.edu.cn/
+location_url: http://www.nwpu.edu.cn/
+company: Recuse-Robot
+company_url: https://github.com/team-explorer-rescue-robot
 github_url: https://github.com/Eacaen
 description: This is personnel website of HuTianyun
 favicon: favicon.png # Image must be in assets/images
@@ -69,7 +70,7 @@ navs:
 
   -
     href: /about
-    label: About
+    label: About me
 
 # Sidebar to show popular repo
 side_bar_repo_limit: 5 # Number of repos to show
