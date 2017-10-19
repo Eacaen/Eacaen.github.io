@@ -5,8 +5,8 @@
     <description>This is personnel website of HuTianyun</description>
     <link>http://Eacaen.github.io/</link>
     <atom:link href="http://Eacaen.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Oct 2017 10:29:18 +0800</pubDate>
-    <lastBuildDate>Thu, 19 Oct 2017 10:29:18 +0800</lastBuildDate>
+    <pubDate>Thu, 19 Oct 2017 10:46:56 +0800</pubDate>
+    <lastBuildDate>Thu, 19 Oct 2017 10:46:56 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -84,17 +84,19 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
     &lt;p&gt;&lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_%7Bx%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20ydA&quot; alt=&quot;&quot; /&gt;  &lt;br /&gt;
   &lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_%7By%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20xdA&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;There are many different kind of plug-ins you can use to help you plot the results in 2D or 3D.&lt;br /&gt;
-  &lt;img src=&quot;https://github.com/Eacaen/composite-blade-design/blob/master/fig/t1.gif&quot; alt=&quot;beam at Qx=1&quot; title=&quot;Shear ceter&quot; /&gt;&lt;br /&gt;
-  &lt;img src=&quot;https://github.com/Eacaen/composite-blade-design/blob/master/fig/two_close_cells.gif&quot; alt=&quot;close-beam at Qx=1&quot; title=&quot;Shear flow&quot; /&gt;&lt;br /&gt;
-  &lt;img src=&quot;https://github.com/Eacaen/composite-blade-design/blob/master/fig/two_close_cells_out.gif&quot; alt=&quot;close-beam at Qx=1&quot; title=&quot;Shear flow&quot; /&gt;&lt;br /&gt;
+  &lt;li&gt;
+    &lt;p&gt;There are many different kind of plug-ins you can use to help you plot the results in 2D or 3D.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;post_img/sF-full.gif&quot; alt=&quot;close-profile at Qx&quot; title=&quot;Shear flow&quot; /&gt;&lt;br /&gt;
+  &lt;img src=&quot;post_img/sF-full2.gif&quot; alt=&quot;close-profile at Qy&quot; title=&quot;Shear flow&quot; /&gt;&lt;br /&gt;
 &lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;*****&lt;br /&gt;
 ### Running requirements&lt;br /&gt;
   Python &amp;gt; v2.7&lt;br /&gt;
   Numpy&lt;br /&gt;
   Scipy&lt;br /&gt;
   Sympy&lt;br /&gt;
-  matplotlib&lt;/li&gt;
+  matplotlib&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;installation&quot;&gt;Installation&lt;/h3&gt;
