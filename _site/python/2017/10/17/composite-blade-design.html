@@ -13,8 +13,8 @@
     <meta name="description"
           content="Introduction">
 
-    <link rel="canonical" href="http://Eacaen.github.io/python/2017/10/17/composite-blade-design.html">
-    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://Eacaen.github.io/feed.xml">
+    <link rel="canonical" href="/python/2017/10/17/composite-blade-design.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="/feed.xml">
 
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -97,6 +97,8 @@
             <h1>Composite Blade Design</h1>
             <span class="meta-info">
                 
+                    <h4>Download <a role="button" class="btn btn-primary hvr-grow-shadow" href="https://github.com/Eacaen/composite-blade-design" target="_blanks"> <span class="octicon octicon-mark-github"></span> GitHub </a> </h4> <h4> </h4>
+                
                 
                 <span class="octicon octicon-calendar"></span> 2017/10/17
                 
@@ -135,41 +137,55 @@
     <tr>
       <td>1</td>
       <td><code class="highlighter-rouge">复合材料层合板计算</code></td>
-      <td>[Composite Material Calculation with CLT][CLT]</td>
+      <td><a href="https://github.com/Eacaen/composite-blade-design" title="CLT">Composite Material Calculation with CLT</a></td>
       <td><a href="#composite-material-calculation-with-clt">Introduction</a></td>
     </tr>
     <tr>
       <td>2</td>
       <td><code class="highlighter-rouge">开闭剖面多闭室工程梁计算</code></td>
-      <td>[Engineer Beam Calculation with open or closed profile][CLT]</td>
+      <td><a href="https://github.com/Eacaen/composite-blade-design" title="CLT">Engineer Beam Calculation with open or closed profile</a></td>
       <td><a href="#engineer-beam-calculation-with-open-or-closed-profile">Introduction</a></td>
     </tr>
   </tbody>
 </table>
 
 <p><code class="highlighter-rouge">read the program introduction for more details </code> <a href="/doc/pro_introduction.pdf">Here</a>  <br />
-<a href="#running-requirements">Running requirements</a> | <a href="#installation">Installation</a> | <a href="#license">License</a> <br />
-#### MY GRADUATION THESIS IN TUBS,PARTLY FINISH.<br />
-#### ALL RIGHT RESERVED<br />
-<strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>**<br />
-## Composite Material Calculation with CLT<br />
-* The main package is a Python composite materials calculation package.<br />
+<a href="#running-requirements">Running requirements</a> | <a href="#installation">Installation</a> | <a href="#license">License</a></p>
+
+<h4 id="my-bachelor-thesis-in-tubs-germany-partly-finished-we-can-improve-it-together-in-future">My bachelor thesis in TUBS, Germany, partly finished. We can improve it together in future.</h4>
+
+<hr />
+
+<h2 id="composite-material-calculation-with-clt">Composite Material Calculation with CLT</h2>
+<ul>
+  <li>
+    <p>The main package is a Python composite materials calculation package.<br />
 The laminate stresses, strain and failure Criterion based on the Classical Lamination Theory (<a href="https://en.wikipedia.org/wiki/Composite_laminates">CLT</a>).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>- You can define the lamina's fibre and matrix's parameters like the Elastic moduli
-![](http://latex.codecogs.com/gif.latex?E_{1},E_{2}),
- Shear moduli ![](http://latex.codecogs.com/gif.latex?G) and strength, then define lamina's layer angle and thickness in the next step.
-	
-- After define the lamina you can get the matrix such as ![A,B,D,Q](http://latex.codecogs.com/gif.latex?A,B,D,Q,\\bar{Q}) and so on by use the ***Laminate class*** or you can define the laminate directly.
+    <ul>
+      <li>
+        <p>You can define the lamina’s fibre and matrix’s parameters like the Elastic moduli<br />
+  <img src="http://latex.codecogs.com/gif.latex?E_{1},E_{2}" alt="" />,<br />
+   Shear moduli <img src="http://latex.codecogs.com/gif.latex?G" alt="" /> and strength, then define lamina’s layer angle and thickness in the next step.</p>
+      </li>
+      <li>
+        <p>After define the lamina you can get the matrix such as <img src="http://latex.codecogs.com/gif.latex?A%2CB%2CD%2CQ%2C%5Cbar%7BQ%7D" alt="A,B,D,Q" /> and so on by use the <strong><em>Laminate class</em></strong> or you can define the laminate directly.</p>
+      </li>
+      <li>
+        <p>Use the <strong><em>Load class</em></strong> and load the force and moment to the laminate to calculate the stress <img src="http://latex.codecogs.com/gif.latex?\\sigma" alt="" /> and stain <img src="http://latex.codecogs.com/gif.latex?\\epsilon" alt="" /> of each lamina.</p>
+      </li>
+      <li>
+        <p>Use the <strong><em>Failure_Cirterion class</em></strong> and you can choose different theories to check witch lamina failure or not.</p>
 
-- Use the ***Load class*** and load the force and moment to the laminate to calculate the stress ![](http://latex.codecogs.com/gif.latex?\\sigma) and stain ![](http://latex.codecogs.com/gif.latex?\\epsilon) of each lamina.
+        <p><img src="/post_img/lammmm.png" alt="Laminate in composite" title=" Laminate " /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>The <em>laminate_plugin.py</em> can plot the stress and strain distribution in the laminate in the COS(xy or 12), print the results in <em>Excel</em> formate and save it in <em>Excel</em>.</p>
 
-- Use the ***Failure_Cirterion class*** and you can choose different theories to check witch lamina failure or not.
-</code></pre>
-</div>
-
-<ul>
-  <li>The <em>laminate_plugin.py</em> can plot the stress and strain distribution in the laminate in the COS(xy or 12), print the results in <em>Excel</em> formate and save it in <em>Excel</em>.</li>
+    <p><img src="/post_img/stress_in_web.png" alt="stress distribution in laminate " title=" stress distribution " /></p>
+  </li>
 </ul>
 
 <hr />
@@ -193,20 +209,24 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
     <p><img src="http://latex.codecogs.com/gif.latex?S_%7Bx%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20ydA" alt="" />  <br />
   <img src="http://latex.codecogs.com/gif.latex?S_%7By%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20xdA" alt="" /></p>
   </li>
-  <li>
-    <p>There are many different kind of plug-ins you can use to help you plot the results in 2D or 3D.</p>
-
-    <p><img src="post_img/sF-full.gif" alt="close-profile at Qx" title="Shear flow" /><br />
-  <img src="post_img/sF-full2.gif" alt="close-profile at Qy" title="Shear flow" /><br />
-<strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>*****<br />
-### Running requirements<br />
-  Python &gt; v2.7<br />
-  Numpy<br />
-  Scipy<br />
-  Sympy<br />
-  matplotlib</p>
-  </li>
 </ul>
+
+<hr />
+
+<h3 id="plug-ins-use-to-plot-the-results-in-2d-or-3d">Plug-ins use to plot the results in 2D or 3D.</h3>
+
+<p><img src="/post_img/beam_location.png" alt="profile" title="Profile with order" /><br />
+<img src="/post_img/sF-full.gif" alt="profile at Qx" title="Profile at Qx" /><br />
+<img src="/post_img/sF-full2.gif" alt="profile at Qy" title="Profile at Qy" /></p>
+
+<h3 id="running-requirements">Running requirements</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>Python &gt; v2.7
+Numpy
+Scipy
+Sympy
+matplotlib
+</code></pre>
+</div>
 
 <h3 id="installation">Installation</h3>
 <blockquote>
@@ -215,10 +235,11 @@ Copy the source file in you own file and develop the new function by yourself.</
 </blockquote>
 
 <h3 id="license">License</h3>
-<p>#### MY GRADUATION THESIS IN TUBS,PARTLY FINISH.<br />
-#### ALL RIGHT RESERVE<br />
-———————————————————<br />
-[CLT]:https://github.com/Eacaen/composite-blade-design  “CLT”</p>
+
+<h4 id="my-graduation-thesis-in-tubspartly-finish">MY GRADUATION THESIS IN TUBS,PARTLY FINISH.</h4>
+
+<h4 id="download-here-httpsgithubcomeacaencomposite-blade-design"><a href="https://github.com/Eacaen/composite-blade-design"> Download here </a></h4>
+<hr />
 
 
 

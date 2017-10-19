@@ -5,6 +5,12 @@ tagline: "The composite materials,shear flow & normal stresses calculation for w
 categories: Python
 author: "Hu Tianyun"
 meta: "Springfield"
+subtitle:  <h4>Download
+            <a role="button" class="btn btn-primary hvr-grow-shadow" href="https://github.com/Eacaen/composite-blade-design" target="_blanks">
+                <span class="octicon octicon-mark-github"></span> GitHub
+            </a>
+            </h4>
+            <h4> </h4>
 ---
 
 Introduction
@@ -17,9 +23,11 @@ Introduction
 
 `read the program introduction for more details ` [Here](/doc/pro_introduction.pdf)  
 [Running requirements](#running-requirements) | [Installation](#installation) | [License](#license) 
-#### MY GRADUATION THESIS IN TUBS,PARTLY FINISH.
-#### ALL RIGHT RESERVED
+
+#### My bachelor thesis in TUBS, Germany, partly finished. We can improve it together in future.
+
 ********************************
+
 ## Composite Material Calculation with CLT
 * The main package is a Python composite materials calculation package.
 The laminate stresses, strain and failure Criterion based on the Classical Lamination Theory ([CLT](https://en.wikipedia.org/wiki/Composite_laminates)).  
@@ -28,13 +36,17 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
 	![](http://latex.codecogs.com/gif.latex?E_{1},E_{2}),
 	 Shear moduli ![](http://latex.codecogs.com/gif.latex?G) and strength, then define lamina's layer angle and thickness in the next step.
 		
-	- After define the lamina you can get the matrix such as ![A,B,D,Q](http://latex.codecogs.com/gif.latex?A,B,D,Q,\\bar{Q}) and so on by use the ***Laminate class*** or you can define the laminate directly.
+	- After define the lamina you can get the matrix such as ![A,B,D,Q](http://latex.codecogs.com/gif.latex?A%2CB%2CD%2CQ%2C%5Cbar%7BQ%7D) and so on by use the ***Laminate class*** or you can define the laminate directly.
 
 	- Use the ***Load class*** and load the force and moment to the laminate to calculate the stress ![](http://latex.codecogs.com/gif.latex?\\sigma) and stain ![](http://latex.codecogs.com/gif.latex?\\epsilon) of each lamina.
 
 	- Use the ***Failure_Cirterion class*** and you can choose different theories to check witch lamina failure or not.
 
+		![Laminate in composite](/post_img/lammmm.png " Laminate ")
+
 * The *laminate_plugin.py* can plot the stress and strain distribution in the laminate in the COS(xy or 12), print the results in _Excel_ formate and save it in _Excel_.
+	
+	![stress distribution in laminate ](/post_img/stress_in_web.png " stress distribution ")
 
 *****************************************************
 
@@ -53,12 +65,14 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
 	![](http://latex.codecogs.com/gif.latex?S_%7By%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20xdA)
 	
 
-
-* There are many different kind of plug-ins you can use to help you plot the results in 2D or 3D.
- 
-	![close-profile at Qx](post_img/sF-full.gif 'Shear flow')
-	![close-profile at Qy](post_img/sF-full2.gif 'Shear flow')
 *****************************************************
+
+### Plug-ins use to plot the results in 2D or 3D.
+
+![profile](/post_img/beam_location.png "Profile with order")
+![profile at Qx](/post_img/sF-full.gif "Profile at Qx")
+![profile at Qy](/post_img/sF-full2.gif  "Profile at Qy")
+
 ### Running requirements
 	Python > v2.7
 	Numpy
@@ -71,8 +85,10 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
 >Copy the source file in you own file and develop the new function by yourself.
 
 ### License
+
 #### MY GRADUATION THESIS IN TUBS,PARTLY FINISH.
-#### ALL RIGHT RESERVE
+
+#### [ Download here ](https://github.com/Eacaen/composite-blade-design)
 ---------------------------------------------------------
 [CLT]:https://github.com/Eacaen/composite-blade-design  "CLT"
  
