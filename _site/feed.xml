@@ -5,9 +5,80 @@
     <description>This is personnel website of HuTianyun</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Oct 2017 11:53:55 +0800</pubDate>
-    <lastBuildDate>Thu, 19 Oct 2017 11:53:55 +0800</lastBuildDate>
+    <pubDate>Fri, 20 Oct 2017 00:10:30 +0800</pubDate>
+    <lastBuildDate>Fri, 20 Oct 2017 00:10:30 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title> Jekll install in Ubuntu</title>
+        <description>&lt;h2 id=&quot;jekll-install-in-ubuntu&quot;&gt;Jekll install in Ubuntu&lt;/h2&gt;
+
+&lt;h3 id=&quot;ubuntu--jekll-&quot;&gt;Ubuntu 安装 Jekll 时遇到的一些问题。&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;开始时 使用命令&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ruby -v	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;会发现 Ubuntu 中竟然有一个 ruby1.8，许多网站都说 Ubuntu 中是不自带 ruby 的。但是这个 ruby 貌似没什么用，jekll 基本都要 ruby &amp;gt; 1.9 或是 &amp;gt;2.0 。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装缓慢，改变安装源&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+  gem sources -l 查看源 确保源里面只有 https://gems.ruby-china.org/ 
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 jekyll serve 遇到一些像 GitHub 权限等问题，使用&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  bundle exec jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;编译全局，会将所有的内容放到 _site 中&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  jekyll build
+  bundle exec jekyll build
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;theme-&quot;&gt;Theme 下载后使用的一些问题&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;一开始使用一些模板时会出现一堆的错误，慢慢看错误，Google就行，基本都能找到答案。两个包可以安装下&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gem install minima 
+  gem install jekyll-feed
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;注意&lt;/strong&gt; 修改文字，添加图片预览时的 网页地址，最好将_config.yml 中的 原始网页先注释掉，不然会联网回到 github 里保存的而不是修改完成的。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;xxx.md 与 xxx.html 在编辑时是同步更新的，不需要 build 后再启动 serve。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;include/ 里面使用的 HTML bootstrap 语言，一些相关的布局语法可以Google。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 19 Oct 2017 00:00:00 +0800</pubDate>
+        <link>/ubuntu/2017/10/19/jekll-install-ubuntu.html</link>
+        <guid isPermaLink="true">/ubuntu/2017/10/19/jekll-install-ubuntu.html</guid>
+        
+        
+        <category>Ubuntu</category>
+        
+      </item>
     
       <item>
         <title>Composite Blade Design</title>

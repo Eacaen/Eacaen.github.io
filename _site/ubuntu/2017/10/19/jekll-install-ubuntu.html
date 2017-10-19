@@ -9,11 +9,11 @@
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
 
-    <title>All My Blogs</title>
+    <title> Jekll install in Ubuntu</title>
     <meta name="description"
-          content="This is personnel website of HuTianyun">
+          content="Jekll install in Ubuntu">
 
-    <link rel="canonical" href="/blog.html">
+    <link rel="canonical" href="/ubuntu/2017/10/19/jekll-install-ubuntu.html">
     <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="/feed.xml">
 
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -30,10 +30,10 @@
 
     <!-- CSS set in page -->
     
-    <link rel="stylesheet" href="/assets/css/blog-page.css">
-    
 
     <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
     
 
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -91,14 +91,14 @@
 
 
         <div class="content">
-            <section class="jumbotron geopattern" data-pattern-id="All My Blogs">
+            <section class="jumbotron geopattern" data-pattern-id=" Jekll install in Ubuntu">
     <div class="container">
         <div id="jumbotron-meta-info">
-            <h1>All My Blogs</h1>
+            <h1> Jekll install in Ubuntu</h1>
             <span class="meta-info">
                 
-                    <span class="mega-octicon octicon-clippy"></span>&nbsp;&nbsp; Take notes about everything new
                 
+                <span class="octicon octicon-calendar"></span> 2017/10/19
                 
             </span>
         </div>
@@ -113,98 +113,147 @@
 
     });
 </script>
-<article class="post container">
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="row">
 
-    <div class="col-md-8">
-
-        <!-- Blog list -->
-        <ul id="posts-list">
-            
-            <li class="posts-list-item">
-                <div class="posts-content">
-                    <span class="posts-list-meta">2017-10-19</span>
-                    <a class="posts-list-name bubble-float-left" href="/ubuntu/2017/10/19/jekll-install-ubuntu.html"> Jekll install in Ubuntu</a>
-                    <span class="circle"></span>
-                </div>
-            </li>
-            
-            <li class="posts-list-item">
-                <div class="posts-content">
-                    <span class="posts-list-meta">2017-10-17</span>
-                    <a class="posts-list-name bubble-float-left" href="/python/2017/10/17/composite-blade-design.html">Composite Blade Design</a>
-                    <span class="circle"></span>
-                </div>
-            </li>
-            
-        </ul>
-
-        <!-- Pagination -->
-        <div class="pagination text-align">
-    <div class="btn-group">
-
         
-        <button disabled="disabled" href="javascript:;" class="btn btn-outline">&laquo;</button>
-        
+        <div class="col-md-8 markdown-body">
 
-        
-        <a href="/" class="btn btn-outline">1</a>
-        
+            <h2 id="jekll-install-in-ubuntu">Jekll install in Ubuntu</h2>
 
-        
+<h3 id="ubuntu--jekll-">Ubuntu 安装 Jekll 时遇到的一些问题。</h3>
 
-        
-        <button disabled="disabled" href="javascript:;" class="btn btn-outline">&raquo;</button>
-        
+<ul>
+  <li>
+    <p>开始时 使用命令</p>
 
+    <div class="highlighter-rouge"><pre class="highlight"><code>  ruby -v	
+</code></pre>
     </div>
+  </li>
+</ul>
+
+<p>会发现 Ubuntu 中竟然有一个 ruby1.8，许多网站都说 Ubuntu 中是不自带 ruby 的。但是这个 ruby 貌似没什么用，jekll 基本都要 ruby &gt; 1.9 或是 &gt;2.0 。</p>
+
+<ul>
+  <li>
+    <p>安装缓慢，改变安装源</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+  gem sources -l 查看源 确保源里面只有 https://gems.ruby-china.org/ 
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>使用 jekyll serve 遇到一些像 GitHub 权限等问题，使用</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  bundle exec jekyll serve
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>编译全局，会将所有的内容放到 _site 中</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  jekyll build
+  bundle exec jekyll build
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="theme-">Theme 下载后使用的一些问题</h3>
+
+<ul>
+  <li>
+    <p>一开始使用一些模板时会出现一堆的错误，慢慢看错误，Google就行，基本都能找到答案。两个包可以安装下</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  gem install minima 
+  gem install jekyll-feed
+</code></pre>
+    </div>
+  </li>
+  <li><strong>注意</strong> 修改文字，添加图片预览时的 网页地址，最好将_config.yml 中的 原始网页先注释掉，不然会联网回到 github 里保存的而不是修改完成的。</li>
+  <li>
+    <p>xxx.md 与 xxx.html 在编辑时是同步更新的，不需要 build 后再启动 serve。</p>
+  </li>
+  <li>include/ 里面使用的 HTML bootstrap 语言，一些相关的布局语法可以Google。</li>
+</ul>
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
 </div>
 
-        <!-- Comments -->
-        
-
-
-    </div>
-
-    <div class="col-md-4">
-        <h3 class="sidebar-title">Blog Categories</h3>
-<div id="blog-categories">
-    <ul class="list-group">
-        
-        <li class="list-group-item">
-            Python
-            <span class="badge">1</span>
-        </li>
-        
-        <li class="list-group-item">
-            Ubuntu
-            <span class="badge">1</span>
-        </li>
-        
-    </ul>
-
-</div>
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $("#blog-categories li").css('text-transform','capitalize')
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
     });
 
 </script>
+        </div>
+        
+
     </div>
-
-</div>
-<script>
-    $(document).ready(function(){
-
-        // Enable bootstrap tooltip
-        $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-
-    });
-</script>
-
-
 
 </article>
 
