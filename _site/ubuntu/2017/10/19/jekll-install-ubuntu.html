@@ -187,7 +187,19 @@
         </div>
 
         <div class="col-md-4">
-            <h3>Post Directory</h3>
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
 <div id="post-directory-module">
 <section class="post-directory">
     <!-- Links that trigger the jumping -->
