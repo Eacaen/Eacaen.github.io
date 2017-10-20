@@ -1,21 +1,21 @@
 ---
 layout: post
-title: " Jekll install in Ubuntu"
-tagline: "Jekll install questions and solutions in Ubuntu"
+title: " Jekyll install in Ubuntu"
+tagline: "jekyll install questions and solutions in Ubuntu"
 categories: Ubuntu
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
-## Jekll install in Ubuntu
+## jekyll install in Ubuntu
 
-### Ubuntu 安装 Jekll 时遇到的一些问题。
+### Ubuntu 安装 jekyll 时遇到的一些问题。
  
 
 * 开始时 使用命令
 
 		ruby -v	
 
-会发现 Ubuntu 中竟然有一个 ruby1.8，许多网站都说 Ubuntu 中是不自带 ruby 的。但是这个 ruby 貌似没什么用，jekll 基本都要 ruby > 1.9 或是 >2.0 。
+会发现 Ubuntu 中竟然有一个 ruby1.8，许多网站都说 Ubuntu 中是不自带 ruby 的。但是这个 ruby 貌似没什么用，jekyll 基本都要 ruby > 1.9 或是 >2.0 。
 
 * 安装缓慢，改变安装源
 
