@@ -1,5 +1,11 @@
 {
   
+  "python-2017-10-21-pygame-note1-html": {
+    "title": " Pygame Notebook 1",
+    "url": " /python/2017/10/21/pygame-note1.html",
+    "category": "Python"
+  },
+  
   "ubuntu-2017-10-19-jekll-install-ubuntu-html": {
     "title": " Jekyll install in Ubuntu",
     "url": " /ubuntu/2017/10/19/jekll-install-ubuntu.html",
@@ -60,6 +66,12 @@
     "title": " Jekyll install in Ubuntu",
     "url": "/ubuntu/2017/10/19/jekll-install-ubuntu.html",
     "category": "[&quot;Ubuntu&quot;]"
+  },
+  
+  "python-2017-10-21-pygame-note1-html": {
+    "title": " Pygame Notebook 1",
+    "url": "/python/2017/10/21/pygame-note1.html",
+    "category": "[&quot;Python&quot;]"
   }
   
 }
