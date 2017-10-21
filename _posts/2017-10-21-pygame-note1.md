@@ -7,7 +7,7 @@ author: "Hu Tianyun"
 meta: "Springfield"
 ---
 
-#《Making Games with Python and Pygame》
+# 《Making Games with Python and Pygame》
 
 *********************************************
 
