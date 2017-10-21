@@ -54,6 +54,7 @@ def getSpotClicked(board, x, y):
 ```
 
  * 获取键盘值
+
 ```Python
 for event in pygame.event.get():
 	if event.type == KEYUP:
@@ -81,7 +82,7 @@ icons = icons[:numIconsUsed] * 2
 random.shuffle(icons)
 ```
 
-#### Pygame 绘制思路
+## Pygame 绘制思路
  * 导入模块
  
 ```Python
