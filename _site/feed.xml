@@ -5,13 +5,173 @@
     <description>This is personnel website of HuTianyun</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 21 Oct 2017 23:16:39 +0800</pubDate>
-    <lastBuildDate>Sat, 21 Oct 2017 23:16:39 +0800</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2017 19:57:38 +0800</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2017 19:57:38 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
+        <title> Pygame Notebook 2</title>
+        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;notebook-2&quot;&gt;Notebook &amp;lt;2&amp;gt;&lt;/h2&gt;
+&lt;p&gt;第五章的游戏 Simulate，让人去记住并重复游戏中图案显示的顺序， 主体还是画出矩形并能和鼠标键盘交互，在此之上增加了点击矩形时的音乐，一些类似特效的光影闪烁效果和实现显示的记分牌。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;一般的逻辑顺序&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;导入模块，设置全局变量，常量。&lt;/li&gt;
+  &lt;li&gt;设置界面，局部变量
+    &lt;ol&gt;
+      &lt;li&gt;文字 Surface 字体，大小，位置。&lt;/li&gt;
+      &lt;li&gt;按键的颜色，大小，位置。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;While 循环 &lt;strong&gt;【在循环检测 QUIT 事件，否则是死循环无法退出】&lt;/strong&gt;
+    &lt;ol&gt;
+      &lt;li&gt;在循环中检测按键光标事件，检测碰撞。&lt;/li&gt;
+      &lt;li&gt;循环中不断重新绘制全局和局部的 Surface。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;亮点 / 思路&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;所绘制的图标与图标占用的方块仅仅是大小相同，其他并没有什么联系。所以图标重新绘制和光标的碰撞到方块的检测并不矛盾和冲突，相反我觉得这是一种很好的思路和编写方式。&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+# 绘制 rect vs rect 检测
+draw_rect( )
+pygame.Rect( )
+# 重复绘制图标
+drawButtons()
+&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;其实在前两章和本章的源码的循环中都有用背景色覆盖所有，然后再重新绘制文字，图标的部分，在搞清能这样的原因后，这样做的好处我觉得也有这样几条：&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+编写逻辑更加简单粗暴了，更新界面实际上就是整体重新绘制，不是界面的小修小补。
+方便在界面上显示需要更新的文字【这里应该也可以小修小补的】，或是实时变更的分数等消息。
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;功能&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Python
+#让 Surface 显示出现在屏幕上
+pygame.display.update()
+# 确保动画不会像计算机绘制那样快的播放，调用 tick() 增加暂停，FPS 越小越慢
+FPSCLOCK.tick(FPS)
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;播放音乐&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/files/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# -*- coding: utf-8 -*-
+
+import pygame,sys
+from pygame.locals import *
+import time
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+
+global FPSCLOCK, DISPLAYSURF, BEEP1
+pygame.init()
+FPSCLOCK = pygame.time.Clock()
+DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+
+pygame.display.set_caption(&#39;Play Sound&#39;)
+BEEP1 = pygame.mixer.Sound(&#39;beep1.ogg&#39;)
+
+while True:
+	for event in pygame.event.get(): # event handling loop
+		if event.type == MOUSEBUTTONUP:
+			mousex, mousey = event.pos
+			BEEP1.play()
+
+		if event.type == QUIT:
+			pygame.quit()
+			sys.exit()
+
+	pygame.display.update()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;### 颜色效果的制作&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过不断更改透明度 alpha 实现颜色的明暗变化效果。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;调用 convert_alpha() 方法，以便该 Surface 对象能够具有一个绘制于期上的透明色，否则的话将会忽略 Color 对象的 alpha 值并自动保存为 255。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# -*- coding: utf-8 -*-
+
+import pygame,sys,random
+from pygame.locals import *
+import time
+FPS = 30
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+
+#	R	G	B
+WHITE	= (255, 255, 255)
+BLACK	= (  0,   0,   0)
+
+bgColor = BLACK
+
+def changeBackgroundAnimation(animationSpeed=5):
+	global bgColor
+	newBgColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+	newBgSurf = pygame.Surface((WINDOWWIDTH, WINDOWHEIGHT))
+	newBgSurf = newBgSurf.convert_alpha()
+	r, g, b = newBgColor
+	for alpha in range(0, 255, animationSpeed): # animation loop
+		DISPLAYSURF.fill(bgColor)
+
+		newBgSurf.fill((r, g, b, alpha))
+		DISPLAYSURF.blit(newBgSurf, (0, 0))
+
+		pygame.display.update()
+		FPSCLOCK.tick(FPS)
+	bgColor = newBgColor
+
+def main():
+	global FPSCLOCK, DISPLAYSURF
+	pygame.init()
+	FPSCLOCK = pygame.time.Clock()
+	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+	pygame.display.set_caption(&#39;Color&#39;)
+
+	while True:
+		for event in pygame.event.get(): # event handling loop
+			if event.type == MOUSEBUTTONUP:
+				mousex, mousey = event.pos
+				changeBackgroundAnimation()
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
+				
+		pygame.display.update()
+
+if __name__ == &#39;__main__&#39;:
+	main()
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+        <pubDate>Sat, 21 Oct 2017 00:00:00 +0800</pubDate>
+        <link>/python/2017/10/21/pygame-note2.html</link>
+        <guid isPermaLink="true">/python/2017/10/21/pygame-note2.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
+    
+      <item>
         <title> Pygame Notebook 1</title>
-        <description>&lt;p&gt;#《Making Games with Python and Pygame》&lt;/p&gt;
+        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
 
 &lt;hr /&gt;
 
@@ -58,24 +218,23 @@ def getSpotClicked(board, x, y):
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;获取键盘值&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Python
-for event in pygame.event.get():
- if event.type == KEYUP:
-     if event.key in (K_LEFT, K_a) and isValidMove(mainBoard, LEFT):
-         slideTo = LEFT
-     elif event.key in (K_RIGHT, K_d) and isValidMove(mainBoard, RIGHT):
-         slideTo = RIGHT
-     elif event.key in (K_UP, K_w) and isValidMove(mainBoard, UP):
-         slideTo = UP
-     elif event.key in (K_DOWN, K_s) and isValidMove(mainBoard, DOWN):
-         slideTo = DOWN 
-&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用 assert 语句检查&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;获取键盘值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;for event in pygame.event.get():
+	if event.type == KEYUP:
+		if event.key in (K_LEFT, K_a) and isValidMove(mainBoard, LEFT):
+			slideTo = LEFT
+		elif event.key in (K_RIGHT, K_d) and isValidMove(mainBoard, RIGHT):
+			slideTo = RIGHT
+		elif event.key in (K_UP, K_w) and isValidMove(mainBoard, UP):
+			slideTo = UP
+		elif event.key in (K_DOWN, K_s) and isValidMove(mainBoard, DOWN):
+			slideTo = DOWN 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用 assert 语句检查&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;assert (BOARDWIDTH * BOARDHEIGHT) %2 == 0
@@ -87,7 +246,7 @@ for event in pygame.event.get():
 random.shuffle(icons)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;pygame-&quot;&gt;Pygame 绘制思路&lt;/h4&gt;
+&lt;h2 id=&quot;pygame-&quot;&gt;Pygame 绘制思路&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;导入模块&lt;/li&gt;
 &lt;/ul&gt;

@@ -1,5 +1,11 @@
 {
   
+  "python-2017-10-21-pygame-note2-html": {
+    "title": " Pygame Notebook 2",
+    "url": " /python/2017/10/21/pygame-note2.html",
+    "category": "Python"
+  },
+  
   "python-2017-10-21-pygame-note1-html": {
     "title": " Pygame Notebook 1",
     "url": " /python/2017/10/21/pygame-note1.html",
@@ -71,6 +77,12 @@
   "python-2017-10-21-pygame-note1-html": {
     "title": " Pygame Notebook 1",
     "url": "/python/2017/10/21/pygame-note1.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "python-2017-10-21-pygame-note2-html": {
+    "title": " Pygame Notebook 2",
+    "url": "/python/2017/10/21/pygame-note2.html",
     "category": "[&quot;Python&quot;]"
   }
   
