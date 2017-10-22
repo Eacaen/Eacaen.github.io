@@ -48,7 +48,7 @@ FPSCLOCK.tick(FPS)
 ```
 
 ### 播放音乐
- *  [音乐文件](/assets/files/beep1.ogg)
+ *  [音乐文件]({{ site.url }}/assets/files/beep1.ogg)  
 
 ```Python
 # -*- coding: utf-8 -*-
