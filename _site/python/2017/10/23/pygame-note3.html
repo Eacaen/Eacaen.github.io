@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <title> Pygame Notebook 3</title>
+    <meta name="description"
+          content="《Making Games with Python and Pygame》">
+
+    <link rel="canonical" href="/python/2017/10/23/pygame-note3.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="/feed.xml">
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/bower_components/hover/css/hover-min.css">
+    <link rel="stylesheet" href="/bower_components/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <!-- CSS set in page -->
+    
+
+    <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+    
+
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="HuTianyun">
+            <span class="octicon octicon-mark-github"></span> HuTianyun
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            
+            <a href="/"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Home">
+                Home
+            </a>
+            
+            <a href="/open-source"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Open-Source">
+                Open-Source
+            </a>
+            
+            <a href="/blog"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Blog">
+                Blog
+            </a>
+            
+            <a href="/bookmark"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Bookmark">
+                Bookmark
+            </a>
+            
+            <a href="/about"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="About me">
+                About me
+            </a>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <section class="jumbotron geopattern" data-pattern-id=" Pygame Notebook 3">
+    <div class="container">
+        <div id="jumbotron-meta-info">
+            <h1> Pygame Notebook 3</h1>
+            <span class="meta-info">
+                
+                
+                <span class="octicon octicon-calendar"></span> 2017/10/23
+                
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+
+        $('.geopattern').each(function(){
+            $(this).geopattern($(this).data('pattern-id'));
+        });
+
+    });
+</script>
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="row">
+
+        
+        <div class="col-md-8 markdown-body">
+
+            <h1 id="making-games-with-python-and-pygame">《Making Games with Python and Pygame》</h1>
+
+<hr />
+
+<h2 id="notebook-3">Notebook &lt;3&gt;</h2>
+<p>第六章的游戏 Wormy 贪吃蛇游戏， 开局显示旋转变化的字体和方块，按下任意按键后会显示游戏界面，划分的网格，游走的蛇（绿色方块），苹果（红色的方块），碰撞到苹果身体变长，碰撞到自己和墙壁游戏结束，暂停并显示 Game Over，按下任意按键后又再次重新开始。同时实时显示分数。</p>
+
+<h3 id="section">亮点 / 思路</h3>
+<ul>
+  <li>程序很好的结合了吃苹果和游动的处理，使用蛇头坐标，一个字典列表表示蛇，每次都删除末尾，吃到则不删除。</li>
+  <li>Game Over时，进入显示Game Over while 死循环等待退出，其间其他的显示部分暂停在原处，死循环阻塞住了其他显示程序，显示程序仍旧在 Surface 上面显示界面，造成一种另外有暂停程序的假象。</li>
+  <li>字体背景会随着字体的变化而变化，不需要额外控制。</li>
+  <li>2D 图像的旋转，不完美，不应该直接覆盖变量，复用变量名的话则会造成字体的 Surface 越来越大，报错。</li>
+  <li>智能的退出函数。</li>
+</ul>
+
+<h3 id="section-1">蛇的表示和长度的增加</h3>
+<ul>
+  <li>在当前的前进方向上增加头，删去尾巴，每次重新绘图时感觉就是在前进；吃到苹果则不删去，感觉就是增加了长度。</li>
+</ul>
+
+<pre><code class="language-Python">wormCoords = [ {'x':startx , 'y': starty} ,  {'x':startx-1 , 'y': starty}  ,  {'x':startx-2 , 'y': starty} ,{'x':startx-3 , 'y': starty} ]
+if wormCoords[HEAD]['x'] == apple['x'] and wormCoords[HEAD]['y'] == apple['y']:
+	apple = getRandomLocation() # set a new apple somewhere
+else:
+	del wormCoords[-1] 
+
+if direction == UP:
+	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] - 1}
+elif direction == DOWN:
+	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] + 1}
+elif direction == LEFT:
+	newHead = {'x': wormCoords[HEAD]['x'] - 1, 'y': wormCoords[HEAD]['y']}
+elif direction == RIGHT:
+	newHead = {'x': wormCoords[HEAD]['x'] + 1, 'y': wormCoords[HEAD]['y']}
+
+wormCoords.insert(0, newHead)
+
+</code></pre>
+
+<h3 id="pygameevent--type-">显示 pygame.event 中的 type 值</h3>
+<ul>
+  <li><a href="/assets/files/Pygame_book/my_event_test.py">运行文件</a></li>
+</ul>
+
+<pre><code class="language-Python">#/usr/bin/env python
+#coding=utf8
+
+import random, pygame, sys
+from pygame.locals import *
+
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+
+def main():
+	pygame.init()
+	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+	pygame.display.set_caption('event test')
+
+
+	while True:
+for event in pygame.event.get():
+	print 'event.type' , event.type
+
+	if event.type == QUIT:
+pygame.quit()
+sys.exit()
+	elif event.type == KEYDOWN:
+print event.key 
+
+
+if __name__ == '__main__':
+	main()
+</code></pre>
+
+<h3 id="section-2">显示 文字旋转，背景转化，网格划分，按键退出</h3>
+<ul>
+  <li><a href="/assets/files/Pygame_book/my_wormy_test.py">运行文件</a></li>
+  <li>背景转化更好的说明了每次用背景色覆盖后重新绘图的原理和好处</li>
+  <li>文字旋转<br />
+ &gt; pygame.transform.rotate( surface , rotate_angle) 并不会改变传递给它的 Surface 对象，而是返回一个新的Surface 对象，旋转后的图形绘制于新的 Surface 对象上。</li>
+</ul>
+
+<p>所以每次都重新绘图。</p>
+
+<ul>
+  <li>旋转不要复用变量名。<br />
+ &gt; pygame.error: Width or height is too large</li>
+  <li>退出函数 checkForKeyPress() 的使用</li>
+  <li>网格划分，循环划线。<br />
+```Python<br />
+#/usr/bin/env python<br />
+#coding=utf8</li>
+</ul>
+
+<p>import random, pygame, sys<br />
+from pygame.locals import *</p>
+
+<p>FPS = 5<br />
+WINDOWWIDTH = 640<br />
+WINDOWHEIGHT = 480<br />
+CELLSIZE = 20<br />
+assert WINDOWWIDTH % CELLSIZE == 0, “Window width must be a multiple of cell size.”<br />
+assert WINDOWHEIGHT % CELLSIZE == 0, “Window height must be a multiple of cell size.”<br />
+CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)<br />
+CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)</p>
+
+<h1 id="rgb">R	G	B</h1>
+<p>WHITE	 = (255, 255, 255)<br />
+BLACK	 = (  0,   0,   0)<br />
+RED	   = (255,   0,   0)<br />
+GREEN	 = (  0, 255,   0)<br />
+DARKGREEN = (  0, 155,   0)<br />
+DARKGRAY  = ( 40,  40,  40)<br />
+BGCOLOR = BLACK</p>
+
+<p>def terminate():<br />
+	pygame.quit()<br />
+	sys.exit()</p>
+
+<p>def main():<br />
+	global FPSCLOCK, DISPLAYSURF, BASICFONT</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pygame.init()
+FPSCLOCK = pygame.time.Clock()
+DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+pygame.display.set_caption('Wormy')
+
+degrees1 = 0
+degrees2 = 0
+
+while True:
+	
+	showStartScreen()
+	showGameOverScreen()
+
+print 'exit'
+</code></pre>
+</div>
+
+<p>def drawGrid():<br />
+	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines<br />
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))<br />
+	for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines<br />
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))<br />
+def drawPressKeyMsg():<br />
+	pressKeySurf = BASICFONT.render(‘Press a key to play.’, True, DARKGRAY)<br />
+	pressKeyRect = pressKeySurf.get_rect()<br />
+	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)<br />
+	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)</p>
+
+<p>def checkForKeyPress():<br />
+	if len(pygame.event.get(QUIT)) &gt; 0:<br />
+		terminate()</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>keyUpEvents = pygame.event.get(KEYUP)
+if len(keyUpEvents) == 0:
+	return None
+if keyUpEvents[0].key == K_ESCAPE:
+	terminate()
+return keyUpEvents[0].key
+</code></pre>
+</div>
+
+<p>def showStartScreen():<br />
+	titleFont = pygame.font.Font(‘freesansbold.ttf’, 100)<br />
+	titleSurf1 = titleFont.render(‘Wormy!’, True, WHITE, DARKGREEN)<br />
+	titleSurf2 = titleFont.render(‘Wormy!’, True, GREEN)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>degrees1 = 0
+degrees2 = 0
+while True:
+
+	# DISPLAYSURF.fill(BGCOLOR)
+	rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
+	rotatedRect1 = rotatedSurf1.get_rect()
+	rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+	DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
+
+	rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
+	rotatedRect2 = rotatedSurf2.get_rect()
+	rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+	DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
+
+	# for event in pygame.event.get():
+	# 	if event.type == QUIT:
+	# 		terminate()
+
+	if checkForKeyPress():
+		pygame.event.get() # clear event queue
+		return
+	drawPressKeyMsg()
+	drawGrid()
+	pygame.display.update()
+	FPSCLOCK.tick(FPS)
+	degrees1 += 3 # rotate by 3 degrees each frame
+	degrees2 += 7 # rotate by 7 degrees each frame
+</code></pre>
+</div>
+
+<p>def showGameOverScreen():<br />
+	gameOverFont = pygame.font.Font(‘freesansbold.ttf’, 150)<br />
+	gameSurf = gameOverFont.render(‘Game’, True, WHITE)<br />
+	overSurf = gameOverFont.render(‘Over’, True, WHITE)<br />
+	gameRect = gameSurf.get_rect()<br />
+	overRect = overSurf.get_rect()<br />
+	gameRect.midtop = (WINDOWWIDTH / 2, 10)<br />
+	overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>DISPLAYSURF.blit(gameSurf, gameRect)
+DISPLAYSURF.blit(overSurf, overRect)
+
+drawPressKeyMsg()
+
+pygame.display.update()
+pygame.time.wait(500)
+checkForKeyPress() # clear out any key presses in the event queue
+
+while True:
+	if checkForKeyPress():
+		pygame.event.get() # clear event queue
+		return
+</code></pre>
+</div>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’:<br />
+	main()<br />
+```</p>
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
+    });
+
+</script>
+        </div>
+        
+
+    </div>
+
+</article>
+
+        </div>
+
+    <footer class="container">
+
+    <div class="site-footer">
+
+        <div class="copyright pull-left">
+            <!-- 请不要更改这一行 方便其他人知道模板的来源 谢谢 -->
+            <!-- Please keep this line to let others know where this theme comes from. Thank you :D -->
+            Power by <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <a href="https://github.com/DONGChuan" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+
+    </div>
+
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="/bower_components/geopattern/js/geopattern.min.js"></script>
+
+    <!-- My JS -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+
+    
+
+    
+    <!-- Google Analytics -->
+    <div style="display:none">
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-108252059-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </div>
+    
+
+</footer>
+
+
+    </body>
+
+</html>

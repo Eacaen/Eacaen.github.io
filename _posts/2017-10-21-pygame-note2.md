@@ -48,7 +48,7 @@ FPSCLOCK.tick(FPS)
 ```
 
 ### 播放音乐
- *  [音乐文件]({{ site.url }}/assets/files/beep1.ogg)  
+ *  [音乐文件]({{ site.url }}/assets/files/Pygame_book/beep1.ogg)  
 
 ```Python
 # -*- coding: utf-8 -*-
@@ -83,7 +83,7 @@ while True:
 
  *  通过不断更改透明度 alpha 实现颜色的明暗变化效果。
 
-> 调用 convert_alpha() 方法，以便该 Surface 对象能够具有一个绘制于期上的透明色，否则的话将会忽略 Color 对象的 alpha 值并自动保存为 255。
+> 调用 convert_alpha() 方法，以便该 Surface 对象能够具有一个绘制于图上的透明色，否则的话将会忽略 Color 对象的 alpha 值并自动保存为 255。
 
 ```Python
 # -*- coding: utf-8 -*-

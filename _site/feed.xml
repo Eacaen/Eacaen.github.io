@@ -5,9 +5,250 @@
     <description>This is personnel website of HuTianyun</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 22 Oct 2017 21:06:14 +0800</pubDate>
-    <lastBuildDate>Sun, 22 Oct 2017 21:06:14 +0800</lastBuildDate>
+    <pubDate>Mon, 23 Oct 2017 23:08:23 +0800</pubDate>
+    <lastBuildDate>Mon, 23 Oct 2017 23:08:23 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title> Pygame Notebook 3</title>
+        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;notebook-3&quot;&gt;Notebook &amp;lt;3&amp;gt;&lt;/h2&gt;
+&lt;p&gt;第六章的游戏 Wormy 贪吃蛇游戏， 开局显示旋转变化的字体和方块，按下任意按键后会显示游戏界面，划分的网格，游走的蛇（绿色方块），苹果（红色的方块），碰撞到苹果身体变长，碰撞到自己和墙壁游戏结束，暂停并显示 Game Over，按下任意按键后又再次重新开始。同时实时显示分数。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;亮点 / 思路&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;程序很好的结合了吃苹果和游动的处理，使用蛇头坐标，一个字典列表表示蛇，每次都删除末尾，吃到则不删除。&lt;/li&gt;
+  &lt;li&gt;Game Over时，进入显示Game Over while 死循环等待退出，其间其他的显示部分暂停在原处，死循环阻塞住了其他显示程序，显示程序仍旧在 Surface 上面显示界面，造成一种另外有暂停程序的假象。&lt;/li&gt;
+  &lt;li&gt;字体背景会随着字体的变化而变化，不需要额外控制。&lt;/li&gt;
+  &lt;li&gt;2D 图像的旋转，不完美，不应该直接覆盖变量，复用变量名的话则会造成字体的 Surface 越来越大，报错。&lt;/li&gt;
+  &lt;li&gt;智能的退出函数。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;蛇的表示和长度的增加&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;在当前的前进方向上增加头，删去尾巴，每次重新绘图时感觉就是在前进；吃到苹果则不删去，感觉就是增加了长度。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;wormCoords = [ {&#39;x&#39;:startx , &#39;y&#39;: starty} ,  {&#39;x&#39;:startx-1 , &#39;y&#39;: starty}  ,  {&#39;x&#39;:startx-2 , &#39;y&#39;: starty} ,{&#39;x&#39;:startx-3 , &#39;y&#39;: starty} ]
+if wormCoords[HEAD][&#39;x&#39;] == apple[&#39;x&#39;] and wormCoords[HEAD][&#39;y&#39;] == apple[&#39;y&#39;]:
+	apple = getRandomLocation() # set a new apple somewhere
+else:
+	del wormCoords[-1] 
+
+if direction == UP:
+	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;], &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;] - 1}
+elif direction == DOWN:
+	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;], &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;] + 1}
+elif direction == LEFT:
+	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;] - 1, &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;]}
+elif direction == RIGHT:
+	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;] + 1, &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;]}
+
+wormCoords.insert(0, newHead)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;pygameevent--type-&quot;&gt;显示 pygame.event 中的 type 值&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_event_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#/usr/bin/env python
+#coding=utf8
+
+import random, pygame, sys
+from pygame.locals import *
+
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+
+def main():
+	pygame.init()
+	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+	pygame.display.set_caption(&#39;event test&#39;)
+
+
+	while True:
+for event in pygame.event.get():
+	print &#39;event.type&#39; , event.type
+
+	if event.type == QUIT:
+pygame.quit()
+sys.exit()
+	elif event.type == KEYDOWN:
+print event.key 
+
+
+if __name__ == &#39;__main__&#39;:
+	main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;显示 文字旋转，背景转化，网格划分，按键退出&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_wormy_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;背景转化更好的说明了每次用背景色覆盖后重新绘图的原理和好处&lt;/li&gt;
+  &lt;li&gt;文字旋转&lt;br /&gt;
+ &amp;gt; pygame.transform.rotate( surface , rotate_angle) 并不会改变传递给它的 Surface 对象，而是返回一个新的Surface 对象，旋转后的图形绘制于新的 Surface 对象上。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以每次都重新绘图。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;旋转不要复用变量名。&lt;br /&gt;
+ &amp;gt; pygame.error: Width or height is too large&lt;/li&gt;
+  &lt;li&gt;退出函数 checkForKeyPress() 的使用&lt;/li&gt;
+  &lt;li&gt;网格划分，循环划线。&lt;br /&gt;
+```Python&lt;br /&gt;
+#/usr/bin/env python&lt;br /&gt;
+#coding=utf8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;import random, pygame, sys&lt;br /&gt;
+from pygame.locals import *&lt;/p&gt;
+
+&lt;p&gt;FPS = 5&lt;br /&gt;
+WINDOWWIDTH = 640&lt;br /&gt;
+WINDOWHEIGHT = 480&lt;br /&gt;
+CELLSIZE = 20&lt;br /&gt;
+assert WINDOWWIDTH % CELLSIZE == 0, “Window width must be a multiple of cell size.”&lt;br /&gt;
+assert WINDOWHEIGHT % CELLSIZE == 0, “Window height must be a multiple of cell size.”&lt;br /&gt;
+CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)&lt;br /&gt;
+CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)&lt;/p&gt;
+
+&lt;h1 id=&quot;rgb&quot;&gt;R	G	B&lt;/h1&gt;
+&lt;p&gt;WHITE	 = (255, 255, 255)&lt;br /&gt;
+BLACK	 = (  0,   0,   0)&lt;br /&gt;
+RED	   = (255,   0,   0)&lt;br /&gt;
+GREEN	 = (  0, 255,   0)&lt;br /&gt;
+DARKGREEN = (  0, 155,   0)&lt;br /&gt;
+DARKGRAY  = ( 40,  40,  40)&lt;br /&gt;
+BGCOLOR = BLACK&lt;/p&gt;
+
+&lt;p&gt;def terminate():&lt;br /&gt;
+	pygame.quit()&lt;br /&gt;
+	sys.exit()&lt;/p&gt;
+
+&lt;p&gt;def main():&lt;br /&gt;
+	global FPSCLOCK, DISPLAYSURF, BASICFONT&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pygame.init()
+FPSCLOCK = pygame.time.Clock()
+DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+BASICFONT = pygame.font.Font(&#39;freesansbold.ttf&#39;, 18)
+pygame.display.set_caption(&#39;Wormy&#39;)
+
+degrees1 = 0
+degrees2 = 0
+
+while True:
+	
+	showStartScreen()
+	showGameOverScreen()
+
+print &#39;exit&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;def drawGrid():&lt;br /&gt;
+	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines&lt;br /&gt;
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))&lt;br /&gt;
+	for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines&lt;br /&gt;
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))&lt;br /&gt;
+def drawPressKeyMsg():&lt;br /&gt;
+	pressKeySurf = BASICFONT.render(‘Press a key to play.’, True, DARKGRAY)&lt;br /&gt;
+	pressKeyRect = pressKeySurf.get_rect()&lt;br /&gt;
+	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)&lt;br /&gt;
+	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)&lt;/p&gt;
+
+&lt;p&gt;def checkForKeyPress():&lt;br /&gt;
+	if len(pygame.event.get(QUIT)) &amp;gt; 0:&lt;br /&gt;
+		terminate()&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;keyUpEvents = pygame.event.get(KEYUP)
+if len(keyUpEvents) == 0:
+	return None
+if keyUpEvents[0].key == K_ESCAPE:
+	terminate()
+return keyUpEvents[0].key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;def showStartScreen():&lt;br /&gt;
+	titleFont = pygame.font.Font(‘freesansbold.ttf’, 100)&lt;br /&gt;
+	titleSurf1 = titleFont.render(‘Wormy!’, True, WHITE, DARKGREEN)&lt;br /&gt;
+	titleSurf2 = titleFont.render(‘Wormy!’, True, GREEN)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;degrees1 = 0
+degrees2 = 0
+while True:
+
+	# DISPLAYSURF.fill(BGCOLOR)
+	rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
+	rotatedRect1 = rotatedSurf1.get_rect()
+	rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+	DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
+
+	rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
+	rotatedRect2 = rotatedSurf2.get_rect()
+	rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+	DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
+
+	# for event in pygame.event.get():
+	# 	if event.type == QUIT:
+	# 		terminate()
+
+	if checkForKeyPress():
+		pygame.event.get() # clear event queue
+		return
+	drawPressKeyMsg()
+	drawGrid()
+	pygame.display.update()
+	FPSCLOCK.tick(FPS)
+	degrees1 += 3 # rotate by 3 degrees each frame
+	degrees2 += 7 # rotate by 7 degrees each frame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;def showGameOverScreen():&lt;br /&gt;
+	gameOverFont = pygame.font.Font(‘freesansbold.ttf’, 150)&lt;br /&gt;
+	gameSurf = gameOverFont.render(‘Game’, True, WHITE)&lt;br /&gt;
+	overSurf = gameOverFont.render(‘Over’, True, WHITE)&lt;br /&gt;
+	gameRect = gameSurf.get_rect()&lt;br /&gt;
+	overRect = overSurf.get_rect()&lt;br /&gt;
+	gameRect.midtop = (WINDOWWIDTH / 2, 10)&lt;br /&gt;
+	overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DISPLAYSURF.blit(gameSurf, gameRect)
+DISPLAYSURF.blit(overSurf, overRect)
+
+drawPressKeyMsg()
+
+pygame.display.update()
+pygame.time.wait(500)
+checkForKeyPress() # clear out any key presses in the event queue
+
+while True:
+	if checkForKeyPress():
+		pygame.event.get() # clear event queue
+		return
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == ‘&lt;strong&gt;main&lt;/strong&gt;’:&lt;br /&gt;
+	main()&lt;br /&gt;
+```&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 Oct 2017 00:00:00 +0800</pubDate>
+        <link>/python/2017/10/23/pygame-note3.html</link>
+        <guid isPermaLink="true">/python/2017/10/23/pygame-note3.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
     
       <item>
         <title> Pygame Notebook 2</title>
@@ -64,7 +305,7 @@ FPSCLOCK.tick(FPS)
 
 &lt;h3 id=&quot;section-2&quot;&gt;播放音乐&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/assets/files/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# -*- coding: utf-8 -*-
@@ -102,7 +343,7 @@ while True:
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;调用 convert_alpha() 方法，以便该 Surface 对象能够具有一个绘制于期上的透明色，否则的话将会忽略 Color 对象的 alpha 值并自动保存为 255。&lt;/p&gt;
+  &lt;p&gt;调用 convert_alpha() 方法，以便该 Surface 对象能够具有一个绘制于图上的透明色，否则的话将会忽略 Color 对象的 alpha 值并自动保存为 255。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# -*- coding: utf-8 -*-
