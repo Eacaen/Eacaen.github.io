@@ -64,18 +64,18 @@ def main():
 
 
 	while True:
-for event in pygame.event.get():
-	print 'event.type' , event.type
+		for event in pygame.event.get():
+			print 'event.type' , event.type
 
-	if event.type == QUIT:
-pygame.quit()
-sys.exit()
-	elif event.type == KEYDOWN:
-print event.key 
-
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
+			elif event.type == KEYDOWN:
+				print event.key 
 
 if __name__ == '__main__':
 	main()
+
 ```
 
 ### 显示 文字旋转，背景转化，网格划分，按键退出
@@ -137,7 +137,6 @@ def main():
 		showGameOverScreen()
 
 	print 'exit'
-
 def drawGrid():
 	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
 		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))
@@ -148,28 +147,21 @@ def drawPressKeyMsg():
 	pressKeyRect = pressKeySurf.get_rect()
 	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)
 	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
-
 def checkForKeyPress():
 	if len(pygame.event.get(QUIT)) > 0:
 		terminate()
-
 	keyUpEvents = pygame.event.get(KEYUP)
 	if len(keyUpEvents) == 0:
 		return None
 	if keyUpEvents[0].key == K_ESCAPE:
 		terminate()
 	return keyUpEvents[0].key
-
 def showStartScreen():
 	titleFont = pygame.font.Font('freesansbold.ttf', 100)
 	titleSurf1 = titleFont.render('Wormy!', True, WHITE, DARKGREEN)
 	titleSurf2 = titleFont.render('Wormy!', True, GREEN)
-
-	degrees1 = 0
-	degrees2 = 0
 	while True:
-
-		# DISPLAYSURF.fill(BGCOLOR)
+		DISPLAYSURF.fill(BGCOLOR)
 		rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
 		rotatedRect1 = rotatedSurf1.get_rect()
 		rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
@@ -193,7 +185,6 @@ def showStartScreen():
 		FPSCLOCK.tick(FPS)
 		degrees1 += 3 # rotate by 3 degrees each frame
 		degrees2 += 7 # rotate by 7 degrees each frame
-
 def showGameOverScreen():
 	gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
 	gameSurf = gameOverFont.render('Game', True, WHITE)
@@ -216,7 +207,6 @@ def showGameOverScreen():
 		if checkForKeyPress():
 			pygame.event.get() # clear event queue
 			return
-
 if __name__ == '__main__':
 	main()
 ```
