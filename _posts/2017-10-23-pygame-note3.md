@@ -90,6 +90,7 @@ if __name__ == '__main__':
  > pygame.error: Width or height is too large
  *  退出函数 checkForKeyPress() 的使用
  *  网格划分，循环划线。
+ 
 ```Python
 #/usr/bin/env python
 #coding=utf8
@@ -105,8 +106,7 @@ assert WINDOWWIDTH % CELLSIZE == 0, "Window width must be a multiple of cell siz
 assert WINDOWHEIGHT % CELLSIZE == 0, "Window height must be a multiple of cell size."
 CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)
 CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)
-
-#			 R	G	B
+#	  R	G	B
 WHITE	 = (255, 255, 255)
 BLACK	 = (  0,   0,   0)
 RED	   = (255,   0,   0)
@@ -114,14 +114,11 @@ GREEN	 = (  0, 255,   0)
 DARKGREEN = (  0, 155,   0)
 DARKGRAY  = ( 40,  40,  40)
 BGCOLOR = BLACK
-
 def terminate():
 	pygame.quit()
 	sys.exit()
-
 def main():
 	global FPSCLOCK, DISPLAYSURF, BASICFONT
-
 	pygame.init()
 	FPSCLOCK = pygame.time.Clock()
 	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
@@ -130,13 +127,9 @@ def main():
 
 	degrees1 = 0
 	degrees2 = 0
-
-	while True:
-		
+	while True:	
 		showStartScreen()
 		showGameOverScreen()
-
-	print 'exit'
 def drawGrid():
 	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
 		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))
@@ -166,16 +159,13 @@ def showStartScreen():
 		rotatedRect1 = rotatedSurf1.get_rect()
 		rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
 		DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
-
 		rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
 		rotatedRect2 = rotatedSurf2.get_rect()
 		rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
 		DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
-
 		# for event in pygame.event.get():
 		# 	if event.type == QUIT:
 		# 		terminate()
-
 		if checkForKeyPress():
 			pygame.event.get() # clear event queue
 			return
