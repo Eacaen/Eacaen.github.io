@@ -1,13 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hu&#39;s Space !</title>
+    <title>Hu's Space !</title>
     <description>This is personnel website of HuTianyun</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Oct 2017 23:08:23 +0800</pubDate>
-    <lastBuildDate>Mon, 23 Oct 2017 23:08:23 +0800</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <pubDate>Wed, 25 Oct 2017 17:28:02 +0800</pubDate>
+    <lastBuildDate>Wed, 25 Oct 2017 17:28:02 +0800</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title> Pygame Notebook 4</title>
+        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;notebook-4&quot;&gt;Notebook &amp;lt;4&amp;gt;&lt;/h2&gt;
+&lt;p&gt;第七章的游戏 Tetromino 俄罗斯方块。背景区域的划分规划，背景音乐的播放。砖块的构造，下落，旋转，消失。砖块碰撞叠加的判断，游戏结束的判断。代码量接近前两章的两倍多，编写更加复杂了。&lt;/p&gt;
+
+&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;游戏板数据结构
+    &lt;blockquote&gt;
+      &lt;p&gt;游戏板数据结构是用来记录之前着陆的砖块占据了哪些矩形空格的一种数据表示。当前下落的砖块在游戏板数据结构中并没有标记。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;砖块的表示使用的是列表的列表，区分了 fallingOiece 和 nextPiece 。使用砖块用字典表示了，从界面的中点下降。&lt;/li&gt;
+  &lt;li&gt;砖块的旋转是直接将砖块旋转的顺序按照列表的排列写进了砖块的表示中去了，直接查表不用计算了。&lt;/li&gt;
+  &lt;li&gt;后台程序中给所有的界面方块赋予了一个 BLANK 值用于检测是否需要画上砖块。&lt;/li&gt;
+  &lt;li&gt;砖块下降动画的制作仍然是重新绘制所有了。&lt;/li&gt;
+  &lt;li&gt;砖块下降到何处就不能下降了，如何判断，如何加到游戏板数据结构中去？
+    &lt;blockquote&gt;
+      &lt;p&gt;通过isValidPosition() 判断砖块是否处于有效位置，如果返回 False 则说明砖块当前需要判断的位置无效&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;用程序运行间隔的时间来控制砖块下降的速度，通过调节阀值进行关卡的增加。&lt;/li&gt;
+  &lt;li&gt;游戏结束的标准：下降砖块没有足够的放置空间，如何判断。&lt;/li&gt;
+  &lt;li&gt;暂停事件按键抬起才触发，移动按下就触发，抬起才结束，可以一直移动不用按个不停。检测按键松开来判断玩家是否想要继续移动砖块，便于检查长按的情况。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;keydown-keypress-keyup--事件的区别&quot;&gt;keyDown keyPress keyUp  事件的区别&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_a401a1ea0101edah.html&quot; title=&quot;事件的区别&quot;&gt;事件区别&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;按键弹起才触发，按键按下就触发的区别就在这里。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# 等待按键弹起？？？
+def checkForKeyPress():
+	# Go through event queue looking for a KEYUP event.
+	# Grab KEYDOWN events to remove them from the event queue.
+	checkForQuit()
+
+	for event in pygame.event.get([KEYDOWN, KEYUP]):
+		if event.type == KEYDOWN:
+			continue
+		return event.key
+	return None
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;背景音乐一直播放&quot;&gt;背景音乐一直播放&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;使用 pygame.mixer.music。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.mixer.music.load('xxx')
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.stop()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;砖块的表示和调用&quot;&gt;砖块的表示和调用&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;S_SHAPE_TEMPLATE 表示砖块及其可能的旋转表示，列表的列表。&lt;/li&gt;
+  &lt;li&gt;PIECE 砖块组成的字典。&lt;/li&gt;
+  &lt;li&gt;调用砖块时，又把砖块作为 piece 字典中的一个 value 值并增加其他的属性。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;PIECES = {'S': S_SHAPE_TEMPLATE, 'Z': Z_SHAPE_TEMPLATE, 'J': J_SHAPE_TEMPLATE, 'L': L_SHAPE_TEMPLATE,
+	     'I': I_SHAPE_TEMPLATE,'O': O_SHAPE_TEMPLATE, 'T': T_SHAPE_TEMPLATE}
+def getNewPiece():
+	# return a random new piece in a random rotation and color
+	shape = random.choice(list(PIECES.keys()))
+	newPiece = {'shape': shape,
+			'rotation': random.randint(0, len(PIECES[shape]) - 1),
+			'x': int(BOARDWIDTH / 2) - int(TEMPLATEWIDTH / 2),
+			'y': -2, # start it above the board (i.e. less than 0)
+			'color': random.randint(0, len(COLORS)-1)}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;判断砖块需要处于的位置是否有效&quot;&gt;判断砖块需要处于的位置是否有效&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;A smart function&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;board 为游戏板数据结构，piece 为砖块位置，通过adjX,Y 调节从而判断砖块将要处于的位置是否有效。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def isValidPosition(board, piece, adjX=0, adjY=0):
+	# Return True if the piece is within the board and not colliding
+	for x in range(TEMPLATEWIDTH):
+		for y in range(TEMPLATEHEIGHT):
+			#检测游戏板之外的方块
+			isAboveBoard = y + piece['y'] + adjY &amp;lt; 0 
+			if isAboveBoard or PIECES[piece['shape']][piece['rotation']][y][x] == BLANK:
+				continue
+			#检测砖块是否在游戏板上
+			if not isOnBoard(x + piece['x'] + adjX, y + piece['y'] + adjY):
+				return False
+			#检测砖块的方块所在的游戏板空格不为空白
+			#砖块上的空白和在检测时和游戏板上的空白检测并不冲突
+			if board[x + piece['x'] + adjX][y + piece['y'] + adjY] != BLANK:
+				return False
+	return True
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;判断砖块是否到底或到不能再向下的位置&quot;&gt;判断砖块是否到底【或】到不能再向下的位置&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;仍然通过isValidPosition() 函数提前一格判断位置是否有效，如果无效了（到底了或是有阻挡），说明当前位置就是下落的最低位置，将砖块数据放入游戏板数据结构中，加分计算等级；如果是有效位置，就可以继续下降。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/tetromino1.png&quot; alt=&quot;ValidPosition&quot; title=&quot;ValidPosition&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;if time.time() - lastFallTime &amp;gt; fallFreq:
+	# see if the piece has landed
+	if not isValidPosition(board, fallingPiece, adjY=1):
+		# falling piece has landed, set it on the board
+		addToBoard(board, fallingPiece)
+		score += removeCompleteLines(board)
+		level, fallFreq = calculateLevelAndFallFreq(score)
+		fallingPiece = None
+	else:
+		# piece did not land, just move the piece down
+		fallingPiece['y'] += 1
+		lastFallTime = time.time()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;检查删除和填满一行&quot;&gt;检查，删除和填满一行&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;判断所在行的空格是否存在 BLANK。&lt;/li&gt;
+  &lt;li&gt;倒序检测所有行，如有一行填满，则将该行以上所有的内容向下复制赋值一遍，第 0 行填充 BLANK，此时 y 值不变，继续判断循环【方便了多行填满的情况】；没有则 y + 1。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;游戏结束的判断&quot;&gt;游戏结束的判断&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;仍然是isValidPosition() 函数。直接在旧砖块落底，新砖块初始落下时判断，如果一开始就没有足够空间，说明游戏结束了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;函数复习&quot;&gt;函数复习&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;在调用绘制函数以便让显示 Surface 对象看上去是你想要的方式之后，必须调用 update 让 显示 Surface 真正出现在用户显示器上。&lt;/p&gt;
+  &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.display.update()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 25 Oct 2017 00:00:00 +0800</pubDate>
+        <link>/python/2017/10/25/pygame-note4.html</link>
+        <guid isPermaLink="true">/python/2017/10/25/pygame-note4.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
     
       <item>
         <title> Pygame Notebook 3</title>
@@ -18,7 +173,7 @@
 &lt;h2 id=&quot;notebook-3&quot;&gt;Notebook &amp;lt;3&amp;gt;&lt;/h2&gt;
 &lt;p&gt;第六章的游戏 Wormy 贪吃蛇游戏， 开局显示旋转变化的字体和方块，按下任意按键后会显示游戏界面，划分的网格，游走的蛇（绿色方块），苹果（红色的方块），碰撞到苹果身体变长，碰撞到自己和墙壁游戏结束，暂停并显示 Game Over，按下任意按键后又再次重新开始。同时实时显示分数。&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;亮点 / 思路&lt;/h3&gt;
+&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;程序很好的结合了吃苹果和游动的处理，使用蛇头坐标，一个字典列表表示蛇，每次都删除末尾，吃到则不删除。&lt;/li&gt;
   &lt;li&gt;Game Over时，进入显示Game Over while 死循环等待退出，其间其他的显示部分暂停在原处，死循环阻塞住了其他显示程序，显示程序仍旧在 Surface 上面显示界面，造成一种另外有暂停程序的假象。&lt;/li&gt;
@@ -27,31 +182,31 @@
   &lt;li&gt;智能的退出函数。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;蛇的表示和长度的增加&lt;/h3&gt;
+&lt;h3 id=&quot;蛇的表示和长度的增加&quot;&gt;蛇的表示和长度的增加&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;在当前的前进方向上增加头，删去尾巴，每次重新绘图时感觉就是在前进；吃到苹果则不删去，感觉就是增加了长度。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;wormCoords = [ {&#39;x&#39;:startx , &#39;y&#39;: starty} ,  {&#39;x&#39;:startx-1 , &#39;y&#39;: starty}  ,  {&#39;x&#39;:startx-2 , &#39;y&#39;: starty} ,{&#39;x&#39;:startx-3 , &#39;y&#39;: starty} ]
-if wormCoords[HEAD][&#39;x&#39;] == apple[&#39;x&#39;] and wormCoords[HEAD][&#39;y&#39;] == apple[&#39;y&#39;]:
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;wormCoords = [ {'x':startx , 'y': starty} ,  {'x':startx-1 , 'y': starty}  ,  {'x':startx-2 , 'y': starty} ,{'x':startx-3 , 'y': starty} ]
+if wormCoords[HEAD]['x'] == apple['x'] and wormCoords[HEAD]['y'] == apple['y']:
 	apple = getRandomLocation() # set a new apple somewhere
 else:
 	del wormCoords[-1] 
 
 if direction == UP:
-	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;], &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;] - 1}
+	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] - 1}
 elif direction == DOWN:
-	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;], &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;] + 1}
+	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] + 1}
 elif direction == LEFT:
-	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;] - 1, &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;]}
+	newHead = {'x': wormCoords[HEAD]['x'] - 1, 'y': wormCoords[HEAD]['y']}
 elif direction == RIGHT:
-	newHead = {&#39;x&#39;: wormCoords[HEAD][&#39;x&#39;] + 1, &#39;y&#39;: wormCoords[HEAD][&#39;y&#39;]}
+	newHead = {'x': wormCoords[HEAD]['x'] + 1, 'y': wormCoords[HEAD]['y']}
 
 wormCoords.insert(0, newHead)
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;pygameevent--type-&quot;&gt;显示 pygame.event 中的 type 值&lt;/h3&gt;
+&lt;h3 id=&quot;显示-pygameevent-中的-type-值&quot;&gt;显示 pygame.event 中的 type 值&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_event_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -68,178 +223,155 @@ WINDOWHEIGHT = 480
 def main():
 	pygame.init()
 	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-	pygame.display.set_caption(&#39;event test&#39;)
+	pygame.display.set_caption('event test')
 
 
 	while True:
-for event in pygame.event.get():
-	print &#39;event.type&#39; , event.type
+		for event in pygame.event.get():
+			print 'event.type' , event.type
 
-	if event.type == QUIT:
-pygame.quit()
-sys.exit()
-	elif event.type == KEYDOWN:
-print event.key 
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
+			elif event.type == KEYDOWN:
+				print event.key 
 
-
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
 	main()
+
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;显示 文字旋转，背景转化，网格划分，按键退出&lt;/h3&gt;
+&lt;h3 id=&quot;显示-文字旋转背景转化网格划分按键退出&quot;&gt;显示 文字旋转，背景转化，网格划分，按键退出&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_wormy_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;背景转化更好的说明了每次用背景色覆盖后重新绘图的原理和好处&lt;/li&gt;
-  &lt;li&gt;文字旋转&lt;br /&gt;
- &amp;gt; pygame.transform.rotate( surface , rotate_angle) 并不会改变传递给它的 Surface 对象，而是返回一个新的Surface 对象，旋转后的图形绘制于新的 Surface 对象上。&lt;/li&gt;
+  &lt;li&gt;文字旋转
+    &lt;blockquote&gt;
+      &lt;p&gt;pygame.transform.rotate( surface , rotate_angle) 并不会改变传递给它的 Surface 对象，而是返回一个新的Surface 对象，旋转后的图形绘制于新的 Surface 对象上。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;所以每次都重新绘图。&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;旋转不要复用变量名。&lt;br /&gt;
- &amp;gt; pygame.error: Width or height is too large&lt;/li&gt;
+  &lt;li&gt;旋转不要复用变量名。
+    &lt;blockquote&gt;
+      &lt;p&gt;pygame.error: Width or height is too large&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
   &lt;li&gt;退出函数 checkForKeyPress() 的使用&lt;/li&gt;
-  &lt;li&gt;网格划分，循环划线。&lt;br /&gt;
-```Python&lt;br /&gt;
-#/usr/bin/env python&lt;br /&gt;
-#coding=utf8&lt;/li&gt;
+  &lt;li&gt;网格划分，循环划线。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;import random, pygame, sys&lt;br /&gt;
-from pygame.locals import *&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#/usr/bin/env python
+#coding=utf8
 
-&lt;p&gt;FPS = 5&lt;br /&gt;
-WINDOWWIDTH = 640&lt;br /&gt;
-WINDOWHEIGHT = 480&lt;br /&gt;
-CELLSIZE = 20&lt;br /&gt;
-assert WINDOWWIDTH % CELLSIZE == 0, “Window width must be a multiple of cell size.”&lt;br /&gt;
-assert WINDOWHEIGHT % CELLSIZE == 0, “Window height must be a multiple of cell size.”&lt;br /&gt;
-CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)&lt;br /&gt;
-CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)&lt;/p&gt;
+import random, pygame, sys
+from pygame.locals import *
 
-&lt;h1 id=&quot;rgb&quot;&gt;R	G	B&lt;/h1&gt;
-&lt;p&gt;WHITE	 = (255, 255, 255)&lt;br /&gt;
-BLACK	 = (  0,   0,   0)&lt;br /&gt;
-RED	   = (255,   0,   0)&lt;br /&gt;
-GREEN	 = (  0, 255,   0)&lt;br /&gt;
-DARKGREEN = (  0, 155,   0)&lt;br /&gt;
-DARKGRAY  = ( 40,  40,  40)&lt;br /&gt;
-BGCOLOR = BLACK&lt;/p&gt;
+FPS = 5
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+CELLSIZE = 20
+assert WINDOWWIDTH % CELLSIZE == 0, &quot;Window width must be a multiple of cell size.&quot;
+assert WINDOWHEIGHT % CELLSIZE == 0, &quot;Window height must be a multiple of cell size.&quot;
+CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)
+CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)
+#	  R	G	B
+WHITE	 = (255, 255, 255)
+BLACK	 = (  0,   0,   0)
+RED	   = (255,   0,   0)
+GREEN	 = (  0, 255,   0)
+DARKGREEN = (  0, 155,   0)
+DARKGRAY  = ( 40,  40,  40)
+BGCOLOR = BLACK
+def terminate():
+	pygame.quit()
+	sys.exit()
+def main():
+	global FPSCLOCK, DISPLAYSURF, BASICFONT
+	pygame.init()
+	FPSCLOCK = pygame.time.Clock()
+	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+	BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+	pygame.display.set_caption('Wormy')
 
-&lt;p&gt;def terminate():&lt;br /&gt;
-	pygame.quit()&lt;br /&gt;
-	sys.exit()&lt;/p&gt;
+	degrees1 = 0
+	degrees2 = 0
+	while True:	
+		showStartScreen()
+		showGameOverScreen()
+def drawGrid():
+	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))
+	for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines
+		pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))
+def drawPressKeyMsg():
+	pressKeySurf = BASICFONT.render('Press a key to play.', True, DARKGRAY)
+	pressKeyRect = pressKeySurf.get_rect()
+	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)
+	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
+def checkForKeyPress():
+	if len(pygame.event.get(QUIT)) &amp;gt; 0:
+		terminate()
+	keyUpEvents = pygame.event.get(KEYUP)
+	if len(keyUpEvents) == 0:
+		return None
+	if keyUpEvents[0].key == K_ESCAPE:
+		terminate()
+	return keyUpEvents[0].key
+def showStartScreen():
+	titleFont = pygame.font.Font('freesansbold.ttf', 100)
+	titleSurf1 = titleFont.render('Wormy!', True, WHITE, DARKGREEN)
+	titleSurf2 = titleFont.render('Wormy!', True, GREEN)
+	while True:
+		DISPLAYSURF.fill(BGCOLOR)
+		rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
+		rotatedRect1 = rotatedSurf1.get_rect()
+		rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+		DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
+		rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
+		rotatedRect2 = rotatedSurf2.get_rect()
+		rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
+		DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
+		# for event in pygame.event.get():
+		# 	if event.type == QUIT:
+		# 		terminate()
+		if checkForKeyPress():
+			pygame.event.get() # clear event queue
+			return
+		drawPressKeyMsg()
+		drawGrid()
+		pygame.display.update()
+		FPSCLOCK.tick(FPS)
+		degrees1 += 3 # rotate by 3 degrees each frame
+		degrees2 += 7 # rotate by 7 degrees each frame
+def showGameOverScreen():
+	gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
+	gameSurf = gameOverFont.render('Game', True, WHITE)
+	overSurf = gameOverFont.render('Over', True, WHITE)
+	gameRect = gameSurf.get_rect()
+	overRect = overSurf.get_rect()
+	gameRect.midtop = (WINDOWWIDTH / 2, 10)
+	overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)
 
-&lt;p&gt;def main():&lt;br /&gt;
-	global FPSCLOCK, DISPLAYSURF, BASICFONT&lt;/p&gt;
+	DISPLAYSURF.blit(gameSurf, gameRect)
+	DISPLAYSURF.blit(overSurf, overRect)
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pygame.init()
-FPSCLOCK = pygame.time.Clock()
-DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-BASICFONT = pygame.font.Font(&#39;freesansbold.ttf&#39;, 18)
-pygame.display.set_caption(&#39;Wormy&#39;)
-
-degrees1 = 0
-degrees2 = 0
-
-while True:
-	
-	showStartScreen()
-	showGameOverScreen()
-
-print &#39;exit&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;def drawGrid():&lt;br /&gt;
-	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines&lt;br /&gt;
-		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))&lt;br /&gt;
-	for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines&lt;br /&gt;
-		pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))&lt;br /&gt;
-def drawPressKeyMsg():&lt;br /&gt;
-	pressKeySurf = BASICFONT.render(‘Press a key to play.’, True, DARKGRAY)&lt;br /&gt;
-	pressKeyRect = pressKeySurf.get_rect()&lt;br /&gt;
-	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)&lt;br /&gt;
-	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)&lt;/p&gt;
-
-&lt;p&gt;def checkForKeyPress():&lt;br /&gt;
-	if len(pygame.event.get(QUIT)) &amp;gt; 0:&lt;br /&gt;
-		terminate()&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;keyUpEvents = pygame.event.get(KEYUP)
-if len(keyUpEvents) == 0:
-	return None
-if keyUpEvents[0].key == K_ESCAPE:
-	terminate()
-return keyUpEvents[0].key
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;def showStartScreen():&lt;br /&gt;
-	titleFont = pygame.font.Font(‘freesansbold.ttf’, 100)&lt;br /&gt;
-	titleSurf1 = titleFont.render(‘Wormy!’, True, WHITE, DARKGREEN)&lt;br /&gt;
-	titleSurf2 = titleFont.render(‘Wormy!’, True, GREEN)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;degrees1 = 0
-degrees2 = 0
-while True:
-
-	# DISPLAYSURF.fill(BGCOLOR)
-	rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
-	rotatedRect1 = rotatedSurf1.get_rect()
-	rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
-	DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
-
-	rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
-	rotatedRect2 = rotatedSurf2.get_rect()
-	rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
-	DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
-
-	# for event in pygame.event.get():
-	# 	if event.type == QUIT:
-	# 		terminate()
-
-	if checkForKeyPress():
-		pygame.event.get() # clear event queue
-		return
 	drawPressKeyMsg()
-	drawGrid()
+
 	pygame.display.update()
-	FPSCLOCK.tick(FPS)
-	degrees1 += 3 # rotate by 3 degrees each frame
-	degrees2 += 7 # rotate by 7 degrees each frame
+	pygame.time.wait(500)
+	checkForKeyPress() # clear out any key presses in the event queue
+
+	while True:
+		if checkForKeyPress():
+			pygame.event.get() # clear event queue
+			return
+if __name__ == '__main__':
+	main()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;def showGameOverScreen():&lt;br /&gt;
-	gameOverFont = pygame.font.Font(‘freesansbold.ttf’, 150)&lt;br /&gt;
-	gameSurf = gameOverFont.render(‘Game’, True, WHITE)&lt;br /&gt;
-	overSurf = gameOverFont.render(‘Over’, True, WHITE)&lt;br /&gt;
-	gameRect = gameSurf.get_rect()&lt;br /&gt;
-	overRect = overSurf.get_rect()&lt;br /&gt;
-	gameRect.midtop = (WINDOWWIDTH / 2, 10)&lt;br /&gt;
-	overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DISPLAYSURF.blit(gameSurf, gameRect)
-DISPLAYSURF.blit(overSurf, overRect)
-
-drawPressKeyMsg()
-
-pygame.display.update()
-pygame.time.wait(500)
-checkForKeyPress() # clear out any key presses in the event queue
-
-while True:
-	if checkForKeyPress():
-		pygame.event.get() # clear event queue
-		return
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == ‘&lt;strong&gt;main&lt;/strong&gt;’:&lt;br /&gt;
-	main()&lt;br /&gt;
-```&lt;/p&gt;
 </description>
         <pubDate>Mon, 23 Oct 2017 00:00:00 +0800</pubDate>
         <link>/python/2017/10/23/pygame-note3.html</link>
@@ -259,7 +391,7 @@ while True:
 &lt;h2 id=&quot;notebook-2&quot;&gt;Notebook &amp;lt;2&amp;gt;&lt;/h2&gt;
 &lt;p&gt;第五章的游戏 Simulate，让人去记住并重复游戏中图案显示的顺序， 主体还是画出矩形并能和鼠标键盘交互，在此之上增加了点击矩形时的音乐，一些类似特效的光影闪烁效果和实现显示的记分牌。&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;一般的逻辑顺序&lt;/h3&gt;
+&lt;h3 id=&quot;一般的逻辑顺序&quot;&gt;一般的逻辑顺序&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;导入模块，设置全局变量，常量。&lt;/li&gt;
@@ -277,33 +409,31 @@ while True:
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;亮点 / 思路&lt;/h3&gt;
+&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;所绘制的图标与图标占用的方块仅仅是大小相同，其他并没有什么联系。所以图标重新绘制和光标的碰撞到方块的检测并不矛盾和冲突，相反我觉得这是一种很好的思路和编写方式。&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;
-# 绘制 rect vs rect 检测
+  &lt;li&gt;所绘制的图标与图标占用的方块仅仅是大小相同，其他并没有什么联系。所以图标重新绘制和光标的碰撞到方块的检测并不矛盾和冲突，相反我觉得这是一种很好的思路和编写方式。
+    &lt;pre&gt;&lt;code&gt;# 绘制 rect vs rect 检测
 draw_rect( )
 pygame.Rect( )
 # 重复绘制图标
 drawButtons()
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
-  &lt;li&gt;其实在前两章和本章的源码的循环中都有用背景色覆盖所有，然后再重新绘制文字，图标的部分，在搞清能这样的原因后，这样做的好处我觉得也有这样几条：&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;
-编写逻辑更加简单粗暴了，更新界面实际上就是整体重新绘制，不是界面的小修小补。
+  &lt;li&gt;其实在前两章和本章的源码的循环中都有用背景色覆盖所有，然后再重新绘制文字，图标的部分，在搞清能这样的原因后，这样做的好处我觉得也有这样几条：
+    &lt;pre&gt;&lt;code&gt;编写逻辑更加简单粗暴了，更新界面实际上就是整体重新绘制，不是界面的小修小补。
 方便在界面上显示需要更新的文字【这里应该也可以小修小补的】，或是实时变更的分数等消息。
-&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;功能&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Python
-#让 Surface 显示出现在屏幕上
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;功能
+    &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#让 Surface 显示出现在屏幕上
 pygame.display.update()
 # 确保动画不会像计算机绘制那样快的播放，调用 tick() 增加暂停，FPS 越小越慢
 FPSCLOCK.tick(FPS)
-&lt;/code&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;播放音乐&lt;/h3&gt;
+&lt;h3 id=&quot;播放音乐&quot;&gt;播放音乐&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -321,8 +451,8 @@ pygame.init()
 FPSCLOCK = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 
-pygame.display.set_caption(&#39;Play Sound&#39;)
-BEEP1 = pygame.mixer.Sound(&#39;beep1.ogg&#39;)
+pygame.display.set_caption('Play Sound')
+BEEP1 = pygame.mixer.Sound('beep1.ogg')
 
 while True:
 	for event in pygame.event.get(): # event handling loop
@@ -336,7 +466,7 @@ while True:
 
 	pygame.display.update()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;### 颜色效果的制作&lt;/p&gt;
+&lt;h3 id=&quot;颜色效果的制作&quot;&gt;颜色效果的制作&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;通过不断更改透明度 alpha 实现颜色的明暗变化效果。&lt;/li&gt;
@@ -383,7 +513,7 @@ def main():
 	pygame.init()
 	FPSCLOCK = pygame.time.Clock()
 	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-	pygame.display.set_caption(&#39;Color&#39;)
+	pygame.display.set_caption('Color')
 
 	while True:
 		for event in pygame.event.get(): # event handling loop
@@ -396,7 +526,7 @@ def main():
 				
 		pygame.display.update()
 
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
 	main()
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -420,8 +550,10 @@ if __name__ == &#39;__main__&#39;:
 &lt;p&gt;在半敲半复制了第三章 Memory Puzzle 和第四章 Slide Puzzle 的源码之后，结合前两章节所讲的东西算是对如何使用 Pygame 编写一个带有界面和操作的小游戏有了基本的认识和了解。这两章的代码主要功能都是在 原始的 Surface 上面绘制带有颜色和文字内容的矩形块，并能对鼠标键盘等操作进行响应。抛开其中简单的数学图形计算不谈，先把其中 Pygame 编写的思路和 API 的调用方式记录下。&lt;/p&gt;
 
 &lt;h3 id=&quot;memory-puzzle--slide-puzzle&quot;&gt;Memory Puzzle &amp;amp; Slide Puzzle&lt;/h3&gt;
-&lt;p&gt;#### 像素坐标系和矩形坐标系的转化&lt;br /&gt;
- * 两个源码都始终用的是矩形左上角的像素坐标值进行选择和计算&lt;/p&gt;
+&lt;h4 id=&quot;像素坐标系和矩形坐标系的转化&quot;&gt;像素坐标系和矩形坐标系的转化&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;两个源码都始终用的是矩形左上角的像素坐标值进行选择和计算&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def leftTopCoordsOfBox(boxx , boxy):
 	# Convert board coordinates to pixel coordinates
@@ -435,7 +567,7 @@ def getLeftTopOfTile(tileX, tileY):
 	return (left, top)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section&quot;&gt;获取光标像素位置，获取键盘值&lt;/h4&gt;
+&lt;h4 id=&quot;获取光标像素位置获取键盘值&quot;&gt;获取光标像素位置，获取键盘值&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;获取光标像素位置，检查光标位于哪一个方块上&lt;/li&gt;
@@ -480,14 +612,16 @@ def getSpotClicked(board, x, y):
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;assert (BOARDWIDTH * BOARDHEIGHT) %2 == 0
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;#### import random &lt;br /&gt;
- * 截取列表前 numIconsUsed 个， 打乱列表&lt;/p&gt;
+&lt;h4 id=&quot;import-random&quot;&gt;import random&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;截取列表前 numIconsUsed 个， 打乱列表&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;icons = icons[:numIconsUsed] * 2
 random.shuffle(icons)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&quot;pygame-&quot;&gt;Pygame 绘制思路&lt;/h2&gt;
+&lt;h2 id=&quot;pygame-绘制思路&quot;&gt;Pygame 绘制思路&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;导入模块&lt;/li&gt;
 &lt;/ul&gt;
@@ -503,8 +637,8 @@ from pygame.locals import *
 pygame.init()
 FPSCLOCK = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH , WINDOWHEIGHT))
-pygame.display.set_caption(&#39;NAME&#39;)
-BASICFONT = pygame.font.Font(&#39;freesansbold.ttf&#39; , BASICFONTSIZE)
+pygame.display.set_caption('NAME')
+BASICFONT = pygame.font.Font('freesansbold.ttf' , BASICFONTSIZE)
 
 # 设置字体抗锯齿，颜色，背景颜色
 def makeText(text, color, bgcolor, top, left):
@@ -573,15 +707,14 @@ if boxRect.collidepoint(event.pos):
         <title> Jekyll install in Ubuntu</title>
         <description>&lt;h2 id=&quot;jekyll-install-in-ubuntu&quot;&gt;jekyll install in Ubuntu&lt;/h2&gt;
 
-&lt;h3 id=&quot;ubuntu--jekyll-&quot;&gt;Ubuntu 安装 jekyll 时遇到的一些问题。&lt;/h3&gt;
+&lt;h3 id=&quot;ubuntu-安装-jekyll-时遇到的一些问题&quot;&gt;Ubuntu 安装 jekyll 时遇到的一些问题。&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;开始时 使用命令&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ruby -v	
+    &lt;pre&gt;&lt;code&gt;  ruby -v	
 &lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -591,38 +724,34 @@ if boxRect.collidepoint(event.pos):
   &lt;li&gt;
     &lt;p&gt;安装缓慢，改变安装源&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+    &lt;pre&gt;&lt;code&gt;  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
   gem sources -l 查看源 确保源里面只有 https://gems.ruby-china.org/ 
 &lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;使用 jekyll serve 遇到一些像 GitHub 权限等问题，使用&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  bundle exec jekyll serve
+    &lt;pre&gt;&lt;code&gt;  bundle exec jekyll serve
 &lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;编译全局，会将所有的内容放到 _site 中&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  jekyll build
+    &lt;pre&gt;&lt;code&gt;  jekyll build
   bundle exec jekyll build
 &lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;theme-&quot;&gt;Theme 下载后使用的一些问题&lt;/h3&gt;
+&lt;h3 id=&quot;theme-下载后使用的一些问题&quot;&gt;Theme 下载后使用的一些问题&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;一开始使用一些模板时会出现一堆的错误，慢慢看错误，Google就行，基本都能找到答案。两个包可以安装下&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gem install minima 
+    &lt;pre&gt;&lt;code&gt;  gem install minima 
   gem install jekyll-feed
 &lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;注意&lt;/strong&gt; 修改文字，添加图片预览时的 网页地址，最好将_config.yml 中的 原始网页先注释掉，不然会联网回到 github 里保存的而不是修改完成的。&lt;/li&gt;
   &lt;li&gt;
@@ -656,20 +785,20 @@ if boxRect.collidepoint(event.pos):
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;复合材料层合板计算&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;复合材料层合板计算&lt;/code&gt;&lt;/td&gt;
       &lt;td&gt;&lt;a href=&quot;https://github.com/Eacaen/composite-blade-design&quot; title=&quot;CLT&quot;&gt;Composite Material Calculation with CLT&lt;/a&gt;&lt;/td&gt;
       &lt;td&gt;&lt;a href=&quot;#composite-material-calculation-with-clt&quot;&gt;Introduction&lt;/a&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;开闭剖面多闭室工程梁计算&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;开闭剖面多闭室工程梁计算&lt;/code&gt;&lt;/td&gt;
       &lt;td&gt;&lt;a href=&quot;https://github.com/Eacaen/composite-blade-design&quot; title=&quot;CLT&quot;&gt;Engineer Beam Calculation with open or closed profile&lt;/a&gt;&lt;/td&gt;
       &lt;td&gt;&lt;a href=&quot;#engineer-beam-calculation-with-open-or-closed-profile&quot;&gt;Introduction&lt;/a&gt;&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;read the program introduction for more details &lt;/code&gt; &lt;a href=&quot;/doc/pro_introduction.pdf&quot;&gt;Here&lt;/a&gt;  &lt;br /&gt;
+&lt;p&gt;&lt;code&gt;read the program introduction for more details &lt;/code&gt; &lt;a href=&quot;/doc/pro_introduction.pdf&quot;&gt;Here&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;#running-requirements&quot;&gt;Running requirements&lt;/a&gt; | &lt;a href=&quot;#installation&quot;&gt;Installation&lt;/a&gt; | &lt;a href=&quot;#license&quot;&gt;License&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;my-bachelor-thesis-in-tubs-germany-partly-finished-we-can-improve-it-together-in-future&quot;&gt;My bachelor thesis in TUBS, Germany, partly finished. We can improve it together in future.&lt;/h4&gt;
@@ -679,13 +808,13 @@ if boxRect.collidepoint(event.pos):
 &lt;h2 id=&quot;composite-material-calculation-with-clt&quot;&gt;Composite Material Calculation with CLT&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;The main package is a Python composite materials calculation package.&lt;br /&gt;
+    &lt;p&gt;The main package is a Python composite materials calculation package.
 The laminate stresses, strain and failure Criterion based on the Classical Lamination Theory (&lt;a href=&quot;https://en.wikipedia.org/wiki/Composite_laminates&quot;&gt;CLT&lt;/a&gt;).&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;You can define the lamina’s fibre and matrix’s parameters like the Elastic moduli&lt;br /&gt;
-  &lt;img src=&quot;http://latex.codecogs.com/gif.latex?E_{1},E_{2}&quot; alt=&quot;&quot; /&gt;,&lt;br /&gt;
+        &lt;p&gt;You can define the lamina’s fibre and matrix’s parameters like the Elastic moduli
+  &lt;img src=&quot;http://latex.codecogs.com/gif.latex?E_{1},E_{2}&quot; alt=&quot;&quot; /&gt;,
    Shear moduli &lt;img src=&quot;http://latex.codecogs.com/gif.latex?G&quot; alt=&quot;&quot; /&gt; and strength, then define lamina’s layer angle and thickness in the next step.&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
@@ -718,15 +847,15 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
         &lt;p&gt;You can give the coordinate value of the points of the profile in a &lt;em&gt;Excel&lt;/em&gt; table, you may also need to add or remove some edges, change the thickness between the edges of the profile generated by the &lt;strong&gt;&lt;em&gt;read_exe class&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Use the &lt;strong&gt;&lt;em&gt;profile_constant class&lt;/em&gt;&lt;/strong&gt; to calculate the profile’s engineer constant like the second moment of area &lt;br /&gt;
+        &lt;p&gt;Use the &lt;strong&gt;&lt;em&gt;profile_constant class&lt;/em&gt;&lt;/strong&gt; to calculate the profile’s engineer constant like the second moment of area 
   &lt;img src=&quot;http://latex.codecogs.com/gif.latex?I_{x},I_{y},I_{xy}&quot; alt=&quot;&quot; /&gt; and use the parameters in the next steps, you can also choose whether move the profile to its centroid.&lt;/p&gt;
       &lt;/li&gt;
-      &lt;li&gt;If the profile is a open one, you can use the &lt;strong&gt;&lt;em&gt;open_profile class&lt;/em&gt;&lt;/strong&gt; directly, it can calculate the &lt;br /&gt;
+      &lt;li&gt;If the profile is a open one, you can use the &lt;strong&gt;&lt;em&gt;open_profile class&lt;/em&gt;&lt;/strong&gt; directly, it can calculate the 
   &lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_{x},S_{y}&quot; alt=&quot;&quot; /&gt; and the give the &lt;em&gt;Shear Flow&lt;/em&gt; distribution under the shear force &lt;img src=&quot;http://latex.codecogs.com/gif.latex?Q_{x},Q_{y}&quot; alt=&quot;&quot; /&gt; along the path you choose and you can get the shear center if need.&lt;/li&gt;
       &lt;li&gt;If the profile is a close one with more than one close cells, you need to choose cut points to make the profile become a open one, then choose the integrate paths and use the &lt;strong&gt;&lt;em&gt;open_profile class&lt;/em&gt;&lt;/strong&gt; to get the shear flow in the ‘open’ profile. Last,  use the functions in &lt;strong&gt;&lt;em&gt;close_profile.py&lt;/em&gt;&lt;/strong&gt; to get the shear flow in each close cell, get the shear center, get the twist angle and some more results you need.&lt;/li&gt;
     &lt;/ul&gt;
 
-    &lt;p&gt;&lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_%7Bx%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20ydA&quot; alt=&quot;&quot; /&gt;  &lt;br /&gt;
+    &lt;p&gt;&lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_%7Bx%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20ydA&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
   &lt;img src=&quot;http://latex.codecogs.com/gif.latex?S_%7By%7D%3D%20%5Cint_%7BA%7D%5E%7B%20%7D%20xdA&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -735,22 +864,21 @@ The laminate stresses, strain and failure Criterion based on the Classical Lamin
 
 &lt;h3 id=&quot;plug-ins-use-to-plot-the-results-in-2d-or-3d&quot;&gt;Plug-ins use to plot the results in 2D or 3D.&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/post_img/beam_location.png&quot; alt=&quot;profile&quot; title=&quot;Profile with order&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;/post_img/sF-full.gif&quot; alt=&quot;profile at Qx&quot; title=&quot;Profile at Qx&quot; /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&quot;/post_img/beam_location.png&quot; alt=&quot;profile&quot; title=&quot;Profile with order&quot; /&gt;
+&lt;img src=&quot;/post_img/sF-full.gif&quot; alt=&quot;profile at Qx&quot; title=&quot;Profile at Qx&quot; /&gt;
 &lt;img src=&quot;/post_img/sF-full2.gif&quot; alt=&quot;profile at Qy&quot; title=&quot;Profile at Qy&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;running-requirements&quot;&gt;Running requirements&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Python &amp;gt; v2.7
+&lt;pre&gt;&lt;code&gt;Python &amp;gt; v2.7
 Numpy
 Scipy
 Sympy
 matplotlib
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;h3 id=&quot;installation&quot;&gt;Installation&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Copy the source files in the local directory and add the PATH in the system or copy the files to the Python’s “site-packages” folder.  &lt;br /&gt;
+  &lt;p&gt;Copy the source files in the local directory and add the PATH in the system or copy the files to the Python’s “site-packages” folder.&lt;br /&gt;
 Copy the source file in you own file and develop the new function by yourself.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -758,7 +886,7 @@ Copy the source file in you own file and develop the new function by yourself.&l
 
 &lt;h4 id=&quot;my-graduation-thesis-in-tubspartly-finish&quot;&gt;MY GRADUATION THESIS IN TUBS,PARTLY FINISH.&lt;/h4&gt;
 
-&lt;h4 id=&quot;download-here-httpsgithubcomeacaencomposite-blade-design&quot;&gt;&lt;a href=&quot;https://github.com/Eacaen/composite-blade-design&quot;&gt; Download here &lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;-download-here-&quot;&gt;&lt;a href=&quot;https://github.com/Eacaen/composite-blade-design&quot;&gt; Download here &lt;/a&gt;&lt;/h4&gt;
 &lt;hr /&gt;
 
 </description>

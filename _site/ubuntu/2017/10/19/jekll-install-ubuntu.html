@@ -34,6 +34,9 @@
     <!-- CSS set in layout -->
     
     <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
     
 
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -122,15 +125,14 @@
 
             <h2 id="jekyll-install-in-ubuntu">jekyll install in Ubuntu</h2>
 
-<h3 id="ubuntu--jekyll-">Ubuntu 安装 jekyll 时遇到的一些问题。</h3>
+<h3 id="ubuntu-安装-jekyll-时遇到的一些问题">Ubuntu 安装 jekyll 时遇到的一些问题。</h3>
 
 <ul>
   <li>
     <p>开始时 使用命令</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  ruby -v	
+    <pre><code>  ruby -v	
 </code></pre>
-    </div>
   </li>
 </ul>
 
@@ -140,38 +142,34 @@
   <li>
     <p>安装缓慢，改变安装源</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+    <pre><code>  gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
   gem sources -l 查看源 确保源里面只有 https://gems.ruby-china.org/ 
 </code></pre>
-    </div>
   </li>
   <li>
     <p>使用 jekyll serve 遇到一些像 GitHub 权限等问题，使用</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  bundle exec jekyll serve
+    <pre><code>  bundle exec jekyll serve
 </code></pre>
-    </div>
   </li>
   <li>
     <p>编译全局，会将所有的内容放到 _site 中</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  jekyll build
+    <pre><code>  jekyll build
   bundle exec jekyll build
 </code></pre>
-    </div>
   </li>
 </ul>
 
-<h3 id="theme-">Theme 下载后使用的一些问题</h3>
+<h3 id="theme-下载后使用的一些问题">Theme 下载后使用的一些问题</h3>
 
 <ul>
   <li>
     <p>一开始使用一些模板时会出现一堆的错误，慢慢看错误，Google就行，基本都能找到答案。两个包可以安装下</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  gem install minima 
+    <pre><code>  gem install minima 
   gem install jekyll-feed
 </code></pre>
-    </div>
   </li>
   <li><strong>注意</strong> 修改文字，添加图片预览时的 网页地址，最好将_config.yml 中的 原始网页先注释掉，不然会联网回到 github 里保存的而不是修改完成的。</li>
   <li>
@@ -266,7 +264,10 @@
         
 
     </div>
-
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
 </article>
 
         </div>
@@ -314,6 +315,10 @@
         </script>
     </div>
     
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
 
 </footer>
 

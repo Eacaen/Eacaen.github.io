@@ -34,6 +34,9 @@
     <!-- CSS set in layout -->
     
     <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
     
 
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -128,8 +131,10 @@
 <p>在半敲半复制了第三章 Memory Puzzle 和第四章 Slide Puzzle 的源码之后，结合前两章节所讲的东西算是对如何使用 Pygame 编写一个带有界面和操作的小游戏有了基本的认识和了解。这两章的代码主要功能都是在 原始的 Surface 上面绘制带有颜色和文字内容的矩形块，并能对鼠标键盘等操作进行响应。抛开其中简单的数学图形计算不谈，先把其中 Pygame 编写的思路和 API 的调用方式记录下。</p>
 
 <h3 id="memory-puzzle--slide-puzzle">Memory Puzzle &amp; Slide Puzzle</h3>
-<p>#### 像素坐标系和矩形坐标系的转化<br />
- * 两个源码都始终用的是矩形左上角的像素坐标值进行选择和计算</p>
+<h4 id="像素坐标系和矩形坐标系的转化">像素坐标系和矩形坐标系的转化</h4>
+<ul>
+  <li>两个源码都始终用的是矩形左上角的像素坐标值进行选择和计算</li>
+</ul>
 
 <pre><code class="language-Python">def leftTopCoordsOfBox(boxx , boxy):
 	# Convert board coordinates to pixel coordinates
@@ -143,7 +148,7 @@ def getLeftTopOfTile(tileX, tileY):
 	return (left, top)
 </code></pre>
 
-<h4 id="section">获取光标像素位置，获取键盘值</h4>
+<h4 id="获取光标像素位置获取键盘值">获取光标像素位置，获取键盘值</h4>
 
 <ul>
   <li>获取光标像素位置，检查光标位于哪一个方块上</li>
@@ -188,14 +193,16 @@ def getSpotClicked(board, x, y):
 
 <pre><code class="language-Python">assert (BOARDWIDTH * BOARDHEIGHT) %2 == 0
 </code></pre>
-<p>#### import random <br />
- * 截取列表前 numIconsUsed 个， 打乱列表</p>
+<h4 id="import-random">import random</h4>
+<ul>
+  <li>截取列表前 numIconsUsed 个， 打乱列表</li>
+</ul>
 
 <pre><code class="language-Python">icons = icons[:numIconsUsed] * 2
 random.shuffle(icons)
 </code></pre>
 
-<h2 id="pygame-">Pygame 绘制思路</h2>
+<h2 id="pygame-绘制思路">Pygame 绘制思路</h2>
 <ul>
   <li>导入模块</li>
 </ul>
@@ -354,7 +361,10 @@ if boxRect.collidepoint(event.pos):
         
 
     </div>
-
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
 </article>
 
         </div>
@@ -402,6 +412,10 @@ if boxRect.collidepoint(event.pos):
         </script>
     </div>
     
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
 
 </footer>
 

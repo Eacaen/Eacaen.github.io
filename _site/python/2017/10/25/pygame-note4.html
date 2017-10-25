@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <title> Pygame Notebook 4</title>
+    <meta name="description"
+          content="《Making Games with Python and Pygame》">
+
+    <link rel="canonical" href="/python/2017/10/25/pygame-note4.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="/feed.xml">
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/bower_components/hover/css/hover-min.css">
+    <link rel="stylesheet" href="/bower_components/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <!-- CSS set in page -->
+    
+
+    <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
+    
+
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="HuTianyun">
+            <span class="octicon octicon-mark-github"></span> HuTianyun
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            
+            <a href="/"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Home">
+                Home
+            </a>
+            
+            <a href="/open-source"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Open-Source">
+                Open-Source
+            </a>
+            
+            <a href="/blog"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Blog">
+                Blog
+            </a>
+            
+            <a href="/bookmark"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Bookmark">
+                Bookmark
+            </a>
+            
+            <a href="/about"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="About me">
+                About me
+            </a>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <section class="jumbotron geopattern" data-pattern-id=" Pygame Notebook 4">
+    <div class="container">
+        <div id="jumbotron-meta-info">
+            <h1> Pygame Notebook 4</h1>
+            <span class="meta-info">
+                
+                
+                <span class="octicon octicon-calendar"></span> 2017/10/25
+                
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+
+        $('.geopattern').each(function(){
+            $(this).geopattern($(this).data('pattern-id'));
+        });
+
+    });
+</script>
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="row">
+
+        
+        <div class="col-md-8 markdown-body">
+
+            <h1 id="making-games-with-python-and-pygame">《Making Games with Python and Pygame》</h1>
+
+<hr />
+
+<h2 id="notebook-4">Notebook &lt;4&gt;</h2>
+<p>第七章的游戏 Tetromino 俄罗斯方块。背景区域的划分规划，背景音乐的播放。砖块的构造，下落，旋转，消失。砖块碰撞叠加的判断，游戏结束的判断。代码量接近前两章的两倍多，编写更加复杂了。</p>
+
+<h3 id="亮点--思路">亮点 / 思路</h3>
+<ul>
+  <li>游戏板数据结构
+    <blockquote>
+      <p>游戏板数据结构是用来记录之前着陆的砖块占据了哪些矩形空格的一种数据表示。当前下落的砖块在游戏板数据结构中并没有标记。</p>
+    </blockquote>
+  </li>
+  <li>砖块的表示使用的是列表的列表，区分了 fallingOiece 和 nextPiece 。使用砖块用字典表示了，从界面的中点下降。</li>
+  <li>砖块的旋转是直接将砖块旋转的顺序按照列表的排列写进了砖块的表示中去了，直接查表不用计算了。</li>
+  <li>后台程序中给所有的界面方块赋予了一个 BLANK 值用于检测是否需要画上砖块。</li>
+  <li>砖块下降动画的制作仍然是重新绘制所有了。</li>
+  <li>砖块下降到何处就不能下降了，如何判断，如何加到游戏板数据结构中去？
+    <blockquote>
+      <p>通过isValidPosition() 判断砖块是否处于有效位置，如果返回 False 则说明砖块当前需要判断的位置无效</p>
+    </blockquote>
+  </li>
+  <li>用程序运行间隔的时间来控制砖块下降的速度，通过调节阀值进行关卡的增加。</li>
+  <li>游戏结束的标准：下降砖块没有足够的放置空间，如何判断。</li>
+  <li>暂停事件按键抬起才触发，移动按下就触发，抬起才结束，可以一直移动不用按个不停。检测按键松开来判断玩家是否想要继续移动砖块，便于检查长按的情况。</li>
+</ul>
+
+<h3 id="keydown-keypress-keyup--事件的区别">keyDown keyPress keyUp  事件的区别</h3>
+<ul>
+  <li><a href="http://blog.sina.com.cn/s/blog_a401a1ea0101edah.html" title="事件的区别">事件区别</a></li>
+  <li>按键弹起才触发，按键按下就触发的区别就在这里。</li>
+</ul>
+
+<pre><code class="language-Python"># 等待按键弹起？？？
+def checkForKeyPress():
+	# Go through event queue looking for a KEYUP event.
+	# Grab KEYDOWN events to remove them from the event queue.
+	checkForQuit()
+
+	for event in pygame.event.get([KEYDOWN, KEYUP]):
+		if event.type == KEYDOWN:
+			continue
+		return event.key
+	return None
+</code></pre>
+
+<h3 id="背景音乐一直播放">背景音乐一直播放</h3>
+<ul>
+  <li>使用 pygame.mixer.music。</li>
+</ul>
+
+<pre><code class="language-Python">pygame.mixer.music.load('xxx')
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.stop()
+</code></pre>
+
+<h3 id="砖块的表示和调用">砖块的表示和调用</h3>
+<ul>
+  <li>S_SHAPE_TEMPLATE 表示砖块及其可能的旋转表示，列表的列表。</li>
+  <li>PIECE 砖块组成的字典。</li>
+  <li>调用砖块时，又把砖块作为 piece 字典中的一个 value 值并增加其他的属性。</li>
+</ul>
+
+<pre><code class="language-Python">PIECES = {'S': S_SHAPE_TEMPLATE, 'Z': Z_SHAPE_TEMPLATE, 'J': J_SHAPE_TEMPLATE, 'L': L_SHAPE_TEMPLATE,
+	     'I': I_SHAPE_TEMPLATE,'O': O_SHAPE_TEMPLATE, 'T': T_SHAPE_TEMPLATE}
+def getNewPiece():
+	# return a random new piece in a random rotation and color
+	shape = random.choice(list(PIECES.keys()))
+	newPiece = {'shape': shape,
+			'rotation': random.randint(0, len(PIECES[shape]) - 1),
+			'x': int(BOARDWIDTH / 2) - int(TEMPLATEWIDTH / 2),
+			'y': -2, # start it above the board (i.e. less than 0)
+			'color': random.randint(0, len(COLORS)-1)}
+</code></pre>
+
+<h3 id="判断砖块需要处于的位置是否有效">判断砖块需要处于的位置是否有效</h3>
+
+<p><strong>A smart function</strong></p>
+
+<ul>
+  <li>board 为游戏板数据结构，piece 为砖块位置，通过adjX,Y 调节从而判断砖块将要处于的位置是否有效。</li>
+</ul>
+
+<pre><code class="language-Python">def isValidPosition(board, piece, adjX=0, adjY=0):
+	# Return True if the piece is within the board and not colliding
+	for x in range(TEMPLATEWIDTH):
+		for y in range(TEMPLATEHEIGHT):
+			#检测游戏板之外的方块
+			isAboveBoard = y + piece['y'] + adjY &lt; 0 
+			if isAboveBoard or PIECES[piece['shape']][piece['rotation']][y][x] == BLANK:
+				continue
+			#检测砖块是否在游戏板上
+			if not isOnBoard(x + piece['x'] + adjX, y + piece['y'] + adjY):
+				return False
+			#检测砖块的方块所在的游戏板空格不为空白
+			#砖块上的空白和在检测时和游戏板上的空白检测并不冲突
+			if board[x + piece['x'] + adjX][y + piece['y'] + adjY] != BLANK:
+				return False
+	return True
+
+</code></pre>
+
+<h3 id="判断砖块是否到底或到不能再向下的位置">判断砖块是否到底【或】到不能再向下的位置</h3>
+
+<ul>
+  <li>仍然通过isValidPosition() 函数提前一格判断位置是否有效，如果无效了（到底了或是有阻挡），说明当前位置就是下落的最低位置，将砖块数据放入游戏板数据结构中，加分计算等级；如果是有效位置，就可以继续下降。</li>
+</ul>
+
+<p><img src="/post_img/tetromino1.png" alt="ValidPosition" title="ValidPosition" /></p>
+
+<pre><code class="language-Python">if time.time() - lastFallTime &gt; fallFreq:
+	# see if the piece has landed
+	if not isValidPosition(board, fallingPiece, adjY=1):
+		# falling piece has landed, set it on the board
+		addToBoard(board, fallingPiece)
+		score += removeCompleteLines(board)
+		level, fallFreq = calculateLevelAndFallFreq(score)
+		fallingPiece = None
+	else:
+		# piece did not land, just move the piece down
+		fallingPiece['y'] += 1
+		lastFallTime = time.time()
+</code></pre>
+
+<h3 id="检查删除和填满一行">检查，删除和填满一行</h3>
+
+<ul>
+  <li>判断所在行的空格是否存在 BLANK。</li>
+  <li>倒序检测所有行，如有一行填满，则将该行以上所有的内容向下复制赋值一遍，第 0 行填充 BLANK，此时 y 值不变，继续判断循环【方便了多行填满的情况】；没有则 y + 1。</li>
+</ul>
+
+<h3 id="游戏结束的判断">游戏结束的判断</h3>
+<ul>
+  <li>仍然是isValidPosition() 函数。直接在旧砖块落底，新砖块初始落下时判断，如果一开始就没有足够空间，说明游戏结束了。</li>
+</ul>
+
+<h2 id="函数复习">函数复习</h2>
+<blockquote>
+  <p>在调用绘制函数以便让显示 Surface 对象看上去是你想要的方式之后，必须调用 update 让 显示 Surface 真正出现在用户显示器上。</p>
+  <pre><code class="language-Python">pygame.display.update()
+</code></pre>
+</blockquote>
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
+    });
+
+</script>
+        </div>
+        
+
+    </div>
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
+</article>
+
+        </div>
+
+    <footer class="container">
+
+    <div class="site-footer">
+
+        <div class="copyright pull-left">
+            <!-- 请不要更改这一行 方便其他人知道模板的来源 谢谢 -->
+            <!-- Please keep this line to let others know where this theme comes from. Thank you :D -->
+            Power by <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <a href="https://github.com/DONGChuan" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+
+    </div>
+
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="/bower_components/geopattern/js/geopattern.min.js"></script>
+
+    <!-- My JS -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+
+    
+
+    
+    <!-- Google Analytics -->
+    <div style="display:none">
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-108252059-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </div>
+    
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
+
+</footer>
+
+
+    </body>
+
+</html>

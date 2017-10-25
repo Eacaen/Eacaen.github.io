@@ -34,6 +34,9 @@
     <!-- CSS set in layout -->
     
     <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
     
 
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -127,7 +130,7 @@
 <h2 id="notebook-2">Notebook &lt;2&gt;</h2>
 <p>第五章的游戏 Simulate，让人去记住并重复游戏中图案显示的顺序， 主体还是画出矩形并能和鼠标键盘交互，在此之上增加了点击矩形时的音乐，一些类似特效的光影闪烁效果和实现显示的记分牌。</p>
 
-<h3 id="section">一般的逻辑顺序</h3>
+<h3 id="一般的逻辑顺序">一般的逻辑顺序</h3>
 
 <ol>
   <li>导入模块，设置全局变量，常量。</li>
@@ -145,33 +148,31 @@
   </li>
 </ol>
 
-<h3 id="section-1">亮点 / 思路</h3>
+<h3 id="亮点--思路">亮点 / 思路</h3>
 <ul>
-  <li>
-    <p>所绘制的图标与图标占用的方块仅仅是大小相同，其他并没有什么联系。所以图标重新绘制和光标的碰撞到方块的检测并不矛盾和冲突，相反我觉得这是一种很好的思路和编写方式。<br />
-<code class="highlighter-rouge">
-# 绘制 rect vs rect 检测
+  <li>所绘制的图标与图标占用的方块仅仅是大小相同，其他并没有什么联系。所以图标重新绘制和光标的碰撞到方块的检测并不矛盾和冲突，相反我觉得这是一种很好的思路和编写方式。
+    <pre><code># 绘制 rect vs rect 检测
 draw_rect( )
 pygame.Rect( )
 # 重复绘制图标
 drawButtons()
-</code></p>
+</code></pre>
   </li>
-  <li>其实在前两章和本章的源码的循环中都有用背景色覆盖所有，然后再重新绘制文字，图标的部分，在搞清能这样的原因后，这样做的好处我觉得也有这样几条：<br />
-<code class="highlighter-rouge">
-编写逻辑更加简单粗暴了，更新界面实际上就是整体重新绘制，不是界面的小修小补。
+  <li>其实在前两章和本章的源码的循环中都有用背景色覆盖所有，然后再重新绘制文字，图标的部分，在搞清能这样的原因后，这样做的好处我觉得也有这样几条：
+    <pre><code>编写逻辑更加简单粗暴了，更新界面实际上就是整体重新绘制，不是界面的小修小补。
 方便在界面上显示需要更新的文字【这里应该也可以小修小补的】，或是实时变更的分数等消息。
-</code></li>
-  <li>功能<br />
-<code class="highlighter-rouge">Python
-#让 Surface 显示出现在屏幕上
+</code></pre>
+  </li>
+  <li>功能
+    <pre><code class="language-Python">#让 Surface 显示出现在屏幕上
 pygame.display.update()
 # 确保动画不会像计算机绘制那样快的播放，调用 tick() 增加暂停，FPS 越小越慢
 FPSCLOCK.tick(FPS)
-</code></li>
+</code></pre>
+  </li>
 </ul>
 
-<h3 id="section-2">播放音乐</h3>
+<h3 id="播放音乐">播放音乐</h3>
 <ul>
   <li><a href="/assets/files/Pygame_book/beep1.ogg">音乐文件</a></li>
 </ul>
@@ -204,7 +205,7 @@ while True:
 
 	pygame.display.update()
 </code></pre>
-<p>### 颜色效果的制作</p>
+<h3 id="颜色效果的制作">颜色效果的制作</h3>
 
 <ul>
   <li>通过不断更改透明度 alpha 实现颜色的明暗变化效果。</li>
@@ -355,7 +356,10 @@ if __name__ == '__main__':
         
 
     </div>
-
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
 </article>
 
         </div>
@@ -403,6 +407,10 @@ if __name__ == '__main__':
         </script>
     </div>
     
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
 
 </footer>
 

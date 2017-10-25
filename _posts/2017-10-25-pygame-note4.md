@@ -30,7 +30,7 @@ meta: "Springfield"
 
 ### keyDown keyPress keyUp  事件的区别
  *  [事件区别](http://blog.sina.com.cn/s/blog_a401a1ea0101edah.html "事件的区别")
- *  按键弹起才触发，按键按下就触发。
+ *  按键弹起才触发，按键按下就触发的区别就在这里。
 
 ```Python
 # 等待按键弹起？？？
