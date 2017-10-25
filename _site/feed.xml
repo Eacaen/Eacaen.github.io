@@ -3,10 +3,10 @@
   <channel>
     <title>Hu's Space !</title>
     <description>This is personnel website of HuTianyun</description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Oct 2017 17:28:02 +0800</pubDate>
-    <lastBuildDate>Wed, 25 Oct 2017 17:28:02 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 25 Oct 2017 17:41:40 +0800</pubDate>
+    <lastBuildDate>Wed, 25 Oct 2017 17:41:40 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -156,8 +156,8 @@ def getNewPiece():
 &lt;/blockquote&gt;
 </description>
         <pubDate>Wed, 25 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/python/2017/10/25/pygame-note4.html</link>
-        <guid isPermaLink="true">/python/2017/10/25/pygame-note4.html</guid>
+        <link>http://localhost:4000/python/2017/10/25/pygame-note4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2017/10/25/pygame-note4.html</guid>
         
         
         <category>Python</category>
@@ -208,7 +208,7 @@ wormCoords.insert(0, newHead)
 
 &lt;h3 id=&quot;显示-pygameevent-中的-type-值&quot;&gt;显示 pygame.event 中的 type 值&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_event_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_event_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#/usr/bin/env python
@@ -243,7 +243,7 @@ if __name__ == '__main__':
 
 &lt;h3 id=&quot;显示-文字旋转背景转化网格划分按键退出&quot;&gt;显示 文字旋转，背景转化，网格划分，按键退出&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/my_wormy_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_wormy_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;背景转化更好的说明了每次用背景色覆盖后重新绘图的原理和好处&lt;/li&gt;
   &lt;li&gt;文字旋转
     &lt;blockquote&gt;
@@ -374,8 +374,8 @@ if __name__ == '__main__':
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Mon, 23 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/python/2017/10/23/pygame-note3.html</link>
-        <guid isPermaLink="true">/python/2017/10/23/pygame-note3.html</guid>
+        <link>http://localhost:4000/python/2017/10/23/pygame-note3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2017/10/23/pygame-note3.html</guid>
         
         
         <category>Python</category>
@@ -435,7 +435,7 @@ FPSCLOCK.tick(FPS)
 
 &lt;h3 id=&quot;播放音乐&quot;&gt;播放音乐&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/assets/files/Pygame_book/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/beep1.ogg&quot;&gt;音乐文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# -*- coding: utf-8 -*-
@@ -532,8 +532,8 @@ if __name__ == '__main__':
 
 </description>
         <pubDate>Sat, 21 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/python/2017/10/21/pygame-note2.html</link>
-        <guid isPermaLink="true">/python/2017/10/21/pygame-note2.html</guid>
+        <link>http://localhost:4000/python/2017/10/21/pygame-note2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2017/10/21/pygame-note2.html</guid>
         
         
         <category>Python</category>
@@ -695,8 +695,8 @@ if boxRect.collidepoint(event.pos):
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Sat, 21 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/python/2017/10/21/pygame-note1.html</link>
-        <guid isPermaLink="true">/python/2017/10/21/pygame-note1.html</guid>
+        <link>http://localhost:4000/python/2017/10/21/pygame-note1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2017/10/21/pygame-note1.html</guid>
         
         
         <category>Python</category>
@@ -761,8 +761,8 @@ if boxRect.collidepoint(event.pos):
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 19 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/ubuntu/2017/10/19/jekll-install-ubuntu.html</link>
-        <guid isPermaLink="true">/ubuntu/2017/10/19/jekll-install-ubuntu.html</guid>
+        <link>http://localhost:4000/ubuntu/2017/10/19/jekll-install-ubuntu.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ubuntu/2017/10/19/jekll-install-ubuntu.html</guid>
         
         
         <category>Ubuntu</category>
@@ -891,8 +891,8 @@ Copy the source file in you own file and develop the new function by yourself.&l
 
 </description>
         <pubDate>Tue, 17 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/python/2017/10/17/composite-blade-design.html</link>
-        <guid isPermaLink="true">/python/2017/10/17/composite-blade-design.html</guid>
+        <link>http://localhost:4000/python/2017/10/17/composite-blade-design.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2017/10/17/composite-blade-design.html</guid>
         
         
         <category>Python</category>
