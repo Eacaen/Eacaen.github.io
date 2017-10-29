@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " Pygame Notebook 1"
+title: " Pygame Notebook 1 Puzzle 连连看"
 tagline: " Pygame Notebook 1"
 categories: Python
 author: "Hu Tianyun"
