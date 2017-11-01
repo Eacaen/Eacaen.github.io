@@ -63,5 +63,52 @@ meta: "Springfield"
  *  局部闪烁的原因是：即使在原来的颜色上闪烁人眼也不能察觉出来，如果在闪烁函数中加入一个全局的 DISPLAYSURF.fill(WHITE) 那么就可以就看出来其实是每个颜色都闪了。
  *  演示中加入了实时显示鼠标位置的部分。
 
+
+### 第十章中四子棋的游戏是如何让检测成功的呢？
+ *  循环全局 board，检测横竖撇捺四个方向是否有四个连成一线的。
+
+```Python
+def isWinner(board, tile):
+	# check horizontal spaces
+	for x in range(BOARDWIDTH - 3):
+		for y in range(BOARDHEIGHT):
+			if board[x][y] == tile and board[x+1][y] == tile and board[x+2][y] == tile and board[x+3][y] == tile:
+				return True
+	# check vertical spaces
+	for x in range(BOARDWIDTH):
+		for y in range(BOARDHEIGHT - 3):
+			if board[x][y] == tile and board[x][y+1] == tile and board[x][y+2] == tile and board[x][y+3] == tile:
+				return True
+	# check / diagonal spaces
+	for x in range(BOARDWIDTH - 3):
+		for y in range(3, BOARDHEIGHT):
+			if board[x][y] == tile and board[x+1][y-1] == tile and board[x+2][y-2] == tile and board[x+3][y-3] == tile:
+				return True
+	# check \ diagonal spaces
+	for x in range(BOARDWIDTH - 3):
+		for y in range(BOARDHEIGHT - 3):
+			if board[x][y] == tile and board[x+1][y+1] == tile and board[x+2][y+2] == tile and board[x+3][y+3] == tile:
+				return True
+	return False
+
+```
+
+### 第十章的游戏是如何让电脑决定下一步的呢？
+ * AI。
+ * 暴力搜索最佳。
+
+
+### 鼠标按住拖动显示，后松开物体下降。
+ *  [演示文件]({{ site.url }}/assets/files/Pygame_book/my_takenDrop_test.py)  
+ *  MOUSEBUTTONDOWN，MOUSEBUTTONUP，MOUSEMOTION。
+
+
+
+
+
+
+
+
+
 ### 待续
  *  一些音乐播放，图片加载，背景闪烁，背景贴图效果可以看前面的几节内容。
