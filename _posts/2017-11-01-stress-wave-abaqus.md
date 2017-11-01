@@ -12,14 +12,18 @@ meta: "Springfield"
 
 材料常数：
 
-$\rho=7800,E=2e11,\mu=0.3$
+![Impact](/post_img/ABAQUS-BAR/CodeCogsEqn.gif  "Impact")
 
 杆尺寸：
 
 	入射杆长度10，直径10；透射杆长度100，直径10；
+
+
 ## 结果
 ![Impact simulation](/post_img/ABAQUS-BAR/imapct.gif  "Impact simulation")
+
 *********************************************
+
 做个小笔记，记下分析步骤。
 
 ## Assembly
