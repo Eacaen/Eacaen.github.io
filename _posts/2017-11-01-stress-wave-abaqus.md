@@ -39,12 +39,13 @@ meta: "Springfield"
 
 
 ### FieldoutputSet 提高输出帧数。
-![FieldoutputSet](/post_img/ABAQUS-BAR/historyOutput.png  "FieldoutputSet")
+![FieldoutputSet](/post_img/ABAQUS-BAR/FieldoutputSet.png  "FieldoutputSet")
 
 
 
 
-### historyOutput，设置历史输出，输出目标为透射杆的应力 S33 和 速度 V3，方便结果绘图。
+### historyOutput，设置历史输出
+ *  输出目标为透射杆的应力 S33 和 速度 V3，方便结果绘图。可添加多个杆进行输出。
  *  【注】历史变量输出太多计算中会报错，可减少输出或修改可输出最大值。
 ![historyOutput](/post_img/ABAQUS-BAR/historyOutput.png  "historyOutput")
 
@@ -63,7 +64,7 @@ meta: "Springfield"
 
 
 ## Load
-### 定义边界条件，锁定位移旋转。
+### 定义边界条件，锁定位移和旋转，杆件只有轴向位移。
 ![boundaryConditionSet](/post_img/ABAQUS-BAR/boundaryConditionSet.png  "boundaryConditionSet")
 
 
