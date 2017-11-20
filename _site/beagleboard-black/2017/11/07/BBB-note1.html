@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <title>BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown</title>
+    <meta name="description"
+          content="beagleboard black 笔记 &lt;1&gt;开始学习BBB，系统 window10，把 BBB 插入电脑后打开 192.168.7.2 会看到预计的网页效果，但是在使用 Cloud9  时会发现不能烧写程序进去，一堆 not found,cannot write,预计可能是自带的系统没有更新。">
+
+    <link rel="canonical" href="http://localhost:4000/beagleboard-black/2017/11/07/BBB-note1.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://localhost:4000/feed.xml">
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/bower_components/hover/css/hover-min.css">
+    <link rel="stylesheet" href="/bower_components/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <!-- CSS set in page -->
+    
+
+    <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
+    
+
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="HuTianyun">
+            <span class="octicon octicon-mark-github"></span> HuTianyun
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            
+            <a href="/"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Home">
+                Home
+            </a>
+            
+            <a href="/open-source"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Open-Source">
+                Open-Source
+            </a>
+            
+            <a href="/blog"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Blog">
+                Blog
+            </a>
+            
+            <a href="/bookmark"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Bookmark">
+                Bookmark
+            </a>
+            
+            <a href="/about"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="About me">
+                About me
+            </a>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <section class="jumbotron geopattern" data-pattern-id="BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown">
+    <div class="container">
+        <div id="jumbotron-meta-info">
+            <h1>BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown</h1>
+            <span class="meta-info">
+                
+                
+                <span class="octicon octicon-calendar"></span> 2017/11/07
+                
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+
+        $('.geopattern').each(function(){
+            $(this).geopattern($(this).data('pattern-id'));
+        });
+
+    });
+</script>
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="row">
+
+        
+        <div class="col-md-8 markdown-body">
+
+            <h1 id="beagleboard-black-笔记-1">beagleboard black 笔记 &lt;1&gt;</h1>
+<p>开始学习BBB，系统 window10，把 BBB 插入电脑后打开 192.168.7.2 会看到预计的网页效果，但是在使用 Cloud9  时会发现不能烧写程序进去，一堆 not found,cannot write,预计可能是自带的系统没有更新。</p>
+
+<h2 id="更新系统">更新系统</h2>
+
+<p>从BBB官网上下载，选择的是 Debain 的一个新的系统，下载网速奇慢无比。下载好后之后解压用官网推荐的把系统烧到 SD 卡里面。注意要在 Linux系统下把 /../uEnv.txt 最后一行注释#删掉。</p>
+
+<p>BBB 断电插入 SD 卡，按住靠近 SD 卡的按键按住不动，开电长按15s后开始跑马灯 0-1-2-3，3-2-1-0，表示正在烧系统。等待一会灯全熄灭了，启动BBB可以看到系统已经变成 Debain，程序也可正常烧写进板子了。</p>
+
+<h2 id="查看系统信息">查看系统信息</h2>
+
+<h3 id="更新系统后通过命令查看系统状态">更新系统后通过命令查看系统状态</h3>
+
+<p>1、# uname －a   （Linux查看版本当前操作系统内核信息）</p>
+
+<p>2、# cat /proc/version （Linux查看当前操作系统版本信息）</p>
+
+<p>3、# cat /etc/issue  或cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）</p>
+
+<p>4、# cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）</p>
+
+<p>5、# getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）</p>
+
+<p>6、# lsb_release -a</p>
+
+<h2 id="查看初始的密码">查看初始的密码</h2>
+
+<p>Default username/password:</p>
+
+<pre><code>username: debian
+password: temppwd
+</code></pre>
+
+<p>From <a href="https://elinux.org/BeagleBoardDebian">Debian</a>。</p>
+
+<h2 id="如何正确关机">如何正确关机？</h2>
+<h3 id="关机方法">关机方法</h3>
+<ul>
+  <li>shutdown -h now</li>
+  <li>按电源键</li>
+</ul>
+
+<h2 id="tips">TIPS</h2>
+<h3 id="sublime-配置">sublime 配置</h3>
+<p>sublime 配置 markdown 时，安装Markdown Extend 后需要在</p>
+
+<pre><code>View -&gt; Syntax -&gt; Open all with current extension as... -&gt; Markdown Extended
+</code></pre>
+
+<p>中设置Markdown主题。</p>
+
+<p>Markdown Extend下载安装详见 <a href="https://github.com/jonschlinkert/sublime-markdown-extended">Markdown Extend</a> 。</p>
+
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
+    });
+
+</script>
+        </div>
+        
+
+    </div>
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
+
+
+</article>
+
+        </div>
+
+    <footer class="container">
+
+    <div class="site-footer">
+
+        <div class="copyright pull-left">
+            <!-- 请不要更改这一行 方便其他人知道模板的来源 谢谢 -->
+            <!-- Please keep this line to let others know where this theme comes from. Thank you :D -->
+            Power by <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <a href="https://github.com/DONGChuan" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+
+    </div>
+
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="/bower_components/geopattern/js/geopattern.min.js"></script>
+
+    <!-- My JS -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+
+    
+
+    
+    <!-- Google Analytics -->
+    <div style="display:none">
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-108252059-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </div>
+    
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
+
+</footer>
+
+
+    </body>
+
+</html>

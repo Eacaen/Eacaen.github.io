@@ -1,25 +1,73 @@
 {
   
+  "beagleboard-black-2017-11-14-bbb-note3-html": {
+    "title": "BBB Notebook 3 PWM 实验",
+    "url": " /beagleboard-black/2017/11/14/BBB-note3.html",
+    "category": "beagleboard-black"
+  },
+  
+  "beagleboard-black-2017-11-09-bbb-note2-html": {
+    "title": "BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面",
+    "url": " /beagleboard-black/2017/11/09/BBB-note2.html",
+    "category": "beagleboard-black"
+  },
+  
+  "python-2017-11-08-pygame-conwaylifegame-html": {
+    "title": " Pygame ConwayLifegame",
+    "url": " /python/2017/11/08/pygame-ConwayLifegame.html",
+    "category": "Python"
+  },
+  
+  "beagleboard-black-2017-11-07-bbb-note1-html": {
+    "title": "BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown",
+    "url": " /beagleboard-black/2017/11/07/BBB-note1.html",
+    "category": "beagleboard-black"
+  },
+  
+  "abaqus-2017-11-01-stress-wave-abaqus-html": {
+    "title": " ABAQUS 模拟霍普金森杆应力波 ",
+    "url": " /abaqus/2017/11/01/stress-wave-abaqus.html",
+    "category": "ABAQUS"
+  },
+  
+  "python-2017-10-30-pygame-note-sum-html": {
+    "title": " Pygame Notebook 7 总结",
+    "url": " /python/2017/10/30/pygame-note_sum.html",
+    "category": "Python"
+  },
+  
+  "python-2017-10-30-pygame-note6-html": {
+    "title": " Pygame Notebook 6 推箱子",
+    "url": " /python/2017/10/30/pygame-note6.html",
+    "category": "Python"
+  },
+  
+  "python-2017-10-28-pygame-note5-html": {
+    "title": " Pygame Notebook 5 大鱼吃小鱼",
+    "url": " /python/2017/10/28/pygame-note5.html",
+    "category": "Python"
+  },
+  
   "python-2017-10-25-pygame-note4-html": {
-    "title": " Pygame Notebook 4",
+    "title": " Pygame Notebook 4 俄罗斯方块",
     "url": " /python/2017/10/25/pygame-note4.html",
     "category": "Python"
   },
   
   "python-2017-10-23-pygame-note3-html": {
-    "title": " Pygame Notebook 3",
+    "title": " Pygame Notebook 3 贪吃蛇",
     "url": " /python/2017/10/23/pygame-note3.html",
     "category": "Python"
   },
   
   "python-2017-10-21-pygame-note2-html": {
-    "title": " Pygame Notebook 2",
+    "title": " Pygame Notebook 2 记忆游戏",
     "url": " /python/2017/10/21/pygame-note2.html",
     "category": "Python"
   },
   
   "python-2017-10-21-pygame-note1-html": {
-    "title": " Pygame Notebook 1",
+    "title": " Pygame Notebook 1 Puzzle 连连看",
     "url": " /python/2017/10/21/pygame-note1.html",
     "category": "Python"
   },
@@ -72,6 +120,8 @@
   
   
   
+  
+  
 
   
   "python-2017-10-17-composite-blade-design-html": {
@@ -87,27 +137,75 @@
   },
   
   "python-2017-10-21-pygame-note1-html": {
-    "title": " Pygame Notebook 1",
+    "title": " Pygame Notebook 1 Puzzle 连连看",
     "url": "/python/2017/10/21/pygame-note1.html",
     "category": "[&quot;Python&quot;]"
   },
   
   "python-2017-10-21-pygame-note2-html": {
-    "title": " Pygame Notebook 2",
+    "title": " Pygame Notebook 2 记忆游戏",
     "url": "/python/2017/10/21/pygame-note2.html",
     "category": "[&quot;Python&quot;]"
   },
   
   "python-2017-10-23-pygame-note3-html": {
-    "title": " Pygame Notebook 3",
+    "title": " Pygame Notebook 3 贪吃蛇",
     "url": "/python/2017/10/23/pygame-note3.html",
     "category": "[&quot;Python&quot;]"
   },
   
   "python-2017-10-25-pygame-note4-html": {
-    "title": " Pygame Notebook 4",
+    "title": " Pygame Notebook 4 俄罗斯方块",
     "url": "/python/2017/10/25/pygame-note4.html",
     "category": "[&quot;Python&quot;]"
+  },
+  
+  "python-2017-10-28-pygame-note5-html": {
+    "title": " Pygame Notebook 5 大鱼吃小鱼",
+    "url": "/python/2017/10/28/pygame-note5.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "python-2017-10-30-pygame-note6-html": {
+    "title": " Pygame Notebook 6 推箱子",
+    "url": "/python/2017/10/30/pygame-note6.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "python-2017-10-30-pygame-note-sum-html": {
+    "title": " Pygame Notebook 7 总结",
+    "url": "/python/2017/10/30/pygame-note_sum.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "abaqus-2017-11-01-stress-wave-abaqus-html": {
+    "title": " ABAQUS 模拟霍普金森杆应力波 ",
+    "url": "/abaqus/2017/11/01/stress-wave-abaqus.html",
+    "category": "[&quot;ABAQUS&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-07-bbb-note1-html": {
+    "title": "BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown",
+    "url": "/beagleboard-black/2017/11/07/BBB-note1.html",
+    "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "python-2017-11-08-pygame-conwaylifegame-html": {
+    "title": " Pygame ConwayLifegame",
+    "url": "/python/2017/11/08/pygame-ConwayLifegame.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-09-bbb-note2-html": {
+    "title": "BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面",
+    "url": "/beagleboard-black/2017/11/09/BBB-note2.html",
+    "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-14-bbb-note3-html": {
+    "title": "BBB Notebook 3 PWM 实验",
+    "url": "/beagleboard-black/2017/11/14/BBB-note3.html",
+    "category": "[&quot;beagleboard-black&quot;]"
   }
   
 }

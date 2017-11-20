@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <title>BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面</title>
+    <meta name="description"
+          content="beagleboard black 笔记 &lt;2&gt;在 Windows10 和 Ubuntu14.04 下的 BBB 操作。在 Ubuntu14.04 下的网络共享。">
+
+    <link rel="canonical" href="http://localhost:4000/beagleboard-black/2017/11/09/BBB-note2.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://localhost:4000/feed.xml">
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/bower_components/hover/css/hover-min.css">
+    <link rel="stylesheet" href="/bower_components/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <!-- CSS set in page -->
+    
+
+    <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
+    
+
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="HuTianyun">
+            <span class="octicon octicon-mark-github"></span> HuTianyun
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            
+            <a href="/"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Home">
+                Home
+            </a>
+            
+            <a href="/open-source"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Open-Source">
+                Open-Source
+            </a>
+            
+            <a href="/blog"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Blog">
+                Blog
+            </a>
+            
+            <a href="/bookmark"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Bookmark">
+                Bookmark
+            </a>
+            
+            <a href="/about"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="About me">
+                About me
+            </a>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <section class="jumbotron geopattern" data-pattern-id="BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面">
+    <div class="container">
+        <div id="jumbotron-meta-info">
+            <h1>BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面</h1>
+            <span class="meta-info">
+                
+                
+                <span class="octicon octicon-calendar"></span> 2017/11/09
+                
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+
+        $('.geopattern').each(function(){
+            $(this).geopattern($(this).data('pattern-id'));
+        });
+
+    });
+</script>
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="row">
+
+        
+        <div class="col-md-8 markdown-body">
+
+            <h1 id="beagleboard-black-笔记-2">beagleboard black 笔记 &lt;2&gt;</h1>
+<p>在 Windows10 和 Ubuntu14.04 下的 BBB 操作。在 Ubuntu14.04 下的网络共享。</p>
+
+<h2 id="系统">系统</h2>
+
+<h3 id="win10">Win10</h3>
+
+<h4 id="start-page">start page</h4>
+<p>在 win10 下面使用 USB 插入电脑，我们很容易的按照教程 192.168.7.2 就能进入开始页面，使用 Petty 进入命令行。</p>
+
+<h4 id="win-网络共享">win 网络共享</h4>
+<p>按照教程在网络设置中打开网络共享就能使用，但是学校的锐捷实在是阻止进步的阶梯，许多锐捷和 Mxxx 类似的软件都不能开多网卡了。</p>
+
+<h3 id="ubuntu1404">Ubuntu14.04</h3>
+<h4 id="start-page-1">start page</h4>
+<p>在 Ubuntu14.04 下面使用 USB 插入电脑，并不能如意的进入开始页面 192.168.6.2  。使用 <strong>ifconfig</strong>  查看下。。。</p>
+
+<h4 id="ubuntu-网络共享">Ubuntu 网络共享</h4>
+<p>在 Ubuntu 下的锐捷仍然禁止使用多网卡【MMP】，但是通过安装 mentohust ，配置好后是可以的。具体方法网上很多。</p>
+
+<p>ubuntu 成功联网后参考
+<a href="http://blog.csdn.net/pkuyjxu/article/details/44617511">Beaglebone black 与ubuntu 通过usb网络共享</a> 可以实现网络分享。</p>
+
+<pre><code>Step 1, Configuring BBB as follow shows:
+route add default gw 192.168.7.1
+vim /etc/resolv.conf  and add "nameserver 8.8.8.8" at the end.
+Step 2, Configuring Ubuntu PC as following shows:
+sudo su
+#【wlan0】 is my internet facing interface, 【eth1】 is the BeagleBone USB connection
+iptables --table nat --append POSTROUTING --out-interface 【wlan0】 -j MASQUERADE
+iptables --append FORWARD --in-interface 【eth1】 -j ACCEPT
+echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+Step 3,  Test the internet in BBB as bellow shows:
+ping 8.8.8.8
+ping www.baidu.com
+</code></pre>
+
+<p>使用该教程时，先在 Ubuntu 下 <strong>ifconfig</strong> 查看下当前使用电脑的是哪个网卡，按照自己使用的网卡修改命令。</p>
+
+<h2 id="时钟同步">时钟同步</h2>
+<p><a href="http://blog.csdn.net/hahachenchen789/article/details/52326688">beaglebone black 时间调整</a></p>
+
+<pre><code>1.首先要设置时区，板子默认的时区文件在/etc/localtime文件中，将其删除：rm /etc/localtime
+2.查看系统数据库中有哪些时区可供选择，命令：ls /usr/share/zoneinfo/Asia/
+3.选择上海，将上海时区链接到localtime，
+命令：ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+4.同步时间：在debian下，命令为： ntpdate-debian
+</code></pre>
+
+<p>if run</p>
+
+<pre><code>ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+
+<p>总是提示/etc/localtime文件已经存在</p>
+
+<p>用 ln -sf 覆盖掉。</p>
+
+<pre><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+
+<h2 id="使用-vnc-显示器">使用 VNC 显示器</h2>
+<p>从成本和硬件上考虑，外接一个显示器显得十分不方便，需要购买的器材有点多了。这时可以考虑使用 VNC 显示器，方便的是在　beagleboard black　的　debian 系统和 PC 的 Ubuntu 上都自带了相关的软件。</p>
+
+<p><a href="http://blog.csdn.net/qq_30897583/article/details/71195001">通过ＶＮＣ远程接入BeagleBone Black桌面</a></p>
+
+<h3 id="bbb-上打开-vncserver">BBB 上打开 vncserver</h3>
+<p>记住此时分配给的端口号</p>
+
+<p><img src="/post_img/BBB-img/openvnc.png" alt="vncserver" title="vncserver" /></p>
+
+<h3 id="在-ubuntu-上配置remmina远程客户端">在 Ubuntu 上配置Remmina远程客户端</h3>
+<p>配置时保证端口号一致，ssh高级设置可以选择性打开。</p>
+
+<p><img src="/post_img/BBB-img/vncPcset.png" alt="vncPcset" title="vncPcset" /></p>
+
+<p>配置完成后即可进入。</p>
+
+<h2 id="安装xfce４可选">安装　Xfce４（可选）</h2>
+<p><a href="https://www.douban.com/group/topic/42903996/">install Xfce on Beaglebone Black </a></p>
+
+<pre><code>sudo apt-get update
+sudo apt-get install xfce4
+sudo apt-get install xfce-goodies 
+</code></pre>
+
+<p>安装完成后重启，输入 startx or stearxfce4 启动，进入ＶＮＣ　即可看见界面。</p>
+
+<p><img src="/post_img/BBB-img/tablexf.png" alt="tablexf" title="tablexf" /></p>
+
+<h2 id="problems-collection">PROBLEMS COLLECTION</h2>
+<p>有时不知道自己搞的哪里坏了，在 cloud9 里面无法烧写程序，而是不断弹出错误，例如：</p>
+
+<pre><code>tmux: need UTF-8 locale (LC_CTYPE) but have ANSI_X3.4-1968
+tmux: invalid LC_ALL, LC_CTYPE or LANG
+</code></pre>
+
+<p>应该是板子上的字符选择的错误，但是我没有找到什么好的方法，直接重装了系统。</p>
+
+<h2 id="useful-resp">useful resp</h2>
+<p><a href="https://github.com/derekmolloy/exploringBB">From book by Molloy</a></p>
+
+<h1 id="进入vnc桌面后有可能显示不全选择全屏才可以看见所有界面">进入vnc桌面后有可能显示不全，选择全屏才可以看见所有界面</h1>
+<p>不要在这一步浪费太多时间</p>
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
+    });
+
+</script>
+        </div>
+        
+
+    </div>
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
+
+
+</article>
+
+        </div>
+
+    <footer class="container">
+
+    <div class="site-footer">
+
+        <div class="copyright pull-left">
+            <!-- 请不要更改这一行 方便其他人知道模板的来源 谢谢 -->
+            <!-- Please keep this line to let others know where this theme comes from. Thank you :D -->
+            Power by <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <a href="https://github.com/DONGChuan" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+
+    </div>
+
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="/bower_components/geopattern/js/geopattern.min.js"></script>
+
+    <!-- My JS -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+
+    
+
+    
+    <!-- Google Analytics -->
+    <div style="display:none">
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-108252059-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </div>
+    
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
+
+</footer>
+
+
+    </body>
+
+</html>

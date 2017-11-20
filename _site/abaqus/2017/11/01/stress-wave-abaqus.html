@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
+
+    <title> ABAQUS 模拟霍普金森杆应力波 </title>
+    <meta name="description"
+          content="仅供参考交流，对计算结果的精确性不负任何责任">
+
+    <link rel="canonical" href="http://localhost:4000/abaqus/2017/11/01/stress-wave-abaqus.html">
+    <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://localhost:4000/feed.xml">
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/bower_components/hover/css/hover-min.css">
+    <link rel="stylesheet" href="/bower_components/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <!-- CSS set in page -->
+    
+
+    <!-- CSS set in layout -->
+    
+    <link rel="stylesheet" href="/assets/css/sidebar-post-nav.css">
+
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    
+    
+
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="HuTianyun">
+            <span class="octicon octicon-mark-github"></span> HuTianyun
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            
+            <a href="/"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Home">
+                Home
+            </a>
+            
+            <a href="/open-source"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Open-Source">
+                Open-Source
+            </a>
+            
+            <a href="/blog"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Blog">
+                Blog
+            </a>
+            
+            <a href="/bookmark"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="Bookmark">
+                Bookmark
+            </a>
+            
+            <a href="/about"
+               class=" site-header-nav-item hvr-underline-from-center"
+               target=""
+               title="About me">
+                About me
+            </a>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <section class="jumbotron geopattern" data-pattern-id=" ABAQUS 模拟霍普金森杆应力波 ">
+    <div class="container">
+        <div id="jumbotron-meta-info">
+            <h1> ABAQUS 模拟霍普金森杆应力波 </h1>
+            <span class="meta-info">
+                
+                
+                <span class="octicon octicon-calendar"></span> 2017/11/01
+                
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+
+        $('.geopattern').each(function(){
+            $(this).geopattern($(this).data('pattern-id'));
+        });
+
+    });
+</script>
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="row">
+
+        
+        <div class="col-md-8 markdown-body">
+
+            <p><strong>仅供参考交流，对计算结果的精确性不负任何责任</strong></p>
+
+<h1 id="abaqus-模拟应力波传播">ABAQUS 模拟应力波传播</h1>
+
+<p>材料常数：</p>
+
+<p><img src="/post_img/ABAQUS-BAR/CodeCogsEqn.gif" alt="Impact" title="Impact" /></p>
+
+<p>杆尺寸：</p>
+
+<pre><code>入射杆长度10，直径10；透射杆长度100，直径10；
+</code></pre>
+
+<h2 id="结果">结果</h2>
+<p><img src="/post_img/ABAQUS-BAR/imapct.gif" alt="Impact simulation" title="Impact simulation" /></p>
+
+<hr />
+
+<p>做个小笔记，记下分析步骤。</p>
+
+<h2 id="assembly">Assembly</h2>
+<h3 id="两杆对心距离-5-">两杆对心，距离 5 。</h3>
+<p><img src="/post_img/ABAQUS-BAR/assembly.png" alt="Assembly" title="Assembly" /></p>
+
+<h2 id="step">Step</h2>
+<h3 id="定义分析步step1显示动力学分析修改时间">定义分析步step1，<strong>显示动力学分析</strong>，修改时间。</h3>
+<p><img src="/post_img/ABAQUS-BAR/StepcontactDefine.png" alt="StepcontactDefine" title="StepcontactDefine" /></p>
+
+<h3 id="fieldoutputset-提高输出帧数">FieldoutputSet 提高输出帧数。</h3>
+<p><img src="/post_img/ABAQUS-BAR/FieldoutputSet.png" alt="FieldoutputSet" title="FieldoutputSet" /></p>
+
+<h3 id="historyoutput设置历史输出">historyOutput，设置历史输出</h3>
+<ul>
+  <li>输出目标为透射杆的应力 S33 和 速度 V3，方便结果绘图。可添加多个杆进行输出。</li>
+  <li>【注】历史变量输出太多计算中会报错，可减少输出或修改可输出最大值。
+<img src="/post_img/ABAQUS-BAR/historyOutput.png" alt="historyOutput" title="historyOutput" /></li>
+</ul>
+
+<h2 id="interaction">Interaction</h2>
+<h3 id="定义接触参数属性默认">定义接触参数，属性默认。</h3>
+<p><img src="/post_img/ABAQUS-BAR/contactPropertyDef.png" alt="contactPropertyDef" title="contactPropertyDef" /></p>
+
+<h3 id="选择接触面定义接触面属性">选择接触面，定义接触面属性。</h3>
+<p><img src="/post_img/ABAQUS-BAR/contactSurface.png" alt="contactSurface" title="contactSurface" /></p>
+
+<h2 id="load">Load</h2>
+<h3 id="定义边界条件锁定位移和旋转杆件只有轴向位移">定义边界条件，锁定位移和旋转，杆件只有轴向位移。</h3>
+<p><img src="/post_img/ABAQUS-BAR/boundaryConditionSet.png" alt="boundaryConditionSet" title="boundaryConditionSet" /></p>
+
+<h3 id="定义入射杆速度场">定义入射杆速度场。</h3>
+<ul>
+  <li>【注】速度场选择整个杆子的 set ，不是选择一个面。
+<img src="/post_img/ABAQUS-BAR/predefineField.png" alt="predefineField" title="predefineField" /></li>
+</ul>
+
+<h2 id="结果讨论">结果讨论</h2>
+<h3 id="在-t005-时开始碰撞产生一个压缩波">在 T=0.05 时开始碰撞，产生一个压缩波。</h3>
+<p><img src="/post_img/ABAQUS-BAR/timeImpact.png" alt="timeImpact" title="timeImpact" /></p>
+
+<h3 id="压缩波反射形成拉伸波">压缩波反射形成拉伸波。</h3>
+<p><img src="/post_img/ABAQUS-BAR/TensileWave.png" alt="TensileWave" title="TensileWave" /></p>
+
+<h3 id="杆上速度和应力变化">杆上速度和应力变化。</h3>
+<p><img src="/post_img/ABAQUS-BAR/Wave.png" alt="Wave" title="Wave" />
+<img src="/post_img/ABAQUS-BAR/Vectory.png" alt="Vectory" title="Vectory" /></p>
+
+
+
+            <!-- Comments -->
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+<h3>Post Directory</h3>
+<div id="post-directory-module">
+<section class="post-directory">
+    <!-- Links that trigger the jumping -->
+    <!-- Added by javascript below -->
+    <dl></dl>
+</section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $( "article h2" ).each(function( index ) {
+            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+                    $(this).attr("id")
+                    + ">"
+                    + $(this).text()
+                    + "</a></dt>");
+
+            var children = $(this).nextUntil("h2", "h3")
+
+            children.each(function( index ) {
+                $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+                        $(this).attr("id")
+                        + ">"
+                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "</a></dd>");
+            });
+        });
+
+        var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
+
+        $(window).scroll(function() {                  // assign scroll event listener
+
+            var currentScroll = $(window).scrollTop(); // get current position
+
+            if (currentScroll >= fixmeTop) {           // apply position: fixed if you
+                $('#post-directory-module').css({      // scroll to that element or below it
+                    top: '100px',
+                    position: 'fixed',
+                    width: 'inherit'
+                });
+            } else {                                   // apply position: static
+                $('#post-directory-module').css({      // if you scroll above it
+                    position: 'inherit',
+                    width: 'inherit'
+                });
+            }
+
+        });
+
+        $("a.jumper").on("click", function( e ) {
+
+            e.preventDefault();
+
+            $("body, html").animate({
+                scrollTop: ($( $(this).attr('hre') ).offset().top - 100)
+            }, 600);
+
+        });
+    });
+
+</script>
+        </div>
+        
+
+    </div>
+    
+    <div class="share">
+          <div class="share-component"></div>
+    </div>
+
+
+</article>
+
+        </div>
+
+    <footer class="container">
+
+    <div class="site-footer">
+
+        <div class="copyright pull-left">
+            <!-- 请不要更改这一行 方便其他人知道模板的来源 谢谢 -->
+            <!-- Please keep this line to let others know where this theme comes from. Thank you :D -->
+            Power by <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <a href="https://github.com/DONGChuan" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+
+    </div>
+
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="/bower_components/geopattern/js/geopattern.min.js"></script>
+
+    <!-- My JS -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+
+    
+
+    
+    <!-- Google Analytics -->
+    <div style="display:none">
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-108252059-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </div>
+    
+
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+<!--     <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script> -->
+
+</footer>
+
+
+    </body>
+
+</html>
