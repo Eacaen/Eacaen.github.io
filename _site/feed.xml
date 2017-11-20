@@ -5,15 +5,15 @@
     <description>This is personnel website of HuTianyun</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Nov 2017 00:24:36 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Nov 2017 00:24:36 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Nov 2017 01:17:20 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Nov 2017 01:17:20 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>BBB Notebook 3 PWM 实验</title>
         <description>&lt;h1 id=&quot;beagleboard-black-笔记-3&quot;&gt;beagleboard black 笔记 &amp;lt;3&amp;gt;&lt;/h1&gt;
 
-&lt;h2 id=&quot;几个基于例程的实验&quot;&gt;几个基于例程的实验&lt;/h2&gt;
+&lt;h1 id=&quot;几个基于例程的实验&quot;&gt;几个基于例程的实验&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -30,54 +30,47 @@
 &lt;p&gt;通过这几个实验可以基本的了解一下 BBB 的 IO 口功能，但是这样并不能让我们完全了解到 BBB 的优势 以及与 类似基本的诸如 51 或是 STM32 不同之处，例如目前始终不能使用的 PWM 波功能。那么接下来才是真正跳入 BBB 的坑的过程吧。&lt;/p&gt;
 
 &lt;h2 id=&quot;使用ＰＷＭ波功能&quot;&gt;使用ＰＷＭ波功能&lt;/h2&gt;
-&lt;h3 id=&quot;参考&quot;&gt;参考&lt;/h3&gt;
+&lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_7880d3350102wz2b.html&quot;&gt;Beaglebone Black开启PWM功能&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.teachmemicro.com/beaglebone-black-pwm-ubuntu-device-tree/&quot;&gt;Beaglebone Black PWM on Ubuntu&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/beagleboard/bb.org-overlays/&quot;&gt;beagleboard/bb.org-overlays&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;开始使用教程最多的-p9_14-pwm-io-口&quot;&gt;开始使用教程最多的 p9_14 pwm io 口&lt;/h3&gt;
+&lt;h2 id=&quot;开始使用教程最多的-p9_14-pwm-io-口&quot;&gt;开始使用教程最多的 p9_14 pwm io 口&lt;/h2&gt;
 &lt;p&gt;按照教程，发现在 /lib/firmware/　目录下面只有一个　am33xx_pwm.dtbo 的驱动文件，却没有其他的ＩＯ口驱动。
 【这里就很明显的体现出了这种跑系统的板子和ＳＴＭ３２ 的区别，之前一直以为他俩差不多，没有仔细研究过设备树，覆盖层之类的概念。】&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;编写一个覆盖层
- 可以自己为ＩＯ口编写一个，但是为了尽快看到实验效果，我直接　git 了一个。&lt;/p&gt;
+&lt;h3 id=&quot;编写一个覆盖层&quot;&gt;编写一个覆盖层&lt;/h3&gt;
+&lt;p&gt;可以自己为ＩＯ口编写一个，但是为了尽快看到实验效果，我直接　git 了一个。&lt;/p&gt;
 
-    &lt;p&gt;git clone https://github.com/beagleboard/bb.org-overlays/tree/master/src/arm&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;进入目录，编译，移动驱动。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; git clone https://github.com/beagleboard/bb.org-overlays/tree/master/src/arm
+&lt;/code&gt;&lt;/pre&gt;
 
-    &lt;p&gt;dtc -O dtb -o BB-PWM1-00A0.dtbo -b 0 -@ BB-PWM1-00A0.dts&lt;/p&gt;
+&lt;h3 id=&quot;进入目录编译移动驱动&quot;&gt;进入目录，编译，移动驱动。&lt;/h3&gt;
 
-    &lt;p&gt;mv -i BB-PWM1-00A0.dtbo /lib/firmware&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;添加到 slots 里面去。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;dtc -O dtb -o BB-PWM1-00A0.dtbo -b 0 -@ BB-PWM1-00A0.dts
+
+mv -i BB-PWM1-00A0.dtbo /lib/firmware
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;添加到-slots-里面去&quot;&gt;添加到 slots 里面去。&lt;/h3&gt;
 
  	echo am33xx_pwm &amp;gt; /sys/devices/platform/bone_capemgr/slots
 
 &lt;pre&gt;&lt;code&gt;echo BB-PWM1 &amp;gt; /sys/devices/platform/bone_capemgr/slots
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;查看，改变IO口属性？&lt;/p&gt;
+&lt;h3 id=&quot;查看改变io口属性&quot;&gt;查看，改变IO口属性？&lt;/h3&gt;
 
-    &lt;p&gt;cd /sys/devices/platform/ocp&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /sys/devices/platform/ocp
 
-    &lt;p&gt;config-pin -l P9.14&lt;/p&gt;
+config-pin -l P9.14
 
-    &lt;p&gt;config-pin P9.14 pwm&lt;/p&gt;
+config-pin P9.14 pwm
 
-    &lt;p&gt;cat ocp:P9_14_pinmux/state　查看属性&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+cat ocp:P9_14_pinmux/state　查看属性
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;另外备注：在将cape-universaln插入槽中（slots）后，在
@@ -91,25 +84,22 @@ root@beaglebone:/sys/devices/platform/ocp/ocp:P9_14_pinmux
 
 &lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/pwm3img.png&quot; alt=&quot;pwm3img&quot; title=&quot;pwm3img&quot; /&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;可以使用，在文件夹路径&lt;/p&gt;
+&lt;h3 id=&quot;可以使用在文件夹路径&quot;&gt;可以使用，在文件夹路径&lt;/h3&gt;
 
-    &lt;p&gt;/sys/devices/platform/ocp/48302000.epwmss/48302200.pwm/pwm/pwmchip3/pwm0&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/sys/devices/platform/ocp/48302000.epwmss/48302200.pwm/pwm/pwmchip3/pwm0
 
-    &lt;p&gt;或者&lt;/p&gt;
+或者
 
-    &lt;p&gt;/sys/class/pwm/pwmchip3/pwm0&lt;/p&gt;
+/sys/class/pwm/pwmchip3/pwm0
 
-    &lt;p&gt;可以正常使用命令&lt;/p&gt;
+可以正常使用命令
 
-    &lt;p&gt;echo 0 &amp;gt; polarity&lt;/p&gt;
+ echo 0 &amp;gt; polarity 
 
-    &lt;p&gt;echo 20000000 &amp;gt; period&lt;/p&gt;
+ echo 20000000 &amp;gt; period 
 
-    &lt;p&gt;echo 1 &amp;gt; enable&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+ echo 1 &amp;gt; enable
+&lt;/code&gt;&lt;/pre&gt;
 
 </description>
         <pubDate>Tue, 14 Nov 2017 00:00:00 +0800</pubDate>
