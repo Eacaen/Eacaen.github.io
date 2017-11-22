@@ -85,5 +85,5 @@ analytics :
 # For about.html. Fell free to create your own!
 skill_software_keywords: [C , C++ , Python] 
 skill_hardware_chips: [51 , STM32]
-skill_structure_keywords: [Solidworks , Catia , Anasys , ABAQUS]
+skill_structure_keywords: [Solidworks , Catia , Ansys , ABAQUS]
 # skill_mobile_app_keywords: [Android, Sketch UI Desgin]
