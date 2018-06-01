@@ -6,9 +6,12 @@ categories: Python
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
-[str->fun-name](https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string)
-[python-func-globals](http://www.runoob.com/python/python-func-globals.html)
-[python-func-getattr](http://www.runoob.com/python/python-func-getattr.html)
+## 参考
+[[str->fun-name]](https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string)
+
+[[python-func-globals]](http://www.runoob.com/python/python-func-globals.html)
+
+[[python-func-getattr]](http://www.runoob.com/python/python-func-getattr.html)
 ## 用法
 ```python
 class A:
