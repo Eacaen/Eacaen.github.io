@@ -24,9 +24,16 @@ Introduction 　复合材料层合板在一定载荷下的应力应变分布的�
 
 <img align="right"  width="400" height="300"  src="/post_img/CLT-fig/Composite_3d.png" data-canonical-src="/post_img/CLT-fig/Composite_3d.png" />
 
-#### Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.
-#### ALL RIGHT RESERVED
 ********************************
+##### Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.
+##### ALL RIGHT RESERVED
+
+********************************
+#### see the blade design used the composite materials
+[composite-blade-design](https://github.com/Eacaen/composite-blade-design)
+
+********************************
+
 ## Project goals:
 - Use the fibre and matrix or given data to define the composite lamina and then layup the laminate.
 - Use the *Classical Lamination Theory* to  calculate the stress&strain distribution in each layer.

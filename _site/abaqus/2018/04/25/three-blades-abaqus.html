@@ -9,11 +9,11 @@
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
 
-    <title>BBB Notebook 3 PWM 实验</title>
+    <title> ABAQUS 运动相机防水壳密封页片 </title>
     <meta name="description"
-          content="beagleboard black 笔记 &lt;3&gt;几个基于例程的实验，网络问题的解决">
+          content="仅供参考交流，对计算结果的精确性不负任何责任">
 
-    <link rel="canonical" href="http://localhost:4000/beagleboard-black/2017/11/14/BBB-note3.html">
+    <link rel="canonical" href="http://localhost:4000/abaqus/2018/04/25/three-blades-abaqus.html">
     <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://localhost:4000/feed.xml">
 
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -94,14 +94,14 @@
 
 
         <div class="content">
-            <section class="jumbotron geopattern" data-pattern-id="BBB Notebook 3 PWM 实验">
+            <section class="jumbotron geopattern" data-pattern-id=" ABAQUS 运动相机防水壳密封页片 ">
     <div class="container">
         <div id="jumbotron-meta-info">
-            <h1>BBB Notebook 3 PWM 实验</h1>
+            <h1> ABAQUS 运动相机防水壳密封页片 </h1>
             <span class="meta-info">
                 
                 
-                <span class="octicon octicon-calendar"></span> 2017/11/14
+                <span class="octicon octicon-calendar"></span> 2018/04/25
                 
             </span>
         </div>
@@ -123,105 +123,56 @@
         
         <div class="col-md-8 markdown-body">
 
-            <h1 id="beagleboard-black-笔记-3">beagleboard black 笔记 &lt;3&gt;</h1>
-<p>几个基于例程的实验，网络问题的解决</p>
+            <p><strong>仅供参考交流，对计算结果的精确性不负任何责任</strong></p>
 
-<ul>
-  <li>
-    <p>点亮板子上的灯，循环点亮，跑马灯效果。</p>
-  </li>
-  <li>
-    <p>点亮外部的灯，IO口控制。</p>
-  </li>
-  <li>
-    <p>基本的按键输入，简单的 Python 状态机。</p>
-  </li>
-</ul>
+<h1 id="abaqus运动相机防水壳密封页片">ABAQUS　运动相机防水壳密封页片</h1>
 
-<p>通过这几个实验可以基本的了解一下 BBB 的 IO 口功能，但是这样并不能让我们完全了解到 BBB 的优势 以及与 类似基本的诸如 51 或是 STM32 不同之处，例如目前始终不能使用的 PWM 波功能。那么接下来才是真正跳入 BBB 的坑的过程吧。</p>
+<p>淘宝上买了运动相机防水壳，用过的都知道运动相机防水壳采用是确实一种十分暴力的方法，借助页片变形的力直接将密封圈固定在壳体上，但是这样的方法完全依赖页片变形，我在淘宝上先后购买了两款不同页片形状的壳子，第一款壳子的页片已连续损坏两次，都是由于在开闭壳子时圆形边角开裂而造成应力集中，而购买的第二款新壳子就直接去掉了原有的边角，并将密封圈在密封时嵌入壳体．就这个改进我感到还是满意的，改进原因也十分简单．借机复习一下ＡＢＡＱＵＳ使用，看看到底改进了多少．</p>
 
-<h2 id="使用ＰＷＭ波功能">使用ＰＷＭ波功能</h2>
-<h2 id="参考">参考</h2>
-<p><a href="http://blog.sina.com.cn/s/blog_7880d3350102wz2b.html">Beaglebone Black开启PWM功能</a></p>
+<p><img src="/post_img/ABAQUS-WPBlade/crack.jpg" alt="two-cc" title="two" /></p>
+<h2 id="简化模型和材料参数">简化模型和材料参数</h2>
+<p>原始曲面模型比较复杂，塑料材料也不好确定，但是我只是要看到大概的趋势，所以对模型进行了简化，材料也只给定了弹性模量和泊松比．</p>
 
-<p><a href="https://www.teachmemicro.com/beaglebone-black-pwm-ubuntu-device-tree/">Beaglebone Black PWM on Ubuntu</a></p>
+<p><img src="/post_img/ABAQUS-WPBlade/simple-model1.png" alt="simple-model" title="simple-model1" /></p>
 
-<p><a href="https://github.com/beagleboard/bb.org-overlays/">beagleboard/bb.org-overlays</a></p>
+<h2 id="简化受力和边界条件">简化受力和边界条件</h2>
+<p>固定限制页片底部Ｙ方向和边界处Ｘ方向的位移，给定页片爪子处强制的位移．</p>
 
-<h2 id="开始使用教程最多的-p9_14-pwm-io-口">开始使用教程最多的 p9_14 pwm io 口</h2>
-<p>按照教程，发现在 /lib/firmware/　目录下面只有一个　am33xx_pwm.dtbo 的驱动文件，却没有其他的ＩＯ口驱动。
-【这里就很明显的体现出了这种跑系统的板子和ＳＴＭ３２ 的区别，之前一直以为他俩差不多，没有仔细研究过设备树，覆盖层之类的概念。】</p>
+<p><img src="/post_img/ABAQUS-WPBlade/simple-model2.png" alt="simple-model" title="simple-model2" /></p>
 
-<h3 id="编写一个覆盖层">编写一个覆盖层</h3>
-<p>可以自己为ＩＯ口编写一个，但是为了尽快看到实验效果，我直接　git 了一个。</p>
+<h2 id="结果分析">结果分析</h2>
 
-<pre><code> git clone https://github.com/beagleboard/bb.org-overlays/tree/master/src/arm
-</code></pre>
+<h3 id="款式一-完整页片">[款式一] 完整页片</h3>
+<p>在完整的款式一页片处，应力集中于圆孔两侧，最大位移位于爪子处．</p>
 
-<h3 id="进入目录编译移动驱动">进入目录，编译，移动驱动。</h3>
+<p><img src="/post_img/ABAQUS-WPBlade/0/wholes1.png" alt="wholes1" title="wholes1" />
+<img src="/post_img/ABAQUS-WPBlade/0/wholeu1.png" alt="wholeu1" title="wholeu1" /></p>
 
-<pre><code>dtc -O dtb -o BB-PWM1-00A0.dtbo -b 0 -@ BB-PWM1-00A0.dts
+<h3 id="款式一-裂纹页片">[款式一] 裂纹页片</h3>
+<h4 id="裂纹">裂纹</h4>
 
-mv -i BB-PWM1-00A0.dtbo /lib/firmware
-</code></pre>
+<p>裂纹直接画图产生，没有使用ＡＢＡＱＵＳ裂纹功能．（不会）
+<img src="/post_img/ABAQUS-WPBlade/1/hole.png" alt="hole" title="hole" /></p>
 
-<h3 id="添加到-slots-里面去">添加到 slots 里面去。</h3>
+<h4 id="结果">结果</h4>
+<p>在款式一发生裂纹的页片处，应力集中于圆孔裂纹对面，应力值稍有下降，整体位移感觉没有巨大改变．</p>
 
- 	echo am33xx_pwm &gt; /sys/devices/platform/bone_capemgr/slots
-<pre><code>echo BB-PWM1 &gt; /sys/devices/platform/bone_capemgr/slots
-</code></pre>
+<p><img src="/post_img/ABAQUS-WPBlade/1/holes.png" alt="holes" title="holes" />
+<img src="/post_img/ABAQUS-WPBlade/1/holeu.png" alt="holeu" title="holeu" /></p>
 
-<h3 id="查看改变io口属性">查看，改变IO口属性？</h3>
+<h3 id="款式二-去角页片">[款式二] 去角页片</h3>
+<p>在款式二页片，直接将圆口去掉，消除了孔边应力集中，整体位移感觉没有什么改变．</p>
 
-<pre><code>cd /sys/devices/platform/ocp
-config-pin -l P9.14
-config-pin P9.14 pwm
-cat ocp:P9_14_pinmux/state　查看属性
-</code></pre>
+<p><img src="/post_img/ABAQUS-WPBlade/2/wholes2.png&quot;wholes2&quot;" alt="wholes2" />
+<img src="/post_img/ABAQUS-WPBlade/2/wholeu2.png" alt="wholeu2" title="wholeu2" /></p>
 
-<blockquote>
-  <p>另外备注：在将cape-universaln插入槽中（slots）后，在
-root@beaglebone:/sys/devices/platform/ocp/ocp:P9_14_pinmux
-中将P9_14设置为pwm模式（#config-pin P9.14 pwm）后，需要在
-/sys/class/pwm/pwmchip2中echo 0 &gt; export，
-这里为什么是pwmchip2，因为pwmchip2的地址0x4830_2000对应的是PWM1，echo 0是开启EHRPWM1A，echo 1是开启EHRPWM1B。具体地址映射可参见AM335x参考手册memory map部分。</p>
-</blockquote>
+<h2 id="结论分析">结论分析</h2>
+<p>对比以上三个结果，看到款式一设计上个人还是感觉存在一些不足，尤其是在页片塑料选材和制造上如果不行的话，由于应力集中和拆装时容易侧重一边，确实容易像我一样多次掰断页片．</p>
 
-<p>我在使用时发现如下情况，应该改为　pwm３　后成功使用，其中原因留待解决。</p>
+<p>第二款页片，在节省了材料的同时，消除了应力集中．整体的位移没有什么变化，应该不会影响密封性能．（关于最终载荷和位移对密封的影响分析是否正确还有待考察）．</p>
 
-<p><img src="/post_img/BBB-img/pwm3img.png" alt="pwm3img" title="pwm3img" /></p>
-
-<h3 id="可以使用在文件夹路径">可以使用，在文件夹路径</h3>
-
-<pre><code>/sys/devices/platform/ocp/48302000.epwmss/48302200.pwm/pwm/pwmchip3/pwm0
-
-或者
-
-/sys/class/pwm/pwmchip3/pwm0
-
-可以正常使用命令
-
- echo 500 &gt; duty_cycle 
- echo 10000 &gt; polarity 
- echo 1 &gt; enable
-</code></pre>
-
-<blockquote>
-  <p>操作PWM用到duty(duty_ns)、period(period_ns)、polarity、run共四个参数，其中period就是频率参数（周期时间），duty为占空比，polarity为使能标志（1为使能，0为禁用），run 是执行命令（1为运行，0为关闭），period和duty的参数单位为纳秒（ns），1s=1000ms=1000000us=1000000000ns，所以period最大的取值范围为0—1000000000，而duty则取值0—period值之间</p>
-</blockquote>
-
-<h6 id="部分参数改变了意义一样">部分参数改变了，意义一样。</h6>
-<hr />
-
-<h2 id="网络问题的解决">网络问题的解决</h2>
-<p>有时发现无法连接，打开网络设置发现提示系统与网络兼容，因为启用过锐捷【万恶】，解决方法：</p>
-
-<pre><code>cd /etc/NetworkManager
-sudo mv NetworkManager.conf /home/[name]/
-sudo NetworkManager //重启
-</code></pre>
-
-<p>完毕后你会发现网络恢复，正常使用，不要用锐捷了就。</p>
+<h2 id="ＥＮＤ">ＥＮＤ</h2>
+<p>款式二刚到货，防水性能还有待测试．但是就目前来看，款式二的改进确实比款式一好多了．</p>
 
 
 

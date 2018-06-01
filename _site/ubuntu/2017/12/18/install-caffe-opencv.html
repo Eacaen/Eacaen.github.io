@@ -9,11 +9,11 @@
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
 
-    <title>BBB Notebook 3 PWM 实验</title>
+    <title>Ubuntu 14.04 install caffe</title>
     <meta name="description"
-          content="beagleboard black 笔记 &lt;3&gt;几个基于例程的实验，网络问题的解决">
+          content="Ubuntu 安装 caffe安装参考参考Ubuntu14.04 安装Caffe（仅CPU）">
 
-    <link rel="canonical" href="http://localhost:4000/beagleboard-black/2017/11/14/BBB-note3.html">
+    <link rel="canonical" href="http://localhost:4000/ubuntu/2017/12/18/install-caffe-opencv.html">
     <link rel="alternate" type="application/rss+xml" title="Hu's Space !" href="http://localhost:4000/feed.xml">
 
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -94,14 +94,14 @@
 
 
         <div class="content">
-            <section class="jumbotron geopattern" data-pattern-id="BBB Notebook 3 PWM 实验">
+            <section class="jumbotron geopattern" data-pattern-id="Ubuntu 14.04 install caffe">
     <div class="container">
         <div id="jumbotron-meta-info">
-            <h1>BBB Notebook 3 PWM 实验</h1>
+            <h1>Ubuntu 14.04 install caffe</h1>
             <span class="meta-info">
                 
                 
-                <span class="octicon octicon-calendar"></span> 2017/11/14
+                <span class="octicon octicon-calendar"></span> 2017/12/18
                 
             </span>
         </div>
@@ -123,105 +123,14 @@
         
         <div class="col-md-8 markdown-body">
 
-            <h1 id="beagleboard-black-笔记-3">beagleboard black 笔记 &lt;3&gt;</h1>
-<p>几个基于例程的实验，网络问题的解决</p>
-
-<ul>
-  <li>
-    <p>点亮板子上的灯，循环点亮，跑马灯效果。</p>
-  </li>
-  <li>
-    <p>点亮外部的灯，IO口控制。</p>
-  </li>
-  <li>
-    <p>基本的按键输入，简单的 Python 状态机。</p>
-  </li>
-</ul>
-
-<p>通过这几个实验可以基本的了解一下 BBB 的 IO 口功能，但是这样并不能让我们完全了解到 BBB 的优势 以及与 类似基本的诸如 51 或是 STM32 不同之处，例如目前始终不能使用的 PWM 波功能。那么接下来才是真正跳入 BBB 的坑的过程吧。</p>
-
-<h2 id="使用ＰＷＭ波功能">使用ＰＷＭ波功能</h2>
+            <h1 id="ubuntu-安装-caffe">Ubuntu 安装 caffe</h1>
+<p>安装参考</p>
 <h2 id="参考">参考</h2>
-<p><a href="http://blog.sina.com.cn/s/blog_7880d3350102wz2b.html">Beaglebone Black开启PWM功能</a></p>
+<p><a href="http://blog.csdn.net/u011762313/article/details/47262549">Ubuntu14.04 安装Caffe（仅CPU）</a></p>
 
-<p><a href="https://www.teachmemicro.com/beaglebone-black-pwm-ubuntu-device-tree/">Beaglebone Black PWM on Ubuntu</a></p>
+<p><a href="http://blog.csdn.net/fairylrt/article/details/43560525">Anaconda装OpenCV</a></p>
 
-<p><a href="https://github.com/beagleboard/bb.org-overlays/">beagleboard/bb.org-overlays</a></p>
-
-<h2 id="开始使用教程最多的-p9_14-pwm-io-口">开始使用教程最多的 p9_14 pwm io 口</h2>
-<p>按照教程，发现在 /lib/firmware/　目录下面只有一个　am33xx_pwm.dtbo 的驱动文件，却没有其他的ＩＯ口驱动。
-【这里就很明显的体现出了这种跑系统的板子和ＳＴＭ３２ 的区别，之前一直以为他俩差不多，没有仔细研究过设备树，覆盖层之类的概念。】</p>
-
-<h3 id="编写一个覆盖层">编写一个覆盖层</h3>
-<p>可以自己为ＩＯ口编写一个，但是为了尽快看到实验效果，我直接　git 了一个。</p>
-
-<pre><code> git clone https://github.com/beagleboard/bb.org-overlays/tree/master/src/arm
-</code></pre>
-
-<h3 id="进入目录编译移动驱动">进入目录，编译，移动驱动。</h3>
-
-<pre><code>dtc -O dtb -o BB-PWM1-00A0.dtbo -b 0 -@ BB-PWM1-00A0.dts
-
-mv -i BB-PWM1-00A0.dtbo /lib/firmware
-</code></pre>
-
-<h3 id="添加到-slots-里面去">添加到 slots 里面去。</h3>
-
- 	echo am33xx_pwm &gt; /sys/devices/platform/bone_capemgr/slots
-<pre><code>echo BB-PWM1 &gt; /sys/devices/platform/bone_capemgr/slots
-</code></pre>
-
-<h3 id="查看改变io口属性">查看，改变IO口属性？</h3>
-
-<pre><code>cd /sys/devices/platform/ocp
-config-pin -l P9.14
-config-pin P9.14 pwm
-cat ocp:P9_14_pinmux/state　查看属性
-</code></pre>
-
-<blockquote>
-  <p>另外备注：在将cape-universaln插入槽中（slots）后，在
-root@beaglebone:/sys/devices/platform/ocp/ocp:P9_14_pinmux
-中将P9_14设置为pwm模式（#config-pin P9.14 pwm）后，需要在
-/sys/class/pwm/pwmchip2中echo 0 &gt; export，
-这里为什么是pwmchip2，因为pwmchip2的地址0x4830_2000对应的是PWM1，echo 0是开启EHRPWM1A，echo 1是开启EHRPWM1B。具体地址映射可参见AM335x参考手册memory map部分。</p>
-</blockquote>
-
-<p>我在使用时发现如下情况，应该改为　pwm３　后成功使用，其中原因留待解决。</p>
-
-<p><img src="/post_img/BBB-img/pwm3img.png" alt="pwm3img" title="pwm3img" /></p>
-
-<h3 id="可以使用在文件夹路径">可以使用，在文件夹路径</h3>
-
-<pre><code>/sys/devices/platform/ocp/48302000.epwmss/48302200.pwm/pwm/pwmchip3/pwm0
-
-或者
-
-/sys/class/pwm/pwmchip3/pwm0
-
-可以正常使用命令
-
- echo 500 &gt; duty_cycle 
- echo 10000 &gt; polarity 
- echo 1 &gt; enable
-</code></pre>
-
-<blockquote>
-  <p>操作PWM用到duty(duty_ns)、period(period_ns)、polarity、run共四个参数，其中period就是频率参数（周期时间），duty为占空比，polarity为使能标志（1为使能，0为禁用），run 是执行命令（1为运行，0为关闭），period和duty的参数单位为纳秒（ns），1s=1000ms=1000000us=1000000000ns，所以period最大的取值范围为0—1000000000，而duty则取值0—period值之间</p>
-</blockquote>
-
-<h6 id="部分参数改变了意义一样">部分参数改变了，意义一样。</h6>
-<hr />
-
-<h2 id="网络问题的解决">网络问题的解决</h2>
-<p>有时发现无法连接，打开网络设置发现提示系统与网络兼容，因为启用过锐捷【万恶】，解决方法：</p>
-
-<pre><code>cd /etc/NetworkManager
-sudo mv NetworkManager.conf /home/[name]/
-sudo NetworkManager //重启
-</code></pre>
-
-<p>完毕后你会发现网络恢复，正常使用，不要用锐捷了就。</p>
+<p><a href="http://blog.csdn.net/wuzuyu365/article/details/52431062">python caffe报错：No module named google.protobuf.internal</a></p>
 
 
 

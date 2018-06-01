@@ -1,5 +1,47 @@
 {
   
+  "python-2018-05-20-clt-calculation-html": {
+    "title": " 复合材料层合板计算 ",
+    "url": " /python/2018/05/20/CLT-calculation.html",
+    "category": "Python"
+  },
+  
+  "abaqus-2018-04-25-three-blades-abaqus-html": {
+    "title": " ABAQUS 运动相机防水壳密封页片 ",
+    "url": " /abaqus/2018/04/25/three-blades-abaqus.html",
+    "category": "ABAQUS"
+  },
+  
+  "python-2018-01-08-wechat-jump-game-html": {
+    "title": "开挂玩微信跳一跳",
+    "url": " /python/2018/01/08/wechat_jump_game.html",
+    "category": "Python"
+  },
+  
+  "ubuntu-2017-12-18-install-caffe-opencv-html": {
+    "title": "Ubuntu 14.04 install caffe",
+    "url": " /ubuntu/2017/12/18/install-caffe-opencv.html",
+    "category": "Ubuntu"
+  },
+  
+  "beagleboard-black-2017-11-29-bbb-note5-i2c1-html": {
+    "title": "BBB Notebook 6 IIC使用",
+    "url": " /beagleboard-black/2017/11/29/BBB-note5-i2c1.html",
+    "category": "beagleboard-black"
+  },
+  
+  "beagleboard-black-2017-11-26-bbb-note5-uart1-html": {
+    "title": "BBB Notebook ５ 串口使用",
+    "url": " /beagleboard-black/2017/11/26/BBB-note5-uart1.html",
+    "category": "beagleboard-black"
+  },
+  
+  "beagleboard-black-2017-11-14-bbb-note4-eslipse-html": {
+    "title": "BBB Notebook 4 eclipse 配置",
+    "url": " /beagleboard-black/2017/11/14/BBB-note4-eslipse.html",
+    "category": "beagleboard-black"
+  },
+  
   "beagleboard-black-2017-11-14-bbb-note3-html": {
     "title": "BBB Notebook 3 PWM 实验",
     "url": " /beagleboard-black/2017/11/14/BBB-note3.html",
@@ -122,6 +164,8 @@
   
   
   
+  
+  
 
   
   "python-2017-10-17-composite-blade-design-html": {
@@ -206,6 +250,48 @@
     "title": "BBB Notebook 3 PWM 实验",
     "url": "/beagleboard-black/2017/11/14/BBB-note3.html",
     "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-14-bbb-note4-eslipse-html": {
+    "title": "BBB Notebook 4 eclipse 配置",
+    "url": "/beagleboard-black/2017/11/14/BBB-note4-eslipse.html",
+    "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-26-bbb-note5-uart1-html": {
+    "title": "BBB Notebook ５ 串口使用",
+    "url": "/beagleboard-black/2017/11/26/BBB-note5-uart1.html",
+    "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "beagleboard-black-2017-11-29-bbb-note5-i2c1-html": {
+    "title": "BBB Notebook 6 IIC使用",
+    "url": "/beagleboard-black/2017/11/29/BBB-note5-i2c1.html",
+    "category": "[&quot;beagleboard-black&quot;]"
+  },
+  
+  "ubuntu-2017-12-18-install-caffe-opencv-html": {
+    "title": "Ubuntu 14.04 install caffe",
+    "url": "/ubuntu/2017/12/18/install-caffe-opencv.html",
+    "category": "[&quot;Ubuntu&quot;]"
+  },
+  
+  "python-2018-01-08-wechat-jump-game-html": {
+    "title": "开挂玩微信跳一跳",
+    "url": "/python/2018/01/08/wechat_jump_game.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "abaqus-2018-04-25-three-blades-abaqus-html": {
+    "title": " ABAQUS 运动相机防水壳密封页片 ",
+    "url": "/abaqus/2018/04/25/three-blades-abaqus.html",
+    "category": "[&quot;ABAQUS&quot;]"
+  },
+  
+  "python-2018-05-20-clt-calculation-html": {
+    "title": " 复合材料层合板计算 ",
+    "url": "/python/2018/05/20/CLT-calculation.html",
+    "category": "[&quot;Python&quot;]"
   }
   
 }

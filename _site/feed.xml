@@ -5,15 +5,495 @@
     <description>This is personnel website of HuTianyun</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Nov 2017 01:17:20 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Nov 2017 01:17:20 +0800</lastBuildDate>
+    <pubDate>Fri, 01 Jun 2018 11:32:15 +0800</pubDate>
+    <lastBuildDate>Fri, 01 Jun 2018 11:32:15 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title> 复合材料层合板计算 </title>
+        <description>&lt;h1 id=&quot;introduction-复合材料层合板在一定载荷下的应力应变分布的计算选用强度准则校测层合板失效给出失效历史&quot;&gt;Introduction 　复合材料层合板在一定载荷下的应力应变分布的计算，选用强度准则校测层合板失效，给出失效历史．&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;CN&lt;/th&gt;
+      &lt;th&gt;ENG&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;复合材料层合板计算&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/Eacaen/CLT-material-properties&quot; title=&quot;CLT&quot;&gt;Composite Material Calculation with CLT&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;#composite-material-calculation-with-clt&quot;&gt;Introduction&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;read the program introduction for more details &lt;/code&gt; &lt;a href=&quot;/doc/pro_introduction.pdf&quot;&gt;Here&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;#running-requirements&quot;&gt;Running requirements&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;#installation&quot;&gt;Installation&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;#license&quot;&gt;License&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img align=&quot;right&quot; width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/Composite_3d.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/Composite_3d.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;project-code-for-mechanics-of-composite-structure-in-npupartly-finish&quot;&gt;Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.&lt;/h4&gt;
+&lt;h4 id=&quot;all-right-reserved&quot;&gt;ALL RIGHT RESERVED&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h2 id=&quot;project-goals&quot;&gt;Project goals:&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Use the fibre and matrix or given data to define the composite lamina and then layup the laminate.&lt;/li&gt;
+  &lt;li&gt;Use the &lt;em&gt;Classical Lamination Theory&lt;/em&gt; to  calculate the stress&amp;amp;strain distribution in each layer.&lt;/li&gt;
+  &lt;li&gt;Choose suitable &lt;em&gt;Failure Criteria&lt;/em&gt; to check the strength of laminate at given load.&lt;/li&gt;
+  &lt;li&gt;Show accurate calculate information of results, display /post_img/CLT-figures of  stress&amp;amp;strain distribution; show the failure steps of chosen layer.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;data-flow-of-the-project&quot;&gt;Data flow of the Project&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/post_img/CLT-fig/dataflow.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/dataflow.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;task-achieved&quot;&gt;Task achieved:&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;[x] Use CLT to calculate  stresses and strains distribution in lamina &amp;amp; laminate in local and global coordinate systems&lt;/li&gt;
+  &lt;li&gt;[x] Elastic modulus  calculate  for  lamina with [mixture of law , VDI2014 , Chamis model …..]&lt;/li&gt;
+  &lt;li&gt;[x] Global elastic modulus  calculate  for  &lt;strong&gt;laminate&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;[x] Failure criteria [Tsai-Wu, Tsai-Hill, Hoffman, Max stress&amp;amp;strain …]&lt;/li&gt;
+  &lt;li&gt;[x] Display the /post_img/CLT-figures and report accurate results&lt;/li&gt;
+  &lt;li&gt;[x] Puck failure criteria&lt;/li&gt;
+  &lt;li&gt;[ ] Thermal &amp;amp; moisture effects on CLT calculations&lt;/li&gt;
+  &lt;li&gt;[ ] Database for Fibre and Matrix, laminate materials&lt;/li&gt;
+  &lt;li&gt;[ ] …&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;brief-intro&quot;&gt;Brief intro&lt;/h2&gt;
+&lt;h3 id=&quot;coordinate-system&quot;&gt;Coordinate System&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;xy is the Global System for &lt;strong&gt;laminate&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;12 is the Local system for &lt;strong&gt;lamina&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/CLT-fig/laminate_COS.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/laminate_COS.png&quot; /&gt;&lt;img src=&quot;/post_img/CLT-fig/lammmm.png&quot; data-canonical-src=&quot;png/lammmm.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;composite-material-calculation-with-clt&quot;&gt;Composite Material Calculation with CLT&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The main package is a Python composite materials calculation package.
+The calculation of laminate stress, strain and failure Criterion based on the Classical Lamination Theory (&lt;a href=&quot;https://en.wikipedia.org/wiki/Composite_laminates&quot;&gt;CLT&lt;/a&gt;).&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;You can define the lamina’s fibre and matrix’s parameters like the Elastic moduli
+  &lt;img src=&quot;http://latex.codecogs.com/gif.latex?E_{1},E_{2}&quot; alt=&quot;&quot; /&gt;,
+   Shear moduli &lt;img src=&quot;http://latex.codecogs.com/gif.latex?G&quot; alt=&quot;&quot; /&gt; and strength, then  in the next step, you can define lamina’s layer angle and thickness directly or combined by fibre/matrix.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Use the &lt;strong&gt;&lt;em&gt;Laminate class&lt;/em&gt;&lt;/strong&gt; to get the matrix such as &lt;img src=&quot;http://latex.codecogs.com/gif.latex?A,B,D,Q,\\bar{Q}&quot; alt=&quot;A,B,D,Q&quot; /&gt;.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Use the &lt;strong&gt;&lt;em&gt;Load class&lt;/em&gt;&lt;/strong&gt; and load force and moment to the laminate to calculate the stress &lt;img src=&quot;http://latex.codecogs.com/gif.latex?\\sigma&quot; alt=&quot;&quot; /&gt; and stain &lt;img src=&quot;http://latex.codecogs.com/gif.latex?\\epsilon&quot; alt=&quot;&quot; /&gt; of each lamina.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Use the &lt;strong&gt;&lt;em&gt;Failure_Cirterion class&lt;/em&gt;&lt;/strong&gt; and you can choose different theories to check witch lamina failure or not.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;em&gt;laminate_Tools.py&lt;/em&gt; can help to plot the stress and strain distribution in the laminate in the COS(xy or 12), print the results in &lt;em&gt;Excel&lt;/em&gt; formate  and save it in &lt;em&gt;Excel&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/strain_dis1.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/strain_dis1.png&quot; /&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/stress_dis.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/stress_dis.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/strain_dis.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/strain_dis.png&quot; /&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/result.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/result.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;run-failure-analysis&quot;&gt;Run failure analysis&lt;/h2&gt;
+&lt;p&gt;Run  failure analysis by adding load step by step , use &lt;em&gt;laminate_step_failure.py&lt;/em&gt; can  plot the Load Factor vs  the strain development of the chosen laminate, at the same time, it can mark the First Ply Failure and Last Ply Failure.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It may take some more time to run the process&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/failstep.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/failstep.png&quot; /&gt;&lt;img width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/failureStep.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/failureStep.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;running-requirements&quot;&gt;Running requirements&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;Python &amp;gt; v2.7
+Numpy
+Scipy
+Sympy
+matplotlib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;installation&quot;&gt;Installation&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Copy the source files in the local directory and add the PATH in the system or copy the files to the Python’s “site-packages” folder.&lt;br /&gt;
+Copy the source file in you own file and develop the new function by yourself.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;license&quot;&gt;License&lt;/h3&gt;
+&lt;h4 id=&quot;project-code-for-mechanics-of-composite-structure-in-npupartly-finish-1&quot;&gt;Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.&lt;/h4&gt;
+&lt;h4 id=&quot;all-right-reserve&quot;&gt;ALL RIGHT RESERVE&lt;/h4&gt;
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Sun, 20 May 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/python/2018/05/20/CLT-calculation.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2018/05/20/CLT-calculation.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
+    
+      <item>
+        <title> ABAQUS 运动相机防水壳密封页片 </title>
+        <description>&lt;p&gt;&lt;strong&gt;仅供参考交流，对计算结果的精确性不负任何责任&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abaqus运动相机防水壳密封页片&quot;&gt;ABAQUS　运动相机防水壳密封页片&lt;/h1&gt;
+
+&lt;p&gt;淘宝上买了运动相机防水壳，用过的都知道运动相机防水壳采用是确实一种十分暴力的方法，借助页片变形的力直接将密封圈固定在壳体上，但是这样的方法完全依赖页片变形，我在淘宝上先后购买了两款不同页片形状的壳子，第一款壳子的页片已连续损坏两次，都是由于在开闭壳子时圆形边角开裂而造成应力集中，而购买的第二款新壳子就直接去掉了原有的边角，并将密封圈在密封时嵌入壳体．就这个改进我感到还是满意的，改进原因也十分简单．借机复习一下ＡＢＡＱＵＳ使用，看看到底改进了多少．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/crack.jpg&quot; alt=&quot;two-cc&quot; title=&quot;two&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;简化模型和材料参数&quot;&gt;简化模型和材料参数&lt;/h2&gt;
+&lt;p&gt;原始曲面模型比较复杂，塑料材料也不好确定，但是我只是要看到大概的趋势，所以对模型进行了简化，材料也只给定了弹性模量和泊松比．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/simple-model1.png&quot; alt=&quot;simple-model&quot; title=&quot;simple-model1&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;简化受力和边界条件&quot;&gt;简化受力和边界条件&lt;/h2&gt;
+&lt;p&gt;固定限制页片底部Ｙ方向和边界处Ｘ方向的位移，给定页片爪子处强制的位移．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/simple-model2.png&quot; alt=&quot;simple-model&quot; title=&quot;simple-model2&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;结果分析&quot;&gt;结果分析&lt;/h2&gt;
+
+&lt;h3 id=&quot;款式一-完整页片&quot;&gt;[款式一] 完整页片&lt;/h3&gt;
+&lt;p&gt;在完整的款式一页片处，应力集中于圆孔两侧，最大位移位于爪子处．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/0/wholes1.png&quot; alt=&quot;wholes1&quot; title=&quot;wholes1&quot; /&gt;
+&lt;img src=&quot;/post_img/ABAQUS-WPBlade/0/wholeu1.png&quot; alt=&quot;wholeu1&quot; title=&quot;wholeu1&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;款式一-裂纹页片&quot;&gt;[款式一] 裂纹页片&lt;/h3&gt;
+&lt;h4 id=&quot;裂纹&quot;&gt;裂纹&lt;/h4&gt;
+
+&lt;p&gt;裂纹直接画图产生，没有使用ＡＢＡＱＵＳ裂纹功能．（不会）
+&lt;img src=&quot;/post_img/ABAQUS-WPBlade/1/hole.png&quot; alt=&quot;hole&quot; title=&quot;hole&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;结果&quot;&gt;结果&lt;/h4&gt;
+&lt;p&gt;在款式一发生裂纹的页片处，应力集中于圆孔裂纹对面，应力值稍有下降，整体位移感觉没有巨大改变．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/1/holes.png&quot; alt=&quot;holes&quot; title=&quot;holes&quot; /&gt;
+&lt;img src=&quot;/post_img/ABAQUS-WPBlade/1/holeu.png&quot; alt=&quot;holeu&quot; title=&quot;holeu&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;款式二-去角页片&quot;&gt;[款式二] 去角页片&lt;/h3&gt;
+&lt;p&gt;在款式二页片，直接将圆口去掉，消除了孔边应力集中，整体位移感觉没有什么改变．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-WPBlade/2/wholes2.png&amp;quot;wholes2&amp;quot;&quot; alt=&quot;wholes2&quot; /&gt;
+&lt;img src=&quot;/post_img/ABAQUS-WPBlade/2/wholeu2.png&quot; alt=&quot;wholeu2&quot; title=&quot;wholeu2&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;结论分析&quot;&gt;结论分析&lt;/h2&gt;
+&lt;p&gt;对比以上三个结果，看到款式一设计上个人还是感觉存在一些不足，尤其是在页片塑料选材和制造上如果不行的话，由于应力集中和拆装时容易侧重一边，确实容易像我一样多次掰断页片．&lt;/p&gt;
+
+&lt;p&gt;第二款页片，在节省了材料的同时，消除了应力集中．整体的位移没有什么变化，应该不会影响密封性能．（关于最终载荷和位移对密封的影响分析是否正确还有待考察）．&lt;/p&gt;
+
+&lt;h2 id=&quot;ＥＮＤ&quot;&gt;ＥＮＤ&lt;/h2&gt;
+&lt;p&gt;款式二刚到货，防水性能还有待测试．但是就目前来看，款式二的改进确实比款式一好多了．&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 25 Apr 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/abaqus/2018/04/25/three-blades-abaqus.html</link>
+        <guid isPermaLink="true">http://localhost:4000/abaqus/2018/04/25/three-blades-abaqus.html</guid>
+        
+        
+        <category>ABAQUS</category>
+        
+      </item>
+    
+      <item>
+        <title>开挂玩微信跳一跳</title>
+        <description>&lt;h1 id=&quot;开挂玩微信跳一跳&quot;&gt;开挂玩微信跳一跳&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Eacaen/wechat_jump_game&quot;&gt;程序地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/av18307956&quot;&gt;B站视频–&amp;gt;酸爽。跳一跳20倍播放从4000分到20000＋&lt;/a&gt;&lt;/p&gt;
+
+&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=18307956&amp;amp;cid=29885527&amp;amp;page=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;
+
+&lt;p&gt;换了小米mix2后发现安卓真是各种权限开放。网上也有各种微信跳一跳的自动挂，尝试一下做个记录。&lt;/p&gt;
+
+&lt;h2 id=&quot;获取安卓usb调试权限&quot;&gt;获取安卓USB调试权限&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;ubuntu 安装abd tool 调试安卓，需要有java8，如果和已有的java７冲突，可参考网上教程，教程亲测可用。&lt;/li&gt;
+  &lt;li&gt;小米打开开发者模式，开启USB调试，开启允许模拟触屏。&lt;/li&gt;
+  &lt;li&gt;shell 中打开adb device 可以发现设备，如果发现不了，网上教程亲测可用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;手动模式&quot;&gt;手动模式&lt;/h2&gt;
+&lt;p&gt;文件中手动模式，使用matplotlib库，将屏幕截图作为动画的部分，鼠标选择起跳和结束位置，乘上起跳系数后使用adb发送按压时间完成跳跃．&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;速度慢，依赖鼠标点击精度。&lt;/li&gt;
+  &lt;li&gt;方法很好，直观且可以学习很多新的方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;自动模式&quot;&gt;自动模式&lt;/h2&gt;
+&lt;h3 id=&quot;使用opencv&quot;&gt;使用OpenCV&lt;/h3&gt;
+&lt;p&gt;进行图像处理，截图中心部分。高斯去噪后找到图像边缘，继而找出小人的中心和下一个跳板的中心。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;每次跳到中心后，会在下个位子中心显示白点，可以直接寻找，更加方便&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;使用tensorflow&quot;&gt;使用Tensorflow&lt;/h3&gt;
+&lt;p&gt;使用了800–1000张图片,截取中心部分，灰度显示，利用卷积神经网络，使用 &lt;em&gt;使用OpenCV&lt;/em&gt; 找到的中心作为输入，按压时间作为训练结果。训练效果有些许，但是不好&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;学艺不精，参数调试，层数选择有待学习&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;debug&quot;&gt;DEBUG&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;对于不是正方形的跳板，目前只能放弃，但是不影响&lt;/li&gt;
+  &lt;li&gt;深度学习并没有学习到我想象中效果，渣渣电脑和渣渣技术&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;又要多多学习一个了。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://github.com/wangshub/wechat_jump_game&quot;&gt;参考github@wangshub&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 08 Jan 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/python/2018/01/08/wechat_jump_game.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2018/01/08/wechat_jump_game.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
+    
+      <item>
+        <title>Ubuntu 14.04 install caffe</title>
+        <description>&lt;h1 id=&quot;ubuntu-安装-caffe&quot;&gt;Ubuntu 安装 caffe&lt;/h1&gt;
+&lt;p&gt;安装参考&lt;/p&gt;
+&lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/u011762313/article/details/47262549&quot;&gt;Ubuntu14.04 安装Caffe（仅CPU）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/fairylrt/article/details/43560525&quot;&gt;Anaconda装OpenCV&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/wuzuyu365/article/details/52431062&quot;&gt;python caffe报错：No module named google.protobuf.internal&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 18 Dec 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/ubuntu/2017/12/18/install-caffe-opencv.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ubuntu/2017/12/18/install-caffe-opencv.html</guid>
+        
+        
+        <category>Ubuntu</category>
+        
+      </item>
+    
+      <item>
+        <title>BBB Notebook 6 IIC使用</title>
+        <description>&lt;h1 id=&quot;beagleboard-black-笔记-6&quot;&gt;beagleboard black 笔记 &amp;lt;6&amp;gt;&lt;/h1&gt;
+&lt;p&gt;我使用的是之前做小四轴剩下的 MPU6050 ，它和 HMC5883 焊在一起的，因为IIC 使用的是总线形式，所以不影响，反而可以测试一下多个传感器下的 IIC 功能。我先使用IIC读取 MPU6050 数据。&lt;/p&gt;
+
+&lt;h1 id=&quot;开始使用-iic&quot;&gt;开始使用 IIC&lt;/h1&gt;
+
+&lt;h2 id=&quot;开启-iic-传输&quot;&gt;开启 IIC 传输&lt;/h2&gt;
+&lt;p&gt;与串口操作类似，添加覆盖层，【改变 IO 口属性】&lt;/p&gt;
+
+&lt;h3 id=&quot;操作步骤&quot;&gt;操作步骤&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;root@beaglebone:/lib/firmware# echo BB-I2C1 &amp;gt; $SLOTS  &amp;amp;
+[1] 1585
+
+root@beaglebone:/lib/firmware# cd /sys/devices/platform/ocp/
+root@beaglebone:/sys/devices/platform/ocp# config-pin -l P9.17
+default gpio gpio_pu gpio_pd spi_cs i2c pwm pru_uart
+
+root@beaglebone:/sys/devices/platform/ocp# cat ocp:P9_17_pinmux/state
+default
+root@beaglebone:/sys/devices/platform/ocp# config-pin P9.17 i2c
+root@beaglebone:/sys/devices/platform/ocp# config-pin P9.18 i2c
+
+root@beaglebone:/sys/devices/platform/ocp# cat ocp:P9_17_pinmux/state
+i2c
+root@beaglebone:/sys/devices/platform/ocp# cat ocp:P9_18_pinmux/state
+i2c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;使用-linux-i2c-工具测试-iic-连接&quot;&gt;使用 Linux I2C 工具，测试 IIC 连接&lt;/h2&gt;
+&lt;h3 id=&quot;检测总线上连接设备的地址&quot;&gt;检测总线上连接设备的地址&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;i2cdetect -y -r 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/iic-findID.png&quot; alt=&quot;iic-findID&quot; title=&quot;iic-findID&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;检测mpu6050-地址&quot;&gt;检测MPU6050 地址&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;i2cget -y 1 0x68 0x75
+0x68
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;设置mpu6050-电源管理值&quot;&gt;设置MPU6050 电源管理值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;i2cset -y 1 0x68 0x6B 0x00　//电源管理，典型值：0x00(正常启用)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;读取mpu6050-数据&quot;&gt;读取MPU6050 数据&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/mpu-origindata.png&quot; alt=&quot;mpu-origindata&quot; title=&quot;mpu-origindata&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;c重新获取mpu6050欧拉角&quot;&gt;C++重新获取mpu6050欧拉角&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Eacaen/my-BBB-lib/tree/master/i2c-mpu6050&quot;&gt;获取mpu6050欧拉角&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;iic类-读取地址&quot;&gt;IIC类 读取地址&lt;/h2&gt;
+
+&lt;h2 id=&quot;mpu6050类-读取寄存器值&quot;&gt;mpu6050类 读取寄存器值&lt;/h2&gt;
+
+&lt;h2 id=&quot;使用四元数进行姿态解析&quot;&gt;使用四元数进行姿态解析&lt;/h2&gt;
+
+&lt;p&gt;尚未加入诸如卡尔曼等类型的滤波函数。&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;linux-硬件驱动编程&quot;&gt;Linux 硬件驱动编程&lt;/h2&gt;
+
+&lt;p&gt;使用i2c通信先配置地址，数据位，超时时间等等通信规则。
+这里的ioctl函数就是用来配置这些参数的。
+I2C_SLAVE：安全的配置，如果i2c已经配置过会返回失败。
+ I2C_SLAVE_FORCE：总是成功，不管其他人有没有在使用，确定只有你使用这个i2c的时候使用。
+同时ioctl还能使用I2C_TENBIT，I2C_PEC，I2C_TIMEOUT等参数。
+这里只是配置i2c通信规则，还没有发送数据。
+配置完成后，调用write,read函数可以接收发送数据。&lt;/p&gt;
+
+&lt;p&gt;i2cget和i2cset，分别是对寄存器进行获取和写入。用法为i2cget -y 总线号 设备地址 寄存器地址 模式和i2cset -y 总线号 设备地址 寄存器地址 数值 模式。模式默认为b（byte）即读取8bit数据，i2cget可用模式有b/w/c，i2cset可用模式有b/w/c/i/s，其中w为word（16bit），i和s分别为I2C和SMBUS的block数据。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/beagleboard-black/2017/11/29/BBB-note5-i2c1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/29/BBB-note5-i2c1.html</guid>
+        
+        
+        <category>beagleboard-black</category>
+        
+      </item>
+    
+      <item>
+        <title>BBB Notebook ５ 串口使用</title>
+        <description>&lt;h1 id=&quot;beagleboard-black-笔记-５&quot;&gt;beagleboard black 笔记 &amp;lt;５&amp;gt;&lt;/h1&gt;
+&lt;p&gt;使用串口
+&lt;a href=&quot;http://blog.csdn.net/wyt2013/article/details/16846027&quot;&gt;使用Beaglebone Black的串口UART&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;pc-端&quot;&gt;PC 端&lt;/h2&gt;
+&lt;h3 id=&quot;使用usb-转串口&quot;&gt;使用USB 转串口&lt;/h3&gt;
+&lt;p&gt;插入USB 转串口，查看电脑是否有pl2303 驱动，查看电脑串口名字&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lsmod |grep pl2303
+dmesg | tail -f  
+lsmod | grep usbserial
+dmesg | grep ttyUSB0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;安装串口工具&quot;&gt;安装串口工具&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/gatieme/article/details/45310493&quot;&gt;Ubuntu安装配置串口通讯工具minicom&amp;amp;&amp;amp;cutecom&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;安装minicom完成后&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//回环测试
+sudo minicom -b 9200 -o -D /dev/ttyUSB0 
+sudo minicom -b 9200 -o -D /dev/ttyO0/1/2/4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果是键盘按下什么键，都会返回重复的【显示两次】。&lt;/p&gt;
+
+&lt;h2 id=&quot;bbb开启串口&quot;&gt;BBB开启串口&lt;/h2&gt;
+&lt;h3 id=&quot;进入目录查看串口的io口&quot;&gt;进入目录，查看串口的IO口&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;dtc -I dtb -O dts BB-UART1-00A0.dtbo &amp;gt; BB-UART1-00A0.dts
+cat BB-UART1-00A0.dts //看到pin号
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;挂载device-tree来启动uart1&quot;&gt;挂载device tree来启动UART1&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;echo BB-UART1 &amp;gt; $SLOTS  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;改变波特率发送信息&quot;&gt;改变波特率，发送信息&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;stty -F /dev/ttyO1  9600
+echo &quot;What a wonderful day&quot; &amp;gt; /dev/ttyO1  在配置完好的PC端就可以看到消息
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;注意改变io口的属性&quot;&gt;【注意】改变IO口的属性&lt;/h3&gt;
+&lt;p&gt;一开始我以为，BBB的串口IO口属性是默认的，尝试了好多次都只能使用uart0，其他的都不行，后来想到这和pwm波的一样要配置属性。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/sys/devices/platform/ocp# config-pin -l P9.24
+default gpio gpio_pu gpio_pd uart can i2c pru_uart pruin
+
+/sys/devices/platform/ocp# config-pin -l P9.14　//与串口IO口不同
+default gpio gpio_pu gpio_pd pwm
+
+config-pin P9.24 uart
+config-pin P9.26 uart　
+
+cat ocp:P9_26_pinmux/state　//查看属性
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;uart0&quot;&gt;UART0&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;直接把串口转usb模块的TXD，RXD和地线连到对应的引脚上（如图所示），无需进行任何配置，立刻就能开始使用了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;uart0配置完波特率之后可以直接使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/pinuart0.jpeg&quot; alt=&quot;uart0&quot; title=&quot;uart0&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/beagleboard-black/2017/11/26/BBB-note5-uart1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/26/BBB-note5-uart1.html</guid>
+        
+        
+        <category>beagleboard-black</category>
+        
+      </item>
+    
+      <item>
+        <title>BBB Notebook 4 eclipse 配置</title>
+        <description>&lt;h1 id=&quot;beagleboard-black-笔记-4&quot;&gt;beagleboard black 笔记 &amp;lt;4&amp;gt;&lt;/h1&gt;
+&lt;p&gt;如何进行 eclipse 环境的配置，远程调试&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zy812248258/article/details/38342287&quot;&gt;ubuntu12.04下在Eclipse中搭建BeagleBoneBlack的开发环境——远程在线运行&amp;amp;调试&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;eclipse-安装&quot;&gt;eclipse 安装&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install eclipse
+sudo apt-get install eclipse-cdt 　// c++ environment
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;eclipse-install-market&quot;&gt;eclipse install market&lt;/h2&gt;
+
+&lt;h2 id=&quot;eclipse-install-remote-system&quot;&gt;eclipse install Remote System&lt;/h2&gt;
+
+&lt;p&gt;安装 market  后直接搜索安装即可&lt;/p&gt;
+
+&lt;h2 id=&quot;eclipse-start-a-project&quot;&gt;eclipse start a project&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;strat a c++ project&lt;/li&gt;
+  &lt;li&gt;choose cross c++ , next until [cross  GCC Commend] , copy the [arm-linux-guneabihf-] and choose path [/usr/bin], then finish&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 14 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/beagleboard-black/2017/11/14/BBB-note4-eslipse.html</link>
+        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/14/BBB-note4-eslipse.html</guid>
+        
+        
+        <category>beagleboard-black</category>
+        
+      </item>
     
       <item>
         <title>BBB Notebook 3 PWM 实验</title>
         <description>&lt;h1 id=&quot;beagleboard-black-笔记-3&quot;&gt;beagleboard black 笔记 &amp;lt;3&amp;gt;&lt;/h1&gt;
-
-&lt;h1 id=&quot;几个基于例程的实验&quot;&gt;几个基于例程的实验&lt;/h1&gt;
+&lt;p&gt;几个基于例程的实验，网络问题的解决&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -57,18 +537,14 @@ mv -i BB-PWM1-00A0.dtbo /lib/firmware
 &lt;h3 id=&quot;添加到-slots-里面去&quot;&gt;添加到 slots 里面去。&lt;/h3&gt;
 
  	echo am33xx_pwm &amp;gt; /sys/devices/platform/bone_capemgr/slots
-
 &lt;pre&gt;&lt;code&gt;echo BB-PWM1 &amp;gt; /sys/devices/platform/bone_capemgr/slots
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;查看改变io口属性&quot;&gt;查看，改变IO口属性？&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;cd /sys/devices/platform/ocp
-
 config-pin -l P9.14
-
 config-pin P9.14 pwm
-
 cat ocp:P9_14_pinmux/state　查看属性
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -94,12 +570,27 @@ root@beaglebone:/sys/devices/platform/ocp/ocp:P9_14_pinmux
 
 可以正常使用命令
 
- echo 0 &amp;gt; polarity 
-
- echo 20000000 &amp;gt; period 
-
+ echo 500 &amp;gt; duty_cycle 
+ echo 10000 &amp;gt; polarity 
  echo 1 &amp;gt; enable
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;操作PWM用到duty(duty_ns)、period(period_ns)、polarity、run共四个参数，其中period就是频率参数（周期时间），duty为占空比，polarity为使能标志（1为使能，0为禁用），run 是执行命令（1为运行，0为关闭），period和duty的参数单位为纳秒（ns），1s=1000ms=1000000us=1000000000ns，所以period最大的取值范围为0—1000000000，而duty则取值0—period值之间&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h6 id=&quot;部分参数改变了意义一样&quot;&gt;部分参数改变了，意义一样。&lt;/h6&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;网络问题的解决&quot;&gt;网络问题的解决&lt;/h2&gt;
+&lt;p&gt;有时发现无法连接，打开网络设置发现提示系统与网络兼容，因为启用过锐捷【万恶】，解决方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /etc/NetworkManager
+sudo mv NetworkManager.conf /home/[name]/
+sudo NetworkManager //重启
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完毕后你会发现网络恢复，正常使用，不要用锐捷了就。&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 14 Nov 2017 00:00:00 +0800</pubDate>
@@ -244,800 +735,6 @@ tmux: invalid LC_ALL, LC_CTYPE or LANG
         <pubDate>Wed, 08 Nov 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/python/2017/11/08/pygame-ConwayLifegame.html</link>
         <guid isPermaLink="true">http://localhost:4000/python/2017/11/08/pygame-ConwayLifegame.html</guid>
-        
-        
-        <category>Python</category>
-        
-      </item>
-    
-      <item>
-        <title>BBB Notebook 1 安装系统 - 正确关机 - 配置sublime Markdown</title>
-        <description>&lt;h1 id=&quot;beagleboard-black-笔记-1&quot;&gt;beagleboard black 笔记 &amp;lt;1&amp;gt;&lt;/h1&gt;
-&lt;p&gt;开始学习BBB，系统 window10，把 BBB 插入电脑后打开 192.168.7.2 会看到预计的网页效果，但是在使用 Cloud9  时会发现不能烧写程序进去，一堆 not found,cannot write,预计可能是自带的系统没有更新。&lt;/p&gt;
-
-&lt;h2 id=&quot;更新系统&quot;&gt;更新系统&lt;/h2&gt;
-
-&lt;p&gt;从BBB官网上下载，选择的是 Debain 的一个新的系统，下载网速奇慢无比。下载好后之后解压用官网推荐的把系统烧到 SD 卡里面。注意要在 Linux系统下把 /../uEnv.txt 最后一行注释#删掉。&lt;/p&gt;
-
-&lt;p&gt;BBB 断电插入 SD 卡，按住靠近 SD 卡的按键按住不动，开电长按15s后开始跑马灯 0-1-2-3，3-2-1-0，表示正在烧系统。等待一会灯全熄灭了，启动BBB可以看到系统已经变成 Debain，程序也可正常烧写进板子了。&lt;/p&gt;
-
-&lt;h2 id=&quot;查看系统信息&quot;&gt;查看系统信息&lt;/h2&gt;
-
-&lt;h3 id=&quot;更新系统后通过命令查看系统状态&quot;&gt;更新系统后通过命令查看系统状态&lt;/h3&gt;
-
-&lt;p&gt;1、# uname －a   （Linux查看版本当前操作系统内核信息）&lt;/p&gt;
-
-&lt;p&gt;2、# cat /proc/version （Linux查看当前操作系统版本信息）&lt;/p&gt;
-
-&lt;p&gt;3、# cat /etc/issue  或cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）&lt;/p&gt;
-
-&lt;p&gt;4、# cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）&lt;/p&gt;
-
-&lt;p&gt;5、# getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）&lt;/p&gt;
-
-&lt;p&gt;6、# lsb_release -a&lt;/p&gt;
-
-&lt;h2 id=&quot;查看初始的密码&quot;&gt;查看初始的密码&lt;/h2&gt;
-
-&lt;p&gt;Default username/password:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;username: debian
-password: temppwd
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;From &lt;a href=&quot;https://elinux.org/BeagleBoardDebian&quot;&gt;Debian&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;如何正确关机&quot;&gt;如何正确关机？&lt;/h2&gt;
-&lt;h3 id=&quot;关机方法&quot;&gt;关机方法&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;shutdown -h now&lt;/li&gt;
-  &lt;li&gt;按电源键&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;tips&quot;&gt;TIPS&lt;/h2&gt;
-&lt;h3 id=&quot;sublime-配置&quot;&gt;sublime 配置&lt;/h3&gt;
-&lt;p&gt;sublime 配置 markdown 时，安装Markdown Extend 后需要在&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;View -&amp;gt; Syntax -&amp;gt; Open all with current extension as... -&amp;gt; Markdown Extended
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;中设置Markdown主题。&lt;/p&gt;
-
-&lt;p&gt;Markdown Extend下载安装详见 &lt;a href=&quot;https://github.com/jonschlinkert/sublime-markdown-extended&quot;&gt;Markdown Extend&lt;/a&gt; 。&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 07 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/beagleboard-black/2017/11/07/BBB-note1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/07/BBB-note1.html</guid>
-        
-        
-        <category>beagleboard-black</category>
-        
-      </item>
-    
-      <item>
-        <title> ABAQUS 模拟霍普金森杆应力波 </title>
-        <description>&lt;p&gt;&lt;strong&gt;仅供参考交流，对计算结果的精确性不负任何责任&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;abaqus-模拟应力波传播&quot;&gt;ABAQUS 模拟应力波传播&lt;/h1&gt;
-
-&lt;p&gt;材料常数：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/CodeCogsEqn.gif&quot; alt=&quot;Impact&quot; title=&quot;Impact&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;杆尺寸：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;入射杆长度10，直径10；透射杆长度100，直径10；
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;结果&quot;&gt;结果&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/imapct.gif&quot; alt=&quot;Impact simulation&quot; title=&quot;Impact simulation&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;做个小笔记，记下分析步骤。&lt;/p&gt;
-
-&lt;h2 id=&quot;assembly&quot;&gt;Assembly&lt;/h2&gt;
-&lt;h3 id=&quot;两杆对心距离-5-&quot;&gt;两杆对心，距离 5 。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/assembly.png&quot; alt=&quot;Assembly&quot; title=&quot;Assembly&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;step&quot;&gt;Step&lt;/h2&gt;
-&lt;h3 id=&quot;定义分析步step1显示动力学分析修改时间&quot;&gt;定义分析步step1，&lt;strong&gt;显示动力学分析&lt;/strong&gt;，修改时间。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/StepcontactDefine.png&quot; alt=&quot;StepcontactDefine&quot; title=&quot;StepcontactDefine&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;fieldoutputset-提高输出帧数&quot;&gt;FieldoutputSet 提高输出帧数。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/FieldoutputSet.png&quot; alt=&quot;FieldoutputSet&quot; title=&quot;FieldoutputSet&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;historyoutput设置历史输出&quot;&gt;historyOutput，设置历史输出&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;输出目标为透射杆的应力 S33 和 速度 V3，方便结果绘图。可添加多个杆进行输出。&lt;/li&gt;
-  &lt;li&gt;【注】历史变量输出太多计算中会报错，可减少输出或修改可输出最大值。
-&lt;img src=&quot;/post_img/ABAQUS-BAR/historyOutput.png&quot; alt=&quot;historyOutput&quot; title=&quot;historyOutput&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;interaction&quot;&gt;Interaction&lt;/h2&gt;
-&lt;h3 id=&quot;定义接触参数属性默认&quot;&gt;定义接触参数，属性默认。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/contactPropertyDef.png&quot; alt=&quot;contactPropertyDef&quot; title=&quot;contactPropertyDef&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;选择接触面定义接触面属性&quot;&gt;选择接触面，定义接触面属性。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/contactSurface.png&quot; alt=&quot;contactSurface&quot; title=&quot;contactSurface&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;load&quot;&gt;Load&lt;/h2&gt;
-&lt;h3 id=&quot;定义边界条件锁定位移和旋转杆件只有轴向位移&quot;&gt;定义边界条件，锁定位移和旋转，杆件只有轴向位移。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/boundaryConditionSet.png&quot; alt=&quot;boundaryConditionSet&quot; title=&quot;boundaryConditionSet&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;定义入射杆速度场&quot;&gt;定义入射杆速度场。&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;【注】速度场选择整个杆子的 set ，不是选择一个面。
-&lt;img src=&quot;/post_img/ABAQUS-BAR/predefineField.png&quot; alt=&quot;predefineField&quot; title=&quot;predefineField&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;结果讨论&quot;&gt;结果讨论&lt;/h2&gt;
-&lt;h3 id=&quot;在-t005-时开始碰撞产生一个压缩波&quot;&gt;在 T=0.05 时开始碰撞，产生一个压缩波。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/timeImpact.png&quot; alt=&quot;timeImpact&quot; title=&quot;timeImpact&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;压缩波反射形成拉伸波&quot;&gt;压缩波反射形成拉伸波。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/TensileWave.png&quot; alt=&quot;TensileWave&quot; title=&quot;TensileWave&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;杆上速度和应力变化&quot;&gt;杆上速度和应力变化。&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/post_img/ABAQUS-BAR/Wave.png&quot; alt=&quot;Wave&quot; title=&quot;Wave&quot; /&gt;
-&lt;img src=&quot;/post_img/ABAQUS-BAR/Vectory.png&quot; alt=&quot;Vectory&quot; title=&quot;Vectory&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 01 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/abaqus/2017/11/01/stress-wave-abaqus.html</link>
-        <guid isPermaLink="true">http://localhost:4000/abaqus/2017/11/01/stress-wave-abaqus.html</guid>
-        
-        
-        <category>ABAQUS</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame Notebook 7 总结</title>
-        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;notebook-7-summary&quot;&gt;Notebook &amp;lt;7&amp;gt; Summary&lt;/h2&gt;
-&lt;p&gt;经过近一周的阅读学习，这本书上前面几章的代码和内容大致就到这了。剩下的实在太长且重复了之前的一些内容，游戏的规则也渐渐复杂起来，留待以后慢慢研习。
-至此关于 Pygame 中的一些基本函数和常用操作都差不多了解不少，现将前几章中代码中比较有技巧，有意思的部分复习整理一下留做记录。&lt;/p&gt;
-
-&lt;h3 id=&quot;演示第二三四章中方块变化的效果&quot;&gt;演示第二三四章中方块变化的效果&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_puzzleSlide_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;小程序演示了方块的遮盖，还原。方块透明度的变化，通过贪吃蛇演示了动画制作的原理。&lt;/li&gt;
-  &lt;li&gt;其中贪吃蛇和方块变化的 FPS 需要设置成不一样。&lt;/li&gt;
-  &lt;li&gt;演示了鼠标各个按键滚轮的信号监听，键盘的信号监听。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/puzzle_slide.png&quot; alt=&quot;演示图&quot; title=&quot;演示图&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;第十章中翻转棋子的游戏是如何让检测棋子翻转的呢&quot;&gt;第十章中翻转棋子的游戏是如何让检测棋子翻转的呢？&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;巧妙的通过列表循环直接循环了棋子周围的8个方向并在循环中不断跟进查找直到终止本次跟进，找出不同的棋子放进待翻转的列表，最后在一起重新绘制。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;	for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
-		x, y = xstart, ystart
-		x += xdirection
-		y += ydirection
-		if isOnBoard(x, y) and board[x][y] == otherTile:
-			# The piece belongs to the other player next to our piece.
-			x += xdirection
-			y += ydirection
-			if not isOnBoard(x, y):
-				continue
-			while board[x][y] == otherTile:
-				x += xdirection
-				y += ydirection
-				if not isOnBoard(x, y):
-					break # break out of while loop, continue in for loop
-			if not isOnBoard(x, y):
-				continue
-			if board[x][y] == tile:
-				# There are pieces to flip over. Go in the reverse
-				# direction until we reach the original space, noting all
-				# the tiles along the way.
-				while True:
-					x -= xdirection
-					y -= ydirection
-					if x == xstart and y == ystart:
-						break
-					tilesToFlip.append([x, y])
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;第十一章中检测到不同颜色边沿和局部颜色闪烁是如何实现的呢&quot;&gt;第十一章中检测到不同颜色边沿和局部颜色闪烁是如何实现的呢？&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_puzzlePartFlash_test.py&quot;&gt;演示文件&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;先递归调用漫水算法找到不一致的方块，由于将列表作为了&lt;strong&gt;函数参数&lt;/strong&gt;且没有复制，在函数调用过程中直接被修改了内部的变量，该列表作为全局画图参数这样非但不影响，反而隐藏了一些潜在BUG，貌似有助于编程。&lt;/li&gt;
-  &lt;li&gt;局部闪烁的原因是：即使在原来的颜色上闪烁人眼也不能察觉出来，如果在闪烁函数中加入一个全局的 DISPLAYSURF.fill(WHITE) 那么就可以就看出来其实是每个颜色都闪了。&lt;/li&gt;
-  &lt;li&gt;演示中加入了实时显示鼠标位置的部分。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;第十章中四子棋的游戏是如何让检测成功的呢&quot;&gt;第十章中四子棋的游戏是如何让检测成功的呢？&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;循环全局 board，检测横竖撇捺四个方向是否有四个连成一线的。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def isWinner(board, tile):
-	# check horizontal spaces
-	for x in range(BOARDWIDTH - 3):
-		for y in range(BOARDHEIGHT):
-			if board[x][y] == tile and board[x+1][y] == tile and board[x+2][y] == tile and board[x+3][y] == tile:
-				return True
-	# check vertical spaces
-	for x in range(BOARDWIDTH):
-		for y in range(BOARDHEIGHT - 3):
-			if board[x][y] == tile and board[x][y+1] == tile and board[x][y+2] == tile and board[x][y+3] == tile:
-				return True
-	# check / diagonal spaces
-	for x in range(BOARDWIDTH - 3):
-		for y in range(3, BOARDHEIGHT):
-			if board[x][y] == tile and board[x+1][y-1] == tile and board[x+2][y-2] == tile and board[x+3][y-3] == tile:
-				return True
-	# check \ diagonal spaces
-	for x in range(BOARDWIDTH - 3):
-		for y in range(BOARDHEIGHT - 3):
-			if board[x][y] == tile and board[x+1][y+1] == tile and board[x+2][y+2] == tile and board[x+3][y+3] == tile:
-				return True
-	return False
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;第十章的游戏是如何让电脑决定下一步的呢&quot;&gt;第十章的游戏是如何让电脑决定下一步的呢？&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;AI。&lt;/li&gt;
-  &lt;li&gt;暴力搜索最佳。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;鼠标按住拖动显示后松开物体下降&quot;&gt;鼠标按住拖动显示，后松开物体下降。&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_takenDrop_test.py&quot;&gt;演示文件&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;MOUSEBUTTONDOWN，MOUSEBUTTONUP，MOUSEMOTION。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;待续&quot;&gt;待续&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;一些音乐播放，图片加载，背景闪烁，背景贴图效果可以看前面的几节内容。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Mon, 30 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/10/30/pygame-note_sum.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/10/30/pygame-note_sum.html</guid>
-        
-        
-        <category>Python</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame Notebook 6 推箱子</title>
-        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;notebook-6-推箱子&quot;&gt;Notebook &amp;lt;6&amp;gt; 推箱子&lt;/h2&gt;
-&lt;p&gt;第九章的游戏 Star Pusher 经典的推箱子游戏。背景比松鼠游戏更加绚丽，物体也更加多样，虽然看上去都是贴图。人物推星星时星星的移动，一格一格。推到角落就不能在推了。推到了指定位置就进入下一关，通过读取关卡文件进行游戏地图绘制。&lt;/p&gt;
-
-&lt;p&gt;第十章的介绍了几个更加复杂的游戏，代码量更多更庞杂。以后慢慢细看吧。&lt;/p&gt;
-
-&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;复杂广泛的背景贴图，关卡文件的意义。&lt;/li&gt;
-  &lt;li&gt;胜负的判断。&lt;/li&gt;
-  &lt;li&gt;能不能移动的判断。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;去除关卡文件中的注释行&quot;&gt;去除关卡文件中的注释行&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;读取文件，删除 ‘；’开始的行。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;line.find(';') #找到；开始的行，返回第一个 ； 的index = 0
-line = line[:line.find(';')] #line 为空
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;待续&quot;&gt;待续。。。&lt;/h3&gt;
-
-&lt;h2 id=&quot;监听鼠标事件&quot;&gt;监听鼠标事件&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;event.type 中的 MOUSEBUTTONUP 和 MOUSEBUTTONDOWN 包含了按动/松开 左键（1），滚轮（2），右键（3），上滚（4），下滚（5）的事件。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;for event in pygame.event.get(): # event handling loop
-	if event.type == MOUSEBUTTONUP:
-		if event.button == 1 or event.button ==4:
-			# do something
-		if event.button == 3 or event.button ==5:
-			# do something
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Mon, 30 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/10/30/pygame-note6.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/10/30/pygame-note6.html</guid>
-        
-        
-        <category>Python</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame Notebook 5 大鱼吃小鱼</title>
-        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;notebook-5&quot;&gt;Notebook &amp;lt;5&amp;gt;&lt;/h2&gt;
-&lt;p&gt;第八章的游戏 Squrrile 大鱼吃小鱼。本次游戏从代码量上看来比俄罗斯方块少了不少，但是游戏界面看上去比较像模像样了。
-背景会随着方向的移动而变化，松鼠也会跳跃着移动。屏幕上也有其他移动方向和大小随机的松鼠。有了血条显示松鼠的生命值。死亡后界面上仍有松鼠移动，当松鼠变到很大时会有提示；生命值结束一段时间后自动重新开始。&lt;/p&gt;
-
-&lt;p&gt;第八章的游戏看上去更加漂亮和丰富。&lt;/p&gt;
-
-&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;松鼠属性的字典表示，更加直观专业。&lt;/li&gt;
-  &lt;li&gt;相机视角造成了一种窗口移动的效果。&lt;/li&gt;
-  &lt;li&gt;受伤后的闪烁，无敌状态。&lt;/li&gt;
-  &lt;li&gt;动画效果仍然是每次重新绘制所有。&lt;/li&gt;
-  &lt;li&gt;有效界面的判断，界面外生成物体形成突然进入的效果。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;松鼠的表示&quot;&gt;松鼠的表示&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;使用字典存储了所有的属性。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;playerObj = {'surface': pygame.transform.scale(L_SQUIR_IMG, (STARTSIZE, STARTSIZE)),
-	'facing': LEFT,
-	'size': STARTSIZE,
-	'x': HALF_WINWIDTH,
-	'y': HALF_WINHEIGHT,
-	'bounce':0,
-	'health': MAXHEALTH}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;视角的移动相机的延迟&quot;&gt;视角的移动，相机的延迟&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;相机所能看到的区域叫做相机视图，camera view，其中心位于游戏坐标的一点。由于相机看到的内容显示于玩家的屏幕上，相机坐标与像素坐标是相同的。要得到松鼠的像素坐标，即松鼠出现在屏幕上的位置，用松鼠的游戏坐标减去相机的原点坐标。&lt;/li&gt;
-  &lt;li&gt;松鼠的移动实际上是松鼠与其他物体相对未知的移动，是基于相机坐标的移动上的相对移动。通过松鼠在界面上的位置，计算出一个“所谓”的相机坐标，将松鼠向左移动，另外&lt;strong&gt;物体的坐标减去相机坐标&lt;/strong&gt;则会向相反的方向移动，而界面大小是一定的，造成移动效果。&lt;/li&gt;
-  &lt;li&gt;但是这样做，通过例子的观察看出，这样移动的坐标系与全局的坐标系或是界面的坐标系没有什么必然关联。若是在界面上提前定义好一个坐标确定的方块，方块将不随界面的”移动“。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_camera_pos.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;松鼠的跳跃&quot;&gt;松鼠的跳跃&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;使用正弦函数值加载到 Y 坐标。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;闪烁效果&quot;&gt;闪烁效果&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;画一次，覆盖，再画一次，覆盖，重复的视觉暂留效果。&lt;/li&gt;
-  &lt;li&gt;通过时间取余数来判断是否覆盖重画。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_load_img.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# flashIsOn is 1 or 0
-flashIsOn = round(time.time(), 1) * 10 % 2 == 1
-# 巧妙的逻辑判断
-if not gameOverMode and not (invulnerableMode and flashIsOn):
-	playerObj['rect'] = pygame.Rect( (playerObj['x'] - camerax, playerObj['y'] - cameray -
-	getBounceAmount(playerObj['bounce'], BOUNCERATE, BOUNCEHEIGHT),
-	playerObj['size'],playerObj['size']) )
-
-	DISPLAYSURF.blit(playerObj['surface'], playerObj['rect'])
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;函数用法&quot;&gt;函数用法&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;设置窗口标题栏图标，理想大小 32*32像素。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.display.set_icon(pygame.image.load('gameicon.png'))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;加载图像，反转图像。&lt;/li&gt;
-  &lt;li&gt;循环加载图像。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;L_SQUIR_IMG = pygame.image.load('squirrel.png')
-R_SQUIR_IMG = pygame.transform.flip(L_SQUIR_IMG, True, False)
-
-for i in range(1, 5):
-	GRASSIMAGES.append(pygame.image.load('grass%s.png' % i))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;设置窗口标题栏图标，理想大小 32*32像素。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.display.set_icon(pygame.image.load('gameicon.png'))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;反向遍历列表删除元素，不会报错。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;for i in range(len(LIST)-1, -1, -1):
-	del xxx
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Sat, 28 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/10/28/pygame-note5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/10/28/pygame-note5.html</guid>
-        
-        
-        <category>Python</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame Notebook 4 俄罗斯方块</title>
-        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;notebook-4&quot;&gt;Notebook &amp;lt;4&amp;gt;&lt;/h2&gt;
-&lt;p&gt;第七章的游戏 Tetromino 俄罗斯方块。背景区域的划分规划，背景音乐的播放。砖块的构造，下落，旋转，消失。砖块碰撞叠加的判断，游戏结束的判断。代码量接近前两章的两倍多，编写更加复杂了。&lt;/p&gt;
-
-&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;游戏板数据结构
-    &lt;blockquote&gt;
-      &lt;p&gt;游戏板数据结构是用来记录之前着陆的砖块占据了哪些矩形空格的一种数据表示。当前下落的砖块在游戏板数据结构中并没有标记。&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;砖块的表示使用的是列表的列表，区分了 fallingOiece 和 nextPiece 。使用砖块用字典表示了，从界面的中点下降。&lt;/li&gt;
-  &lt;li&gt;砖块的旋转是直接将砖块旋转的顺序按照列表的排列写进了砖块的表示中去了，直接查表不用计算了。&lt;/li&gt;
-  &lt;li&gt;后台程序中给所有的界面方块赋予了一个 BLANK 值用于检测是否需要画上砖块。&lt;/li&gt;
-  &lt;li&gt;砖块下降动画的制作仍然是重新绘制所有了。&lt;/li&gt;
-  &lt;li&gt;砖块下降到何处就不能下降了，如何判断，如何加到游戏板数据结构中去？
-    &lt;blockquote&gt;
-      &lt;p&gt;通过isValidPosition() 判断砖块是否处于有效位置，如果返回 False 则说明砖块当前需要判断的位置无效&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;用程序运行间隔的时间来控制砖块下降的速度，通过调节阀值进行关卡的增加。&lt;/li&gt;
-  &lt;li&gt;游戏结束的标准：下降砖块没有足够的放置空间，如何判断。&lt;/li&gt;
-  &lt;li&gt;暂停事件按键抬起才触发，移动按下就触发，抬起才结束，可以一直移动不用按个不停。检测按键松开来判断玩家是否想要继续移动砖块，便于检查长按的情况。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;keydown-keypress-keyup--事件的区别&quot;&gt;keyDown keyPress keyUp  事件的区别&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_a401a1ea0101edah.html&quot; title=&quot;事件的区别&quot;&gt;事件区别&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;按键弹起才触发，按键按下就触发的区别就在这里。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;# 等待按键弹起？？？
-def checkForKeyPress():
-	# Go through event queue looking for a KEYUP event.
-	# Grab KEYDOWN events to remove them from the event queue.
-	checkForQuit()
-
-	for event in pygame.event.get([KEYDOWN, KEYUP]):
-		if event.type == KEYDOWN:
-			continue
-		return event.key
-	return None
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;背景音乐一直播放&quot;&gt;背景音乐一直播放&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;使用 pygame.mixer.music。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.mixer.music.load('xxx')
-pygame.mixer.music.play(-1, 0.0)
-pygame.mixer.music.stop()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;砖块的表示和调用&quot;&gt;砖块的表示和调用&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;S_SHAPE_TEMPLATE 表示砖块及其可能的旋转表示，列表的列表。&lt;/li&gt;
-  &lt;li&gt;PIECE 砖块组成的字典。&lt;/li&gt;
-  &lt;li&gt;调用砖块时，又把砖块作为 piece 字典中的一个 value 值并增加其他的属性。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;PIECES = {'S': S_SHAPE_TEMPLATE, 'Z': Z_SHAPE_TEMPLATE, 'J': J_SHAPE_TEMPLATE, 'L': L_SHAPE_TEMPLATE,
-	     'I': I_SHAPE_TEMPLATE,'O': O_SHAPE_TEMPLATE, 'T': T_SHAPE_TEMPLATE}
-def getNewPiece():
-	# return a random new piece in a random rotation and color
-	shape = random.choice(list(PIECES.keys()))
-	newPiece = {'shape': shape,
-			'rotation': random.randint(0, len(PIECES[shape]) - 1),
-			'x': int(BOARDWIDTH / 2) - int(TEMPLATEWIDTH / 2),
-			'y': -2, # start it above the board (i.e. less than 0)
-			'color': random.randint(0, len(COLORS)-1)}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;判断砖块需要处于的位置是否有效&quot;&gt;判断砖块需要处于的位置是否有效&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;A smart function&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;board 为游戏板数据结构，piece 为砖块位置，通过adjX,Y 调节从而判断砖块将要处于的位置是否有效。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def isValidPosition(board, piece, adjX=0, adjY=0):
-	# Return True if the piece is within the board and not colliding
-	for x in range(TEMPLATEWIDTH):
-		for y in range(TEMPLATEHEIGHT):
-			#检测游戏板之外的方块
-			isAboveBoard = y + piece['y'] + adjY &amp;lt; 0 
-			if isAboveBoard or PIECES[piece['shape']][piece['rotation']][y][x] == BLANK:
-				continue
-			#检测砖块是否在游戏板上
-			if not isOnBoard(x + piece['x'] + adjX, y + piece['y'] + adjY):
-				return False
-			#检测砖块的方块所在的游戏板空格不为空白
-			#砖块上的空白和在检测时和游戏板上的空白检测并不冲突
-			if board[x + piece['x'] + adjX][y + piece['y'] + adjY] != BLANK:
-				return False
-	return True
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;判断砖块是否到底或到不能再向下的位置&quot;&gt;判断砖块是否到底【或】到不能再向下的位置&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;仍然通过isValidPosition() 函数提前一格判断位置是否有效，如果无效了（到底了或是有阻挡），说明当前位置就是下落的最低位置，将砖块数据放入游戏板数据结构中，加分计算等级；如果是有效位置，就可以继续下降。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/tetromino1.png&quot; alt=&quot;ValidPosition&quot; title=&quot;ValidPosition&quot; /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;if time.time() - lastFallTime &amp;gt; fallFreq:
-	# see if the piece has landed
-	if not isValidPosition(board, fallingPiece, adjY=1):
-		# falling piece has landed, set it on the board
-		addToBoard(board, fallingPiece)
-		score += removeCompleteLines(board)
-		level, fallFreq = calculateLevelAndFallFreq(score)
-		fallingPiece = None
-	else:
-		# piece did not land, just move the piece down
-		fallingPiece['y'] += 1
-		lastFallTime = time.time()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;检查删除和填满一行&quot;&gt;检查，删除和填满一行&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;判断所在行的空格是否存在 BLANK。&lt;/li&gt;
-  &lt;li&gt;倒序检测所有行，如有一行填满，则将该行以上所有的内容向下复制赋值一遍，第 0 行填充 BLANK，此时 y 值不变，继续判断循环【方便了多行填满的情况】；没有则 y + 1。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;游戏结束的判断&quot;&gt;游戏结束的判断&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;仍然是isValidPosition() 函数。直接在旧砖块落底，新砖块初始落下时判断，如果一开始就没有足够空间，说明游戏结束了。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;函数复习&quot;&gt;函数复习&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;在调用绘制函数以便让显示 Surface 对象看上去是你想要的方式之后，必须调用 update 让 显示 Surface 真正出现在用户显示器上。&lt;/p&gt;
-  &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;pygame.display.update()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 25 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/10/25/pygame-note4.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/10/25/pygame-note4.html</guid>
-        
-        
-        <category>Python</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame Notebook 3 贪吃蛇</title>
-        <description>&lt;h1 id=&quot;making-games-with-python-and-pygame&quot;&gt;《Making Games with Python and Pygame》&lt;/h1&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;notebook-3&quot;&gt;Notebook &amp;lt;3&amp;gt;&lt;/h2&gt;
-&lt;p&gt;第六章的游戏 Wormy 贪吃蛇游戏， 开局显示旋转变化的字体和方块，按下任意按键后会显示游戏界面，划分的网格，游走的蛇（绿色方块），苹果（红色的方块），碰撞到苹果身体变长，碰撞到自己和墙壁游戏结束，暂停并显示 Game Over，按下任意按键后又再次重新开始。同时实时显示分数。&lt;/p&gt;
-
-&lt;h3 id=&quot;亮点--思路&quot;&gt;亮点 / 思路&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;程序很好的结合了吃苹果和游动的处理，使用蛇头坐标，一个字典列表表示蛇，每次都删除末尾，吃到则不删除。&lt;/li&gt;
-  &lt;li&gt;Game Over时，进入显示Game Over while 死循环等待退出，其间其他的显示部分暂停在原处，死循环阻塞住了其他显示程序，显示程序仍旧在 Surface 上面显示界面，造成一种另外有暂停程序的假象。&lt;/li&gt;
-  &lt;li&gt;字体背景会随着字体的变化而变化，不需要额外控制。&lt;/li&gt;
-  &lt;li&gt;2D 图像的旋转，不完美，不应该直接覆盖变量，复用变量名的话则会造成字体的 Surface 越来越大，报错。&lt;/li&gt;
-  &lt;li&gt;智能的退出函数。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;蛇的表示和长度的增加&quot;&gt;蛇的表示和长度的增加&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;在当前的前进方向上增加头，删去尾巴，每次重新绘图时感觉就是在前进；吃到苹果则不删去，感觉就是增加了长度。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;wormCoords = [ {'x':startx , 'y': starty} ,  {'x':startx-1 , 'y': starty}  ,  {'x':startx-2 , 'y': starty} ,{'x':startx-3 , 'y': starty} ]
-if wormCoords[HEAD]['x'] == apple['x'] and wormCoords[HEAD]['y'] == apple['y']:
-	apple = getRandomLocation() # set a new apple somewhere
-else:
-	del wormCoords[-1] 
-
-if direction == UP:
-	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] - 1}
-elif direction == DOWN:
-	newHead = {'x': wormCoords[HEAD]['x'], 'y': wormCoords[HEAD]['y'] + 1}
-elif direction == LEFT:
-	newHead = {'x': wormCoords[HEAD]['x'] - 1, 'y': wormCoords[HEAD]['y']}
-elif direction == RIGHT:
-	newHead = {'x': wormCoords[HEAD]['x'] + 1, 'y': wormCoords[HEAD]['y']}
-
-wormCoords.insert(0, newHead)
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;显示-pygameevent-中的-type-值&quot;&gt;显示 pygame.event 中的 type 值&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_event_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#/usr/bin/env python
-#coding=utf8
-
-import random, pygame, sys
-from pygame.locals import *
-
-WINDOWWIDTH = 640
-WINDOWHEIGHT = 480
-
-def main():
-	pygame.init()
-	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-	pygame.display.set_caption('event test')
-
-
-	while True:
-		for event in pygame.event.get():
-			print 'event.type' , event.type
-
-			if event.type == QUIT:
-				pygame.quit()
-				sys.exit()
-			elif event.type == KEYDOWN:
-				print event.key 
-
-if __name__ == '__main__':
-	main()
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;显示-文字旋转背景转化网格划分按键退出&quot;&gt;显示 文字旋转，背景转化，网格划分，按键退出&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://localhost:4000/assets/files/Pygame_book/my_wormy_test.py&quot;&gt;运行文件&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;背景转化更好的说明了每次用背景色覆盖后重新绘图的原理和好处&lt;/li&gt;
-  &lt;li&gt;文字旋转
-    &lt;blockquote&gt;
-      &lt;p&gt;pygame.transform.rotate( surface , rotate_angle) 并不会改变传递给它的 Surface 对象，而是返回一个新的Surface 对象，旋转后的图形绘制于新的 Surface 对象上。&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;所以每次都重新绘图。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;旋转不要复用变量名。
-    &lt;blockquote&gt;
-      &lt;p&gt;pygame.error: Width or height is too large&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;退出函数 checkForKeyPress() 的使用&lt;/li&gt;
-  &lt;li&gt;网格划分，循环划线。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;#/usr/bin/env python
-#coding=utf8
-
-import random, pygame, sys
-from pygame.locals import *
-
-FPS = 5
-WINDOWWIDTH = 640
-WINDOWHEIGHT = 480
-CELLSIZE = 20
-assert WINDOWWIDTH % CELLSIZE == 0, &quot;Window width must be a multiple of cell size.&quot;
-assert WINDOWHEIGHT % CELLSIZE == 0, &quot;Window height must be a multiple of cell size.&quot;
-CELLWIDTH = int(WINDOWWIDTH / CELLSIZE)
-CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE)
-#	  R	G	B
-WHITE	 = (255, 255, 255)
-BLACK	 = (  0,   0,   0)
-RED	   = (255,   0,   0)
-GREEN	 = (  0, 255,   0)
-DARKGREEN = (  0, 155,   0)
-DARKGRAY  = ( 40,  40,  40)
-BGCOLOR = BLACK
-def terminate():
-	pygame.quit()
-	sys.exit()
-def main():
-	global FPSCLOCK, DISPLAYSURF, BASICFONT
-	pygame.init()
-	FPSCLOCK = pygame.time.Clock()
-	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-	BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-	pygame.display.set_caption('Wormy')
-
-	degrees1 = 0
-	degrees2 = 0
-	while True:	
-		showStartScreen()
-		showGameOverScreen()
-def drawGrid():
-	for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
-		pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))
-	for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines
-		pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))
-def drawPressKeyMsg():
-	pressKeySurf = BASICFONT.render('Press a key to play.', True, DARKGRAY)
-	pressKeyRect = pressKeySurf.get_rect()
-	pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)
-	DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
-def checkForKeyPress():
-	if len(pygame.event.get(QUIT)) &amp;gt; 0:
-		terminate()
-	keyUpEvents = pygame.event.get(KEYUP)
-	if len(keyUpEvents) == 0:
-		return None
-	if keyUpEvents[0].key == K_ESCAPE:
-		terminate()
-	return keyUpEvents[0].key
-def showStartScreen():
-	titleFont = pygame.font.Font('freesansbold.ttf', 100)
-	titleSurf1 = titleFont.render('Wormy!', True, WHITE, DARKGREEN)
-	titleSurf2 = titleFont.render('Wormy!', True, GREEN)
-	while True:
-		DISPLAYSURF.fill(BGCOLOR)
-		rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1) #返回的是新的 Surface 对象
-		rotatedRect1 = rotatedSurf1.get_rect()
-		rotatedRect1.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
-		DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
-		rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2) 
-		rotatedRect2 = rotatedSurf2.get_rect()
-		rotatedRect2.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
-		DISPLAYSURF.blit(rotatedSurf2, rotatedRect2)
-		# for event in pygame.event.get():
-		# 	if event.type == QUIT:
-		# 		terminate()
-		if checkForKeyPress():
-			pygame.event.get() # clear event queue
-			return
-		drawPressKeyMsg()
-		drawGrid()
-		pygame.display.update()
-		FPSCLOCK.tick(FPS)
-		degrees1 += 3 # rotate by 3 degrees each frame
-		degrees2 += 7 # rotate by 7 degrees each frame
-def showGameOverScreen():
-	gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
-	gameSurf = gameOverFont.render('Game', True, WHITE)
-	overSurf = gameOverFont.render('Over', True, WHITE)
-	gameRect = gameSurf.get_rect()
-	overRect = overSurf.get_rect()
-	gameRect.midtop = (WINDOWWIDTH / 2, 10)
-	overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)
-
-	DISPLAYSURF.blit(gameSurf, gameRect)
-	DISPLAYSURF.blit(overSurf, overRect)
-
-	drawPressKeyMsg()
-
-	pygame.display.update()
-	pygame.time.wait(500)
-	checkForKeyPress() # clear out any key presses in the event queue
-
-	while True:
-		if checkForKeyPress():
-			pygame.event.get() # clear event queue
-			return
-if __name__ == '__main__':
-	main()
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Mon, 23 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/10/23/pygame-note3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/10/23/pygame-note3.html</guid>
         
         
         <category>Python</category>
