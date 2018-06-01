@@ -30,7 +30,6 @@ getattr(globals()['A'](), 'sampleFunc')('sample arg')
 ```
 
 ### 解释
-
 ####Python globals() 函数
 globals() 函数会以字典类型返回当前位置的全部全局变量。
 ##### 实例
