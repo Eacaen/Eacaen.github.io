@@ -10,7 +10,7 @@ meta: "Springfield"
 
 # ABAQUS 层合板壳单元拉伸
 
-![composite shell](/post_img/composite-shell/shell-tensile.gif"composite shell")
+![composite shell](/post_img/composite-shell/shell-tensile.gif  "composite shell")
 
 ## step1 正常的3D实体拉伸
  * (有的也可以采用shell，没有厚度)
