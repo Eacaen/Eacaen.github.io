@@ -30,7 +30,11 @@ Introduction 　复合材料层合板在一定载荷下的应力应变分布的�
 
 ********************************
 #### see the blade design used the composite materials
-[composite-blade-design](https://github.com/Eacaen/composite-blade-design)
+__composite-blade-design__ 
+
+[Blog Introduction](https://eacaen.github.io/python/2017/10/17/composite-blade-design.html)
+
+[Github source](https://github.com/Eacaen/composite-blade-design)
 
 ********************************
 
