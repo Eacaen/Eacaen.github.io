@@ -6,7 +6,6 @@ categories: ABAQUS
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
-
 **the result NOT accurate,contact me if you have better way**
 
 # ABAQUS Impact bar with half water inside
