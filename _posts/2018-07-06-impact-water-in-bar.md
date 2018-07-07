@@ -9,6 +9,7 @@ meta: "Springfield"
 **仅供参考交流，对计算结果的精确性不负任何责任**
 
 # ABAQUS Impact bar with half water inside
+
 ![half water imapct](/post_img/half-water-imapct/half-water-imapct.gif  "half water imapct")
 
 ## Introduction the main steps
