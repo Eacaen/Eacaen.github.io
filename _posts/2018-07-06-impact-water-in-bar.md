@@ -15,6 +15,7 @@ meta: "Springfield"
 ## Introduction the main steps
 
 ## step1 Create the eulerian part   
+
  * use the bigger eulerian part to cover the water inside.
  
 <img src="/post_img/half-water-imapct/f4.png" data-canonical-src="/post_img/half-water-imapct/f4.png" />
