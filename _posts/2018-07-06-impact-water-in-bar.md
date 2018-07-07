@@ -10,6 +10,8 @@ meta: "Springfield"
 
 # ABAQUS Impact bar with half water inside
 
+模拟水的运动和杆上应力变化
+
 ![half water imapct](/post_img/half-water-imapct/half-water-imapct.gif  "half water imapct")
 
 ## Introduction the main steps
