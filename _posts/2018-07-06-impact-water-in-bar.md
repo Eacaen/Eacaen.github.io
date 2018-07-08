@@ -1,18 +1,16 @@
 ---
 layout: post
-title: " ABAQUS, Impact bar with half water inside"
-tagline: " ABAQUS Notebook "
+title: " ABAQUS 模拟杆中水的运动 "
+tagline: " ABAQUS Notebook  "
 categories: ABAQUS
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
 **仅供参考交流，对计算结果的精确性不负任何责任**
-**the result NOT accurate,contact me if you have better way**
 
-# ABAQUS Impact bar with half water inside
+# ABAQUS 模拟杆中水的运动  简要的步骤介绍和笔记
+
 ![half water imapct](/post_img/half-water-imapct/half-water-imapct.gif  "half water imapct")
-
-## Introduction the main steps
 
 ## step1 Create the eulerian part   
  * use the bigger eulerian part to cover the water inside.
