@@ -5,9 +5,249 @@
     <description>This is personnel website of HuTianyun</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 01 Jun 2018 11:32:15 +0800</pubDate>
-    <lastBuildDate>Fri, 01 Jun 2018 11:32:15 +0800</lastBuildDate>
+    <pubDate>Thu, 20 Sep 2018 14:16:52 +0800</pubDate>
+    <lastBuildDate>Thu, 20 Sep 2018 14:16:52 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title> ABAQUS 水管受爆炸冲击 </title>
+        <description>&lt;p&gt;&lt;strong&gt;仅供参考交流，对计算结果的精确性不负任何责任&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abaqus-模拟杆水管受到爆炸冲击&quot;&gt;ABAQUS 模拟杆水管受到爆炸冲击&lt;/h1&gt;
+&lt;p&gt;【结果】水管受冲击后，水从开口出射出，水管压扁，基座部分破坏；因为水管存在和水的射出，带走了部分能力，能过减弱基座受到了的应力。
+&lt;img src=&quot;/post_img/Airblast/res.gif&quot; alt=&quot;Airblast&quot; title=&quot;Airblastl&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step1-材料定义装配&quot;&gt;step1 材料定义，装配&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;水管装配时全部没入欧拉体中，基座底部固支，水管与基座fixed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/Airblast/material.png&quot; data-canonical-src=&quot;/post_img/Airblast/material.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step2--接触定义&quot;&gt;step2  接触定义&lt;/h2&gt;
+&lt;h3 id=&quot;直接定义全体的通用接触具体作用有待考察&quot;&gt;直接定义全体的通用接触（具体作用有待考察）&lt;/h3&gt;
+&lt;h3 id=&quot;水管的自接触&quot;&gt;水管的自接触&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;水管材料使用的橡胶，在受airblast时受压上下内表面可能会接触&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/Airblast/self-contact.png&quot; width=&quot;300&quot; heigth=&quot;300&quot; data-canonical-src=&quot;/post_img/Airblast/self-contact.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;定义airblast&quot;&gt;定义Airblast&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;abaqus 中使用TNT 来定义，指定爆炸点和接触面&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/Airblast/air-blast.png&quot; width=&quot;400&quot; heigth=&quot;400&quot; data-canonical-src=&quot;/post_img/Airblast/air-blast.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step3-离散出水划分网格&quot;&gt;step3 离散出水，划分网格&lt;/h2&gt;
+&lt;h3 id=&quot;划分disfield&quot;&gt;划分DisField&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/post_img/Airblast/water-dis.png&quot; width=&quot;400&quot; heigth=&quot;400&quot; data-canonical-src=&quot;/post_img/Airblast/water-dis.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mesh&quot;&gt;mesh&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Total number of nodes: 98289
+Total number of elements: 86618
+     6618 linear hexahedral elements of type C3D8R
+     80000 linear hexahedral elements of type EC3D8R&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 19 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/abaqus/2018/09/19/airblast-watertube.html</link>
+        <guid isPermaLink="true">http://localhost:4000/abaqus/2018/09/19/airblast-watertube.html</guid>
+        
+        
+        <category>ABAQUS</category>
+        
+      </item>
+    
+      <item>
+        <title> ABAQUS 模拟杆中水的运动 </title>
+        <description>&lt;p&gt;&lt;strong&gt;仅供参考交流，对计算结果的精确性不负任何责任&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abaqus-模拟杆中水的运动--简要的步骤介绍和笔记&quot;&gt;ABAQUS 模拟杆中水的运动  简要的步骤介绍和笔记&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/half-water-imapct.gif&quot; alt=&quot;half water imapct&quot; title=&quot;half water imapct&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step1-create-the-eulerian-part&quot;&gt;step1 Create the eulerian part&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;use the bigger eulerian part to cover the water inside.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/f4.png&quot; data-canonical-src=&quot;/post_img/half-water-imapct/f4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step2-define-the-material&quot;&gt;step2 Define the material&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;define the material of eulerian part&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;do-not-give-half-water-material&quot;&gt;DO NOT give half-water material&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Don’t worry about the warning about without material when submitting&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/f4.png&quot; data-canonical-src=&quot;/post_img/half-water-imapct/f1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step3-create-the-discrete-field&quot;&gt;step3 Create the discrete Field&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Choose the bigger eulerian part the then the half-water to define the discrete Field&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/f4.png&quot; data-canonical-src=&quot;/post_img/half-water-imapct/f2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step4-define-the-general-contact&quot;&gt;step4 Define the general contact&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Just define it, without the detail property&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/f4.png&quot; data-canonical-src=&quot;/post_img/half-water-imapct/f5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step5-define-the-load&quot;&gt;step5 Define the Load&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Define the predefined field and choose the discrete field created.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/half-water-imapct/f4.png&quot; data-canonical-src=&quot;/post_img/half-water-imapct/f3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;result-discussion-and-future-improve&quot;&gt;Result discussion and future improve&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Compare the result with the bar without water inside, we can see the bar’s movement direction changes backward and forward due to the inertia of water movement.&lt;/li&gt;
+  &lt;li&gt;The stress wave propagation is also quite different.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 06 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/abaqus/2018/07/06/impact-water-in-bar.html</link>
+        <guid isPermaLink="true">http://localhost:4000/abaqus/2018/07/06/impact-water-in-bar.html</guid>
+        
+        
+        <category>ABAQUS</category>
+        
+      </item>
+    
+      <item>
+        <title> ABAQUS 复合材料层合板壳单元拉伸 </title>
+        <description>&lt;p&gt;&lt;strong&gt;仅供参考交流，对计算结果的精确性不负任何责任&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abaqus-层合板壳单元拉伸&quot;&gt;ABAQUS 层合板壳单元拉伸&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/shell-tensile.gif&quot; alt=&quot;composite shell&quot; title=&quot;composite shell&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step1-正常的3d实体拉伸&quot;&gt;step1 正常的3D实体拉伸&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;(有的也可以采用shell，没有厚度)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;step2--网格划分&quot;&gt;step2  网格划分&lt;/h2&gt;
+&lt;h3 id=&quot;连续壳单元扫掠划分&quot;&gt;连续壳单元，扫掠划分&lt;/h3&gt;
+&lt;p&gt;如果选用 结构网络,3D stress 则会报错，不能计算&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Error in job com-1: 1050 elements have missing property definitions. The elements have been identified in element set ErrElemMissingSection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;分割实体&quot;&gt;分割实体&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;如果想要更精细划分并在不同部位选择不同材料，则需要分割实体．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;step3--材料定义&quot;&gt;step3  材料定义&lt;/h2&gt;
+&lt;h3 id=&quot;弹性模量定义&quot;&gt;弹性模量定义&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;选用__lamina__，定义__Hashin__破坏准则，损伤演化．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/lamina.png&quot; data-canonical-src=&quot;/post_img/composite-shell/lamina.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/material.png&quot; data-canonical-src=&quot;/post_img/composite-shell/material.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;定义层合板坐标轴&quot;&gt;定义层合板坐标轴&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/sys.png&quot; data-canonical-src=&quot;/post_img/composite-shell/sys.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;定义层合板选择坐标轴输入角度&quot;&gt;定义层合板，选择坐标轴，输入角度&lt;/h3&gt;
+
+&lt;h2 id=&quot;step4-分析步输出定义&quot;&gt;step4 分析步，输出定义&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;采用了显示动态分析步，时间0.001s&lt;/li&gt;
+  &lt;li&gt;增加输出步长，输出失效变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/step-mesh.png&quot; data-canonical-src=&quot;/post_img/composite-shell/step-mesh.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step5-载荷定义&quot;&gt;step5 载荷定义&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;位移加载&lt;/li&gt;
+  &lt;li&gt;smooth step&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/post_img/composite-shell/load.png&quot; data-canonical-src=&quot;/post_img/composite-shell/load.png&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 Jun 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/abaqus/2018/06/02/composite-shell.html</link>
+        <guid isPermaLink="true">http://localhost:4000/abaqus/2018/06/02/composite-shell.html</guid>
+        
+        
+        <category>ABAQUS</category>
+        
+      </item>
+    
+      <item>
+        <title> Python 字符串作为函数名调用 </title>
+        <description>&lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string&quot;&gt;[str-&amp;gt;fun-name]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.runoob.com/python/python-func-globals.html&quot;&gt;[python-func-globals]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.runoob.com/python/python-func-getattr.html&quot;&gt;[python-func-getattr]&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;用法&quot;&gt;用法&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;class A:
+    def __init__(self):
+        pass
+
+    def sampleFunc(self, arg):
+        print('you called sampleFunc({})'.format(arg))
+
+m = globals()['A']()
+func = getattr(m, 'sampleFunc')
+func('sample arg')
+
+# Sample, all on one line
+getattr(globals()['A'](), 'sampleFunc')('sample arg')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;解释&quot;&gt;解释&lt;/h3&gt;
+&lt;p&gt;####Python globals() 函数
+globals() 函数会以字典类型返回当前位置的全部全局变量。&lt;/p&gt;
+&lt;h5 id=&quot;实例&quot;&gt;实例&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt;a='runoob'
+&amp;gt;&amp;gt;&amp;gt; print(globals()) # globals 函数返回一个全局变量的字典，包括所有导入的变量。
+{'__builtins__': &amp;lt;module '__builtin__' (built-in)&amp;gt;, '__name__': '__main__', '__doc__': None, 'a': 'runoob', '__package__': None}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;python-getattr-函数&quot;&gt;Python getattr() 函数&lt;/h4&gt;
+&lt;p&gt;getattr() 函数用于返回一个对象属性值。&lt;/p&gt;
+&lt;h5 id=&quot;实例-1&quot;&gt;实例&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt;class A(object):
+...     bar = 1
+... 
+&amp;gt;&amp;gt;&amp;gt; a = A()
+&amp;gt;&amp;gt;&amp;gt; getattr(a, 'bar')        # 获取属性 bar 值
+1
+&amp;gt;&amp;gt;&amp;gt; getattr(a, 'bar2')       # 属性 bar2 不存在，触发异常
+Traceback (most recent call last):
+  File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;module&amp;gt;
+AttributeError: 'A' object has no attribute 'bar2'
+&amp;gt;&amp;gt;&amp;gt; getattr(a, 'bar2', 3)    # 属性 bar2 不存在，但设置了默认值
+3
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Fri, 01 Jun 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/python/2018/06/01/py-strAs-fun-name.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python/2018/06/01/py-strAs-fun-name.html</guid>
+        
+        
+        <category>Python</category>
+        
+      </item>
     
       <item>
         <title> 复合材料层合板计算 </title>
@@ -46,9 +286,20 @@
 
 &lt;p&gt;&lt;img align=&quot;right&quot; width=&quot;400&quot; height=&quot;300&quot; src=&quot;/post_img/CLT-fig/Composite_3d.png&quot; data-canonical-src=&quot;/post_img/CLT-fig/Composite_3d.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;project-code-for-mechanics-of-composite-structure-in-npupartly-finish&quot;&gt;Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.&lt;/h4&gt;
-&lt;h4 id=&quot;all-right-reserved&quot;&gt;ALL RIGHT RESERVED&lt;/h4&gt;
 &lt;hr /&gt;
+&lt;h5 id=&quot;project-code-for-mechanics-of-composite-structure-in-npupartly-finish&quot;&gt;Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.&lt;/h5&gt;
+&lt;h5 id=&quot;all-right-reserved&quot;&gt;ALL RIGHT RESERVED&lt;/h5&gt;
+
+&lt;hr /&gt;
+&lt;h4 id=&quot;see-the-blade-design-used-the-composite-materials&quot;&gt;see the blade design used the composite materials&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;composite-blade-design&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://eacaen.github.io/python/2017/10/17/composite-blade-design.html&quot;&gt;Blog Introduction&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/Eacaen/composite-blade-design&quot;&gt;Github source&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;h2 id=&quot;project-goals&quot;&gt;Project goals:&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Use the fibre and matrix or given data to define the composite lamina and then layup the laminate.&lt;/li&gt;
@@ -454,290 +705,6 @@ cat ocp:P9_26_pinmux/state　//查看属性
         
         
         <category>beagleboard-black</category>
-        
-      </item>
-    
-      <item>
-        <title>BBB Notebook 4 eclipse 配置</title>
-        <description>&lt;h1 id=&quot;beagleboard-black-笔记-4&quot;&gt;beagleboard black 笔记 &amp;lt;4&amp;gt;&lt;/h1&gt;
-&lt;p&gt;如何进行 eclipse 环境的配置，远程调试&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zy812248258/article/details/38342287&quot;&gt;ubuntu12.04下在Eclipse中搭建BeagleBoneBlack的开发环境——远程在线运行&amp;amp;调试&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;eclipse-安装&quot;&gt;eclipse 安装&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install eclipse
-sudo apt-get install eclipse-cdt 　// c++ environment
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;eclipse-install-market&quot;&gt;eclipse install market&lt;/h2&gt;
-
-&lt;h2 id=&quot;eclipse-install-remote-system&quot;&gt;eclipse install Remote System&lt;/h2&gt;
-
-&lt;p&gt;安装 market  后直接搜索安装即可&lt;/p&gt;
-
-&lt;h2 id=&quot;eclipse-start-a-project&quot;&gt;eclipse start a project&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;strat a c++ project&lt;/li&gt;
-  &lt;li&gt;choose cross c++ , next until [cross  GCC Commend] , copy the [arm-linux-guneabihf-] and choose path [/usr/bin], then finish&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 14 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/beagleboard-black/2017/11/14/BBB-note4-eslipse.html</link>
-        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/14/BBB-note4-eslipse.html</guid>
-        
-        
-        <category>beagleboard-black</category>
-        
-      </item>
-    
-      <item>
-        <title>BBB Notebook 3 PWM 实验</title>
-        <description>&lt;h1 id=&quot;beagleboard-black-笔记-3&quot;&gt;beagleboard black 笔记 &amp;lt;3&amp;gt;&lt;/h1&gt;
-&lt;p&gt;几个基于例程的实验，网络问题的解决&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;点亮板子上的灯，循环点亮，跑马灯效果。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;点亮外部的灯，IO口控制。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;基本的按键输入，简单的 Python 状态机。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;通过这几个实验可以基本的了解一下 BBB 的 IO 口功能，但是这样并不能让我们完全了解到 BBB 的优势 以及与 类似基本的诸如 51 或是 STM32 不同之处，例如目前始终不能使用的 PWM 波功能。那么接下来才是真正跳入 BBB 的坑的过程吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;使用ＰＷＭ波功能&quot;&gt;使用ＰＷＭ波功能&lt;/h2&gt;
-&lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_7880d3350102wz2b.html&quot;&gt;Beaglebone Black开启PWM功能&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.teachmemicro.com/beaglebone-black-pwm-ubuntu-device-tree/&quot;&gt;Beaglebone Black PWM on Ubuntu&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/beagleboard/bb.org-overlays/&quot;&gt;beagleboard/bb.org-overlays&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;开始使用教程最多的-p9_14-pwm-io-口&quot;&gt;开始使用教程最多的 p9_14 pwm io 口&lt;/h2&gt;
-&lt;p&gt;按照教程，发现在 /lib/firmware/　目录下面只有一个　am33xx_pwm.dtbo 的驱动文件，却没有其他的ＩＯ口驱动。
-【这里就很明显的体现出了这种跑系统的板子和ＳＴＭ３２ 的区别，之前一直以为他俩差不多，没有仔细研究过设备树，覆盖层之类的概念。】&lt;/p&gt;
-
-&lt;h3 id=&quot;编写一个覆盖层&quot;&gt;编写一个覆盖层&lt;/h3&gt;
-&lt;p&gt;可以自己为ＩＯ口编写一个，但是为了尽快看到实验效果，我直接　git 了一个。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; git clone https://github.com/beagleboard/bb.org-overlays/tree/master/src/arm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;进入目录编译移动驱动&quot;&gt;进入目录，编译，移动驱动。&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;dtc -O dtb -o BB-PWM1-00A0.dtbo -b 0 -@ BB-PWM1-00A0.dts
-
-mv -i BB-PWM1-00A0.dtbo /lib/firmware
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;添加到-slots-里面去&quot;&gt;添加到 slots 里面去。&lt;/h3&gt;
-
- 	echo am33xx_pwm &amp;gt; /sys/devices/platform/bone_capemgr/slots
-&lt;pre&gt;&lt;code&gt;echo BB-PWM1 &amp;gt; /sys/devices/platform/bone_capemgr/slots
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;查看改变io口属性&quot;&gt;查看，改变IO口属性？&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;cd /sys/devices/platform/ocp
-config-pin -l P9.14
-config-pin P9.14 pwm
-cat ocp:P9_14_pinmux/state　查看属性
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;另外备注：在将cape-universaln插入槽中（slots）后，在
-root@beaglebone:/sys/devices/platform/ocp/ocp:P9_14_pinmux
-中将P9_14设置为pwm模式（#config-pin P9.14 pwm）后，需要在
-/sys/class/pwm/pwmchip2中echo 0 &amp;gt; export，
-这里为什么是pwmchip2，因为pwmchip2的地址0x4830_2000对应的是PWM1，echo 0是开启EHRPWM1A，echo 1是开启EHRPWM1B。具体地址映射可参见AM335x参考手册memory map部分。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我在使用时发现如下情况，应该改为　pwm３　后成功使用，其中原因留待解决。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/pwm3img.png&quot; alt=&quot;pwm3img&quot; title=&quot;pwm3img&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;可以使用在文件夹路径&quot;&gt;可以使用，在文件夹路径&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/sys/devices/platform/ocp/48302000.epwmss/48302200.pwm/pwm/pwmchip3/pwm0
-
-或者
-
-/sys/class/pwm/pwmchip3/pwm0
-
-可以正常使用命令
-
- echo 500 &amp;gt; duty_cycle 
- echo 10000 &amp;gt; polarity 
- echo 1 &amp;gt; enable
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;操作PWM用到duty(duty_ns)、period(period_ns)、polarity、run共四个参数，其中period就是频率参数（周期时间），duty为占空比，polarity为使能标志（1为使能，0为禁用），run 是执行命令（1为运行，0为关闭），period和duty的参数单位为纳秒（ns），1s=1000ms=1000000us=1000000000ns，所以period最大的取值范围为0—1000000000，而duty则取值0—period值之间&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h6 id=&quot;部分参数改变了意义一样&quot;&gt;部分参数改变了，意义一样。&lt;/h6&gt;
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;网络问题的解决&quot;&gt;网络问题的解决&lt;/h2&gt;
-&lt;p&gt;有时发现无法连接，打开网络设置发现提示系统与网络兼容，因为启用过锐捷【万恶】，解决方法：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd /etc/NetworkManager
-sudo mv NetworkManager.conf /home/[name]/
-sudo NetworkManager //重启
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;完毕后你会发现网络恢复，正常使用，不要用锐捷了就。&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 14 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/beagleboard-black/2017/11/14/BBB-note3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/14/BBB-note3.html</guid>
-        
-        
-        <category>beagleboard-black</category>
-        
-      </item>
-    
-      <item>
-        <title>BBB Notebook 2 Ubuntu 联网 - 时钟同步 - 开启远程桌面</title>
-        <description>&lt;h1 id=&quot;beagleboard-black-笔记-2&quot;&gt;beagleboard black 笔记 &amp;lt;2&amp;gt;&lt;/h1&gt;
-&lt;p&gt;在 Windows10 和 Ubuntu14.04 下的 BBB 操作。在 Ubuntu14.04 下的网络共享。&lt;/p&gt;
-
-&lt;h2 id=&quot;系统&quot;&gt;系统&lt;/h2&gt;
-
-&lt;h3 id=&quot;win10&quot;&gt;Win10&lt;/h3&gt;
-
-&lt;h4 id=&quot;start-page&quot;&gt;start page&lt;/h4&gt;
-&lt;p&gt;在 win10 下面使用 USB 插入电脑，我们很容易的按照教程 192.168.7.2 就能进入开始页面，使用 Petty 进入命令行。&lt;/p&gt;
-
-&lt;h4 id=&quot;win-网络共享&quot;&gt;win 网络共享&lt;/h4&gt;
-&lt;p&gt;按照教程在网络设置中打开网络共享就能使用，但是学校的锐捷实在是阻止进步的阶梯，许多锐捷和 Mxxx 类似的软件都不能开多网卡了。&lt;/p&gt;
-
-&lt;h3 id=&quot;ubuntu1404&quot;&gt;Ubuntu14.04&lt;/h3&gt;
-&lt;h4 id=&quot;start-page-1&quot;&gt;start page&lt;/h4&gt;
-&lt;p&gt;在 Ubuntu14.04 下面使用 USB 插入电脑，并不能如意的进入开始页面 192.168.6.2  。使用 &lt;strong&gt;ifconfig&lt;/strong&gt;  查看下。。。&lt;/p&gt;
-
-&lt;h4 id=&quot;ubuntu-网络共享&quot;&gt;Ubuntu 网络共享&lt;/h4&gt;
-&lt;p&gt;在 Ubuntu 下的锐捷仍然禁止使用多网卡【MMP】，但是通过安装 mentohust ，配置好后是可以的。具体方法网上很多。&lt;/p&gt;
-
-&lt;p&gt;ubuntu 成功联网后参考
-&lt;a href=&quot;http://blog.csdn.net/pkuyjxu/article/details/44617511&quot;&gt;Beaglebone black 与ubuntu 通过usb网络共享&lt;/a&gt; 可以实现网络分享。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Step 1, Configuring BBB as follow shows:
-route add default gw 192.168.7.1
-vim /etc/resolv.conf  and add &quot;nameserver 8.8.8.8&quot; at the end.
-Step 2, Configuring Ubuntu PC as following shows:
-sudo su
-#【wlan0】 is my internet facing interface, 【eth1】 is the BeagleBone USB connection
-iptables --table nat --append POSTROUTING --out-interface 【wlan0】 -j MASQUERADE
-iptables --append FORWARD --in-interface 【eth1】 -j ACCEPT
-echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
-Step 3,  Test the internet in BBB as bellow shows:
-ping 8.8.8.8
-ping www.baidu.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;使用该教程时，先在 Ubuntu 下 &lt;strong&gt;ifconfig&lt;/strong&gt; 查看下当前使用电脑的是哪个网卡，按照自己使用的网卡修改命令。&lt;/p&gt;
-
-&lt;h2 id=&quot;时钟同步&quot;&gt;时钟同步&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/hahachenchen789/article/details/52326688&quot;&gt;beaglebone black 时间调整&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1.首先要设置时区，板子默认的时区文件在/etc/localtime文件中，将其删除：rm /etc/localtime
-2.查看系统数据库中有哪些时区可供选择，命令：ls /usr/share/zoneinfo/Asia/
-3.选择上海，将上海时区链接到localtime，
-命令：ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-4.同步时间：在debian下，命令为： ntpdate-debian
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;if run&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;总是提示/etc/localtime文件已经存在&lt;/p&gt;
-
-&lt;p&gt;用 ln -sf 覆盖掉。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;使用-vnc-显示器&quot;&gt;使用 VNC 显示器&lt;/h2&gt;
-&lt;p&gt;从成本和硬件上考虑，外接一个显示器显得十分不方便，需要购买的器材有点多了。这时可以考虑使用 VNC 显示器，方便的是在　beagleboard black　的　debian 系统和 PC 的 Ubuntu 上都自带了相关的软件。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/qq_30897583/article/details/71195001&quot;&gt;通过ＶＮＣ远程接入BeagleBone Black桌面&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;bbb-上打开-vncserver&quot;&gt;BBB 上打开 vncserver&lt;/h3&gt;
-&lt;p&gt;记住此时分配给的端口号&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/openvnc.png&quot; alt=&quot;vncserver&quot; title=&quot;vncserver&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;在-ubuntu-上配置remmina远程客户端&quot;&gt;在 Ubuntu 上配置Remmina远程客户端&lt;/h3&gt;
-&lt;p&gt;配置时保证端口号一致，ssh高级设置可以选择性打开。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/vncPcset.png&quot; alt=&quot;vncPcset&quot; title=&quot;vncPcset&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;配置完成后即可进入。&lt;/p&gt;
-
-&lt;h2 id=&quot;安装xfce４可选&quot;&gt;安装　Xfce４（可选）&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.douban.com/group/topic/42903996/&quot;&gt;install Xfce on Beaglebone Black &lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update
-sudo apt-get install xfce4
-sudo apt-get install xfce-goodies 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装完成后重启，输入 startx or stearxfce4 启动，进入ＶＮＣ　即可看见界面。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/post_img/BBB-img/tablexf.png&quot; alt=&quot;tablexf&quot; title=&quot;tablexf&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;problems-collection&quot;&gt;PROBLEMS COLLECTION&lt;/h2&gt;
-&lt;p&gt;有时不知道自己搞的哪里坏了，在 cloud9 里面无法烧写程序，而是不断弹出错误，例如：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;tmux: need UTF-8 locale (LC_CTYPE) but have ANSI_X3.4-1968
-tmux: invalid LC_ALL, LC_CTYPE or LANG
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;应该是板子上的字符选择的错误，但是我没有找到什么好的方法，直接重装了系统。&lt;/p&gt;
-
-&lt;h2 id=&quot;useful-resp&quot;&gt;useful resp&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/derekmolloy/exploringBB&quot;&gt;From book by Molloy&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;进入vnc桌面后有可能显示不全选择全屏才可以看见所有界面&quot;&gt;进入vnc桌面后有可能显示不全，选择全屏才可以看见所有界面&lt;/h1&gt;
-&lt;p&gt;不要在这一步浪费太多时间&lt;/p&gt;
-</description>
-        <pubDate>Thu, 09 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/beagleboard-black/2017/11/09/BBB-note2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/beagleboard-black/2017/11/09/BBB-note2.html</guid>
-        
-        
-        <category>beagleboard-black</category>
-        
-      </item>
-    
-      <item>
-        <title> Pygame ConwayLifegame</title>
-        <description>&lt;h1 id=&quot;conway-lifegame&quot;&gt;Conway Lifegame&lt;/h1&gt;
-&lt;p&gt;经典的康威生命游戏，目前我看到了有两种完全不同的方法可以实现：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;使用 Pygame 来实现&lt;/li&gt;
-  &lt;li&gt;使用 matplotlib 实现&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;通过这两个方法各自的优点可以了解到两者不同的知识点。&lt;/p&gt;
-
-&lt;h2 id=&quot;待续&quot;&gt;待续&lt;/h2&gt;
-</description>
-        <pubDate>Wed, 08 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/python/2017/11/08/pygame-ConwayLifegame.html</link>
-        <guid isPermaLink="true">http://localhost:4000/python/2017/11/08/pygame-ConwayLifegame.html</guid>
-        
-        
-        <category>Python</category>
         
       </item>
     

@@ -1,5 +1,29 @@
 {
   
+  "abaqus-2018-09-19-airblast-watertube-html": {
+    "title": " ABAQUS 水管受爆炸冲击 ",
+    "url": " /abaqus/2018/09/19/airblast-watertube.html",
+    "category": "ABAQUS"
+  },
+  
+  "abaqus-2018-07-06-impact-water-in-bar-html": {
+    "title": " ABAQUS 模拟杆中水的运动 ",
+    "url": " /abaqus/2018/07/06/impact-water-in-bar.html",
+    "category": "ABAQUS"
+  },
+  
+  "abaqus-2018-06-02-composite-shell-html": {
+    "title": " ABAQUS 复合材料层合板壳单元拉伸 ",
+    "url": " /abaqus/2018/06/02/composite-shell.html",
+    "category": "ABAQUS"
+  },
+  
+  "python-2018-06-01-py-stras-fun-name-html": {
+    "title": " Python 字符串作为函数名调用 ",
+    "url": " /python/2018/06/01/py-strAs-fun-name.html",
+    "category": "Python"
+  },
+  
   "python-2018-05-20-clt-calculation-html": {
     "title": " 复合材料层合板计算 ",
     "url": " /python/2018/05/20/CLT-calculation.html",
@@ -127,6 +151,13 @@
   },
   
 
+  
+  
+  "2018-06-02-composite-shell-html": {
+    "title": " ABAQUS 运动相机防水壳密封页片 ",
+    "url": "/2018-06-02-composite-shell.html"
+  },
+  
   
   
   "about-html": {
@@ -292,6 +323,30 @@
     "title": " 复合材料层合板计算 ",
     "url": "/python/2018/05/20/CLT-calculation.html",
     "category": "[&quot;Python&quot;]"
+  },
+  
+  "python-2018-06-01-py-stras-fun-name-html": {
+    "title": " Python 字符串作为函数名调用 ",
+    "url": "/python/2018/06/01/py-strAs-fun-name.html",
+    "category": "[&quot;Python&quot;]"
+  },
+  
+  "abaqus-2018-06-02-composite-shell-html": {
+    "title": " ABAQUS 复合材料层合板壳单元拉伸 ",
+    "url": "/abaqus/2018/06/02/composite-shell.html",
+    "category": "[&quot;ABAQUS&quot;]"
+  },
+  
+  "abaqus-2018-07-06-impact-water-in-bar-html": {
+    "title": " ABAQUS 模拟杆中水的运动 ",
+    "url": "/abaqus/2018/07/06/impact-water-in-bar.html",
+    "category": "[&quot;ABAQUS&quot;]"
+  },
+  
+  "abaqus-2018-09-19-airblast-watertube-html": {
+    "title": " ABAQUS 水管受爆炸冲击 ",
+    "url": "/abaqus/2018/09/19/airblast-watertube.html",
+    "category": "[&quot;ABAQUS&quot;]"
   }
   
 }
