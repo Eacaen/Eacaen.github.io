@@ -2,6 +2,7 @@
 layout: post
 title: " ABAQUS 梁单元与实体梁"
 tagline: " ABAQUS Notebook  "
+categories: ABAQUS
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
@@ -10,7 +11,7 @@ meta: "Springfield"
 > 结果参考
 	http://www.020fea.com/a/5/152/11521.html
 
-<img  src="/post_img/ABAQUS-Beam/ques.png" width = "300" heigth = "300" data-canonical-src="/post_img/ABAQUS-Beam/ques.png" />
+<img  src="/post_img/ABAQUS-Beam/ques.png"  data-canonical-src="/post_img/ABAQUS-Beam/ques.png" />
 
 # ABAQUS 梁单元与实体梁
 【比较结果】梁单元是理想的梁模型，实际上是一根线，需要赋予梁的截面属性和主轴（材料）方向；实体梁就和普通的实体一样绘制。
@@ -19,16 +20,16 @@ meta: "Springfield"
 ## 3D，可变形模型，线
 ## 材料
 
-<img  src="/post_img/ABAQUS-Beam/beam-sec.png"  data-canonical-src="/post_img/ABAQUS-Beam/beam-sec.png" />
+<img  src="/post_img/ABAQUS-Beam/beam-sec.png" width = "300" data-canonical-src="/post_img/ABAQUS-Beam/beam-sec.png" />
 1
 ## mesh
 ### 对线mesh，显示节点编号
 
-<img  src="/post_img/ABAQUS-Beam/show-nodes.png"  data-canonical-src="/post_img/ABAQUS-Beam/show-nodes.png" />
+<img  src="/post_img/ABAQUS-Beam/show-nodes.png" width = "300" data-canonical-src="/post_img/ABAQUS-Beam/show-nodes.png" />
 
 ### 显示梁模型
 
-<img  src="/post_img/ABAQUS-Beam/show-beam.png"  data-canonical-src="/post_img/ABAQUS-Beam/show-beam.png" />
+<img  src="/post_img/ABAQUS-Beam/show-beam.png" width = "500"  data-canonical-src="/post_img/ABAQUS-Beam/show-beam.png" />
 
 ## Load
 ### 体现使用梁单元优势 
@@ -50,19 +51,16 @@ meta: "Springfield"
 
 ## 约束节点耦合
  * 将参考点与面上
-<img  src="/post_img/ABAQUS-Beam/node-cop.png"  data-canonical-src="/post_img/ABAQUS-Beam/node-cop.png" />
+<img  src="/post_img/ABAQUS-Beam/node-cop.png" width = "600" data-canonical-src="/post_img/ABAQUS-Beam/node-cop.png" />
 
-## 约束节点耦合
- * 将参考点与面上
-<img  src="/post_img/ABAQUS-Beam/node-cop.png"  data-canonical-src="/post_img/ABAQUS-Beam/node-cop.png" />
 
 ## 载荷约束在中点（节点）
 <img  src="/post_img/ABAQUS-Beam/load.png"  data-canonical-src="/post_img/ABAQUS-Beam/load.png" />
 
 ## 结果
 ### 可以切片观察面上的力和弯矩
-<img  src="/post_img/ABAQUS-Beam/3d-beam.png" width = "300"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam.png" />
+<img  src="/post_img/ABAQUS-Beam/3d-beam.png" width = "600"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam.png" />
 
 ### 看不到明显的阶跃间断
  * 由于是实体梁，与理想的梁单元相比，看不到明显的阶跃间断
-<img  src="/post_img/ABAQUS-Beam/3d-beam-res.png" width = "300"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam-res.png" /> 
+<img  src="/post_img/ABAQUS-Beam/3d-beam-res.png" width = "600"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam-res.png" /> 
