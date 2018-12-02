@@ -62,7 +62,9 @@ meta: "Springfield"
 <img  src="/post_img/ABAQUS-Beam/3d-beam.png" width = "600"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam.png" />
 
 #### 看不到明显的阶跃间断
- * 由于是实体梁，与理想的梁单元相比，应力联系看不到明显的阶跃间断
+ * 由于是实体梁，与理想的梁单元相比，应力连续，看不到明显的阶跃间断
 <img  src="/post_img/ABAQUS-Beam/3d-beam-res.png" width = "600"  data-canonical-src="/post_img/ABAQUS-Beam/3d-beam-res.png" /> 
 
 ## 讨论
+ * 梁单元是材料力学中的理想梁模型，载荷、约束的定义都自动在节点上定义；剪力弯矩图有阶跃；
+ * 实体梁不存在理想情况。
