@@ -36,6 +36,9 @@ meta: "Springfield"
 
 ### mesh 
 >Total number of nodes: 98289
+
 >Total number of elements: 86618
+
      6618 linear hexahedral elements of type C3D8R
+     
      80000 linear hexahedral elements of type EC3D8R
