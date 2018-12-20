@@ -1,8 +1,8 @@
 ---
 layout: post
-title: " PAMCARSH 机身框坠撞刚性地面"
-tagline: " PAMCARSH Notebook  "
-categories: PAMCARSH
+title: " PAMCRASH 机身框坠撞刚性地面"
+tagline: " PAMCRASH Notebook  "
+categories: PAMCRASH
 author: "Hu Tianyun"
 meta: "Springfield"
 ---
