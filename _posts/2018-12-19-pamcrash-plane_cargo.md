@@ -20,13 +20,17 @@ meta: "Springfield"
  * 地面使用刚性壳单元，约束重心的6个自由度；
  * 给定整体Z向的速度和重力加速度；
  * 接触：结构与地面的主从接触；自接触；边对边接触；长桁与蒙皮接触。
- * 
+
+
 ### 单位：Ton，mm，s
+
 ### 导出单位及数量级
  * 力：N
  * 应力：MPa
  * 密度：9.9e-9
- * 杨氏模量：28000
+ * 杨氏模量：28000MPa
+ * 加速度 9800m/s^2
+
 
 ### 网格数量
  |网格类型|数量|
@@ -34,6 +38,7 @@ meta: "Springfield"
  |2D Element|2602|
  |----|-----|
  |Plink|144|
+
 
 <img  src="/post_img/plane_cargo/ps.png" width = "300" data-canonical-src="/post_img/plane_cargo/ps.png" />
 
@@ -53,5 +58,7 @@ meta: "Springfield"
 ## 结果
 
 ### 能量
+
 经过短暂重力加速，动能有所上升而后下降；整体的能量变化守恒。
+ > 为什么整体能量有所上升？
 <img  src="/post_img/plane_cargo/energy.png" width = "300" data-canonical-src="/post_img/plane_cargo/energy.png" />
