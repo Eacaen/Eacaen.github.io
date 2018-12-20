@@ -45,6 +45,8 @@ meta: "Springfield"
 ## 材料卡片
 ### SHELL 材料卡片
  * 103模型，自定义塑性曲线
+
+
 <img  src="/post_img/plane_cargo/mat.PNG" width = "300" data-canonical-src="/post_img/plane_cargo/mat.PNG" />
 
 ### PLink 材料
@@ -52,13 +54,19 @@ meta: "Springfield"
  * 某些参数必须定义，否则报错无法计算；
  * 使用link manager 检查连接是否成功；
  * 对比提交计算即可看出区别；
+
 <img  src="/post_img/plane_cargo/plink.PNG" width = "300" data-canonical-src="/post_img/plane_cargo/plink.PNG" />
 <img  src="/post_img/plane_cargo/plink2.PNG" data-canonical-src="/post_img/plane_cargo/plink2.PNG" />
 
 ## 结果
 
 ### 能量
-
 经过短暂重力加速，动能有所上升而后下降；整体的能量变化守恒。
  > 为什么整体能量有所上升？
+
 <img  src="/post_img/plane_cargo/energy.PNG" width = "300" data-canonical-src="/post_img/plane_cargo/energy.PNG" />
+
+### Plink失效
+Plink 中途失效，失效后不会消失。
+
+<img  src="/post_img/plane_cargo/plink-f.PNG" width = "300" data-canonical-src="/post_img/plane_cargo/plink-f.PNG" />
