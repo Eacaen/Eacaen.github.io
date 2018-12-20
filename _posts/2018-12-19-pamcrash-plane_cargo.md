@@ -33,12 +33,8 @@ meta: "Springfield"
 
 
 ### 网格数量
- |网格类型|数量|
- |----|-----|
- |2D Element|2602|
- |----|-----|
- |Plink|144|
 
+<img  src="/post_img/plane_cargo/element.PNG" data-canonical-src="/post_img/plane_cargo/element.PNG" />
 
 <img  src="/post_img/plane_cargo/ps.PNG" width = "300" data-canonical-src="/post_img/plane_cargo/ps.PNG" />
 
