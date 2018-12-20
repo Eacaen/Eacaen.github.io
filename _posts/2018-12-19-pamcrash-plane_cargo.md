@@ -29,9 +29,11 @@ meta: "Springfield"
  * 杨氏模量：28000
 
 ### 网格数量
-|网格类型|数量|
-|2D Element|2602|
-|Plink|144|
+ |网格类型|数量|
+ |----|-----|
+ |2D Element|2602|
+ |----|-----|
+ |Plink|144|
 
 <img  src="/post_img/plane_cargo/ps.png" width = "300" data-canonical-src="/post_img/plane_cargo/ps.png" />
 
