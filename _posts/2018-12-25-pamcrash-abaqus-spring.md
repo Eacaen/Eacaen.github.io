@@ -10,8 +10,9 @@ meta: "Springfield"
 
 > 结果
 
-<img  src="/post_img/pam-aba-spring/aba_res1.gif"  data-canonical-src="/post_img/pam-aba-spring/aba_res1.gif" />
-<img  src="/post_img/pam-aba-spring/mass-spring-0.002-0.1_001.gif"  data-canonical-src="/post_img/pam-aba-spring/mass-spring-0.002-0.1_001.gif" />
+<img  src="/post_img/pam-aba-spring/aba_res1.gif"  width = "400"data-canonical-src="/post_img/pam-aba-spring/aba_res1.gif" />
+
+<img  src="/post_img/pam-aba-spring/mass-spring-0.002-0.1_001.gif"  width = "400" data-canonical-src="/post_img/pam-aba-spring/mass-spring-0.002-0.1_001.gif" />
 
 ## spring/dashpot in abaqus and pamcrash
 
@@ -55,6 +56,6 @@ abaqus 中没有定义弹簧质量，结果总能守恒
 <img  src="/post_img/pam-aba-spring/aba-spring-e2.PNG" width = "300" data-canonical-src="/post_img/pam-aba-spring/aba-spring-e2.PNG" />
 
 #### abaqus中给节点一个初位移
-abaqus 中给定初始位移后，释放，内能+动能-外力做功 = con，
+abaqus 中给定初始节点位移后，释放；根据，内能+动能-外力做功 = con，结果基本对应。
 
 <img  src="/post_img/pam-aba-spring/aba-spring-e1.PNG" width = "300" data-canonical-src="/post_img/pam-aba-spring/aba-spring-e1.PNG" />
