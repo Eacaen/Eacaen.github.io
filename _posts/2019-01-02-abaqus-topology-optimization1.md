@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " ABAQUS 拓扑优化-1 "
+title: " ABAQUS 拓扑优化例子 1 "
 tagline: " ABAQUS Notebook  "
 categories: ABAQUS
 author: "Hu Tianyun"
