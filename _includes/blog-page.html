@@ -7,6 +7,8 @@
             {% for category in sorted_categories %}
             <h3>{{ category | first }}</h3>
 
+            <ol class="posts-list" >
+
                 {% for post in category.last %}
                 <li class="posts-list-item">
                     <div class="posts-content">
@@ -16,6 +18,7 @@
                     </div>
                 </li>
                 {% endfor %}
+            </ol>
             {% endfor %}
         </ul>
 
