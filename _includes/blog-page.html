@@ -22,8 +22,8 @@
                 {% for post in category.last %}
                     <li class="posts-list-item">
                         <div class="posts-content">
-                            <!-- <span class="posts-list-meta">{{ post.date | date:"%Y-%m-%d" }}</span> -->
-                            <a class="posts-list-meta posts-list-name bubble-float-left" href="{{ post.date | date:"%Y-%m-%d" }} {{ site.url }}{{ post.url }}">{{ post.title }}</a>
+                            <span class="posts-list-meta">{{ post.date | date:"%Y-%m-%d" }}</span>
+                            <a class="posts-list-name bubble-float-left" href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
                             <span class='circle'></span>
                         </div>
                     </li>
