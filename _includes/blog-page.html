@@ -2,7 +2,7 @@
     <div class="col-md-8">
 
         <!-- Blog list -->
-  <!--       <ul id="posts-list">
+        <ul id="posts-list">
             {% for post in site.posts %}
             <li class="posts-list-item">
                 <div class="posts-content">
@@ -12,7 +12,7 @@
                 </div>
             </li>
             {% endfor %}
-        </ul> -->
+        </ul>
 
     <section class="container posts-content">
         {% assign sorted_categories = site.categories | sort %}
@@ -23,8 +23,8 @@
                 {% for post in category.last %}
                     <li class="posts-list-item">
                         <div class="posts-content">
-                            <span class="posts-list-meta">{{ post.date | date:"%Y-%m-%d" }}</span>
-                            <a class="posts-list-name bubble-float-left" href="{{ site.url }}{{ post.url }}">{{ post.date | date:"%Y-%m-%d" }}{{ post.title }}</a>
+                            <!-- <span class="posts-list-meta">{{ post.date | date:"%Y-%m-%d" }}</span> -->
+                            <a class="posts-list-name bubble-float-left" href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
                             <span class='circle'></span>
                         </div>
                     </li>
