@@ -1,5 +1,4 @@
 <div class="row">
-
     <div class="col-md-8">
 
         <!-- Blog list -->
@@ -19,7 +18,7 @@
         {% assign sorted_categories = site.categories | sort %}
         {% for category in sorted_categories %}
             <h3>{{ category | first }}</h3>
-            <ul class="posts-list" id="{{ category[0] }}">
+            <ol class="posts-list" id="{{ category[0] }}">
                 {% for post in category.last %}
                     <li class="posts-list-item">
                         <div class="posts-content">
@@ -29,7 +28,7 @@
                         </div>
                     </li>
                 {% endfor %}
-            </ul>
+            </ol>
         {% endfor %}
     </section>
 
