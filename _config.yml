@@ -10,7 +10,7 @@ title: Hu's Space !
 name: HuTianyun
 email: tianyunhu@gmail.com
 location: Xi'an, China
-location_url: http://www.nwpu.edu.cn/
+location_url: www.spacehu.top/
 company: Recuse-Robot
 company_url: https://github.com/team-explorer-rescue-robot
 github_url: https://github.com/Eacaen
@@ -85,5 +85,5 @@ analytics :
 # For about.html. Fell free to create your own!
 skill_software_keywords: [C , C++ , Python] 
 skill_hardware_chips: [51 , STM32]
-skill_structure_keywords: [Solidworks , Catia , Ansys , ABAQUS]
+skill_structure_keywords: [Solidworks , Catia , Ansys , ABAQUS , PAMCRASH]
 # skill_mobile_app_keywords: [Android, Sketch UI Desgin]
