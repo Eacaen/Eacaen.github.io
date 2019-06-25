@@ -29,12 +29,12 @@ meta: "Springfield"
 
 <img src="/post_img/PAM-RIGID-COMP/rigid_body_sp_test_001.JPEG" data-canonical-src="/post_img/PAM-RIGID-COMP/rigid_body_sp_test_001.JPEG" />
 
-### 模型2
+### 模型3
 * 将两个part分别放到各自刚体中去，计算重心，将一定的初速度分别*加载至重心点上去*。
 * 地板固支四条edge边。
 * 设置其中一个part与地板接触。
 
-<img src="/post_img/PAM-RIGID-COMP/rigid_body_sp_test_001.JPEG" data-canonical-src="/post_img/PAM-RIGID-COMP/rigid_body_sp_test_001.JPEG" />
+<img src="/post_img/PAM-RIGID-COMP/2-rigid_body_sp_test_001.JPEG" data-canonical-src="/post_img/PAM-RIGID-COMP/2-rigid_body_sp_test_001.JPEG" />
 
 ## 仿真的结果分析
 * 将两个part放到同一个刚体中去，计算时会将两个独立的part默认成为一个刚体，在结果中可以看见碰到地板后整体出现旋转，说明两个part变成一个刚体的结果。
