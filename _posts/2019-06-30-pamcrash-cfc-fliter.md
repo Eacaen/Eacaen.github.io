@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " PAMCRASH 集中质量点冲击平板 "
+title: " PAMCRASH CFC-滤波器还原 "
 tagline: "PAMCRASH Notebook"
 categories: PAMCRASH
 author: "Hu Tianyun"
