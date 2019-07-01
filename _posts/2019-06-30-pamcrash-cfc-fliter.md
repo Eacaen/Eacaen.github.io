@@ -8,11 +8,11 @@ meta: "Springfield"
 ---
 **结果仅供交流，对计算结果的精确性不负任何责任**
 
-[知乎][https://zhuanlan.zhihu.com/p/39632483]
-[论文][https://web.wpi.edu/Pubs/ETD/Available/etd-050610-115613/unrestricted/Mongiardini_dissertation.pdf]
-[CFC Filter Analysis Object (Digital Filters Option)][https://www.weisang.com/en/documentation/cfcfilteranalysis_en/]
-[CFCFilter (FPScript)][https://www.weisang.com/en/documentation/cfcfilter_en/]
-[CFC Filter Calculation][https://www.weisang.com/en/documentation/cfcalgorithm_en/]
+[知乎](https://zhuanlan.zhihu.com/p/39632483)
+[论文](https://web.wpi.edu/Pubs/ETD/Available/etd-050610-115613/unrestricted/Mongiardini_dissertation.pdf)
+[CFC Filter Analysis Object (Digital Filters Option)](https://www.weisang.com/en/documentation/cfcfilteranalysis_en/)
+[CFCFilter (FPScript)](https://www.weisang.com/en/documentation/cfcfilter_en/)
+[CFC Filter Calculation](https://www.weisang.com/en/documentation/cfcalgorithm_en/)
 *The difference equation describes a two-pole filter. To achieve a 4-pole filter, the data must pass through the two-pole filter twice: once forward and once backward. This prevents phase shifts.*
 【结果】
 
@@ -36,6 +36,6 @@ meta: "Springfield"
  * 需要对head 和 tail的异常数据进行处理
 
 
-# 讨论
-## 对于输出的节点数据的处理，与pam中*OCTL的输出频率*有关，相同的滤波器对于不同的采样频率数据的处理效果不同
-## 滤波器的相位移动
+## 讨论
+### 对于输出的节点数据的处理，与pam中*OCTL的输出频率*有关，相同的滤波器对于不同的采样频率数据的处理效果不同
+### 滤波器的相位移动
