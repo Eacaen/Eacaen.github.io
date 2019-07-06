@@ -15,7 +15,7 @@ meta: "Springfield"
 [CFC Filter Analysis Object (Digital Filters Option)](https://www.weisang.com/en/documentation/cfcfilteranalysis_en/)
 
 [CFCFilter (FPScript)](https://www.weisang.com/en/documentation/cfcfilter_en/)
-
+ 
 [CFC Filter Calculation](https://www.weisang.com/en/documentation/cfcalgorithm_en/)
 
 *The difference equation describes a two-pole filter. To achieve a 4-pole filter, the data must pass through the two-pole filter twice: once forward and once backward. This prevents phase shifts.*
