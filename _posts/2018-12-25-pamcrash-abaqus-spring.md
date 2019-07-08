@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " Spring in PAMCRASH & ABAQUS"
+title: " Spring in PAMCRASH & ABAQUS 弹簧单元"
 tagline: " PAMCRASH Notebook  "
 categories: PAMCRASH
 author: "Hu Tianyun"
