@@ -8,7 +8,7 @@ meta: "Springfield"
 ---
 **仅供参考交流，对计算结果的精确性不负任何责任**
 
-> 结果
+> 结果.gif-等待加载
 
 <img  src="/post_img/pam-aba-spring/aba_res1.gif" data-canonical-src="/post_img/pam-aba-spring/aba_res1.gif" />
 

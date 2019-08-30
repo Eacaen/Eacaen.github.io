@@ -8,7 +8,7 @@ meta: "Springfield"
 ---
 **结果仅供交流，对计算结果的精确性不负任何责任**
 
-> 结果
+> 结果.gif-等待加载
 
 <img src="/post_img/PAM_MASS_IMPACT/node_mass3-part-cont_001.gif" data-canonical-src="/post_img/PAM_MASS_IMPACT/node_mass3-part-cont_001.gif" />
 

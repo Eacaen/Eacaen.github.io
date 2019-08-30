@@ -11,7 +11,7 @@ meta: "Springfield"
 # ABAQUS 旋转叶片
 
 例程来源于【youtube abaqusman】
-## 结果【gif】
+## 结果【.gif-等待加载】
 
 <img src="/post_img/ABAQUS-rotating-blade/blade1.gif"  data-canonical-src="/post_img/ABAQUS-rotating-blade/blade1.gif" />
 

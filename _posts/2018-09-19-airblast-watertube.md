@@ -9,7 +9,7 @@ meta: "Springfield"
 **仅供参考交流，对计算结果的精确性不负任何责任**
 
 # ABAQUS 模拟杆水管受到爆炸冲击
-【结果】水管受冲击后，水从开口出射出，水管压扁，基座部分破坏；因为水管存在和水的射出，带走了部分能力，能过减弱基座受到了的应力。
+【结果.gif-等待加载】水管受冲击后，水从开口出射出，水管压扁，基座部分破坏；因为水管存在和水的射出，带走了部分能力，能过减弱基座受到了的应力。
 ![Airblast](/post_img/Airblast/res.gif  "Airblastl")
 
 ## step1 材料定义，装配
@@ -36,9 +36,9 @@ meta: "Springfield"
 
 ### mesh 
 >Total number of nodes: 98289
->Total number of elements: 86618
-    6618 linear hexahedral elements of type C3D8R 
-    80000 linear hexahedral elements of type EC3D8R
+>Total number of elements: 86618；
+    6618 linear hexahedral elements of type C3D8R；
+    80000 linear hexahedral elements of type EC3D8R。
 
 ***
 ## 2019-08-30 更新

@@ -9,7 +9,7 @@ meta: "Springfield"
 **仅供参考交流，对计算结果的精确性不负任何责任**
 
 # ABAQUS 模拟杆中水的运动  简要的步骤介绍和笔记
-结果【gif】
+结果【.gif-等待加载】
 ![half water imapct](/post_img/half-water-imapct/half-water-imapct.gif  "half water imapct")
 
 ## step1 Create the eulerian part   
