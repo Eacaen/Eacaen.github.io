@@ -67,8 +67,6 @@ __composite-blade-design__
 <img src="/post_img/CLT-fig/laminate_COS.png" data-canonical-src="/post_img/CLT-fig/laminate_COS.png" /><img  src="/post_img/CLT-fig/lammmm.png" data-canonical-src="png/lammmm.png" />
 
 
-
-
 ### Composite Material Calculation with CLT
 * The main package is a Python composite materials calculation package.
 The calculation of laminate stress, strain and failure Criterion based on the Classical Lamination Theory ([CLT](https://en.wikipedia.org/wiki/Composite_laminates)).  
