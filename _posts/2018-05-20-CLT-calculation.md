@@ -13,7 +13,10 @@ subtitle:  <h4>Download
             <h4> </h4>
 ---
 
-Introduction 　复合材料层合板在一定载荷下的应力应变分布的计算，选用强度准则校测层合板失效，给出失效历史．
+Introduction 　
+
+# 复合材料层合板在一定载荷下的应力应变分布的计算，选用强度准则校测层合板失效，给出失效历史．
+
 ====================
 
 | |CN|ENG|   |
@@ -22,7 +25,6 @@ Introduction 　复合材料层合板在一定载荷下的应力应变分布的�
 
 [Running requirements](#running-requirements) | [Installation](#installation) | [License](#license) 
 
-<img align="right"  width="400" height="300"  src="/post_img/CLT-fig/Composite_3d.png" data-canonical-src="/post_img/CLT-fig/Composite_3d.png" />
 
 ********************************
 ##### Project code for Mechanics of Composite Structure IN NPU,PARTLY FINISH.
@@ -38,11 +40,13 @@ __composite-blade-design__
 
 ********************************
 
+<img align="right"  width="400" height="300"  src="/post_img/CLT-fig/Composite_3d.png" data-canonical-src="/post_img/CLT-fig/Composite_3d.png" />
+
 ## Project goals:
 - Use the fibre and matrix or given data to define the composite lamina and then layup the laminate.
 - Use the *Classical Lamination Theory* to  calculate the stress&strain distribution in each layer.
 - Choose suitable *Failure Criteria* to check the strength of laminate at given load.
-- Show accurate calculate information of results, display /post_img/CLT-figures of  stress&strain distribution; show the failure steps of chosen layer.
+- Show accurate calculate information of results, display CLT-figures of stress&strain distribution; show the failure steps of chosen layer.
 
 ## Data flow of the Project
 <img src="/post_img/CLT-fig/dataflow.png" data-canonical-src="/post_img/CLT-fig/dataflow.png" />
