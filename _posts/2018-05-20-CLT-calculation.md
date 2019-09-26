@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 复合材料层合板计算 "
+title: " 复合材料层合板计算-纯手敲代码 "
 tagline: " Python  "
 categories: Python
 author: "Hu Tianyun"
