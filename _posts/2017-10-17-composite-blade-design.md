@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Composite Blade Design"
+title: "Composite Blade Design-复材叶片铺层设计程序-剪流弯矩应力计算"
 tagline: "The composite materials,shear flow & normal stresses calculation for wind-turbine blade, Bachelor thesis in TUSB , Germany. "
 categories: Python
 author: "Hu Tianyun"
