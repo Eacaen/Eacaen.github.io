@@ -17,11 +17,14 @@ meta: "Springfield"
 ### 软件设置
  * 材料相同。
  * 边界设置上
+ 
  	- 两端的刚体设置不同
- 	- 材料接触参数设置应该如何取值才能得到相同的边界
- * 相同的网格密度，pam会穿透，原因。？
+ 	
+ 	- 材料接触参数设置应该如何取值才能得到相同的边界？
+ 	
+ * 相同的网格密度，pam会穿透，原因？
 
-## 详细内容
+## 详细内容【加载】
 <img src="/post_img/PAM-ABAQ-COMPRESS/page1.png" data-canonical-src="/post_img/PAM-ABAQ-COMPRESS/page1.png" />
 
 <img src="/post_img/PAM-ABAQ-COMPRESS/page2.png" data-canonical-src="/post_img/PAM-ABAQ-COMPRESS/page2.png" />
