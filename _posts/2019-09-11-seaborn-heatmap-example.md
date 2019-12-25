@@ -43,7 +43,7 @@ ss = sns.heatmap(flights, annot=True, annot_kws={'size':10,},linewidths=1, ax=ax
 # fmt = '.2f' 显示格式
 ```
 
-![png](./output_4_0.png "output_4_0.png")
+<img  src="/post_img/PYTHON/seaborn-heatmap-example/output_4_0.png" data-canonical-src="/post_img/PYTHON/seaborn-heatmap-example/output_4_0.png" />
 
 
 
@@ -60,7 +60,8 @@ cax = plt.gcf().axes[-1] #设置坐标轴字体大小
 cax.tick_params(labelsize=15)
 ```
 
-<img  src="/_posts/PYTHON/seaborn-heatmap-example/output_5_0.png" data-canonical-src="/_posts/PYTHON/seaborn-heatmap-example/output_5_0.png" />
+
+<img  src="/post_img/PYTHON/seaborn-heatmap-example/output_5_0.png" data-canonical-src="/post_img/PYTHON/seaborn-heatmap-example/output_5_0.png" />
 
 ```python
 plt.draw()
