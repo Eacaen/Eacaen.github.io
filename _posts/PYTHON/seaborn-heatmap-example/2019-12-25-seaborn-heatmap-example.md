@@ -60,7 +60,7 @@ cax = plt.gcf().axes[-1] #设置坐标轴字体大小
 cax.tick_params(labelsize=15)
 ```
 
-<img  src="/_posts/PYTHON//seaborn-heatmap-example/output_5_0.png" data-canonical-src="/_posts/PYTHON//seaborn-heatmap-example/output_5_0.png" />
+<img  src="/_posts/PYTHON/seaborn-heatmap-example/output_5_0.png" data-canonical-src="/_posts/PYTHON/seaborn-heatmap-example/output_5_0.png" />
 
 ```python
 plt.draw()
