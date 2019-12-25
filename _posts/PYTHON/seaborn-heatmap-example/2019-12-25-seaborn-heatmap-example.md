@@ -11,9 +11,8 @@ import sympy as syp
 import math
 import os
 ```
-sns.set() #设置风格
-
 ```python
+sns.set() #设置风格
 flights = np.random.rand(2,30)
 print(flights)
 ```
@@ -45,7 +44,7 @@ ss = sns.heatmap(flights, annot=True, annot_kws={'size':10,},linewidths=1, ax=ax
 ```
 
 
-![png](output_4_0.png)
+<img  src="output_4_0.png" data-canonical-src="output_4_0.png" />
 
 
 
@@ -62,10 +61,7 @@ cax = plt.gcf().axes[-1] #设置坐标轴字体大小
 cax.tick_params(labelsize=15)
 ```
 
-
-![png](output_5_0.png)
-
-
+<img  src="output_5_0.png" data-canonical-src="output_5_0.png" />
 
 ```python
 plt.draw()
