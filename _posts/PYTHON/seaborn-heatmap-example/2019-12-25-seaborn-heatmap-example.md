@@ -43,8 +43,7 @@ ss = sns.heatmap(flights, annot=True, annot_kws={'size':10,},linewidths=1, ax=ax
 # fmt = '.2f' 显示格式
 ```
 
-
-<img  src="output_4_0.png" data-canonical-src="output_4_0.png" />
+![png](output_4_0.png " output_4_0.png ")
 
 
 
@@ -66,13 +65,4 @@ cax.tick_params(labelsize=15)
 ```python
 plt.draw()
 plt.show()
-```
-
-
-    <Figure size 432x288 with 0 Axes>
-
-
-
-```python
-
 ```
