@@ -1,6 +1,11 @@
-
-# seaborn 热力图示例
-
+---
+layout: post
+title: " seaborn 热力图示例 "
+tagline: "Python Notebook"
+categories: Python
+author: "Hu Tianyun"
+meta: "Springfield"
+---
 
 ```python
 import matplotlib.pyplot as plt
