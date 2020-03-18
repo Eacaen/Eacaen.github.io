@@ -18,10 +18,10 @@ meta: "Springfield"
 
 ### 重点在于\section*{\refname
  	 
- 	\renewcommand{\bibname}{参考文献}
- 	\renewcommand\refname{参考文献}
+ *  \renewcommand{\bibname}{参考文献}
+ *  \renewcommand\refname{参考文献}
 
- 	修改section* 或是其他的标题，可以更改显示格式
+ *  修改section* 或是其他的标题，可以更改显示格式
 
 附上 bibspacing.sty 内容
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
