@@ -48,3 +48,7 @@ meta: "Springfield"
 {\@latex@warning{Empty `thebibliography' environment}}%
 \endlist}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+print ([^\n\(]*)
+print($1)
