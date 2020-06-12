@@ -22,7 +22,8 @@ meta: "Springfield"
  *  修改section* 或是其他的标题，可以更改显示格式
 
 附上 bibspacing.sty 内容
-#######################################################################
+
+```python
 \newdimen\bibindent
 \setlength\bibindent{1.5em}
 \newdimen\bibspacing
@@ -45,4 +46,4 @@ meta: "Springfield"
 {\def\@noitemerr
 {\@latex@warning{Empty `thebibliography' environment}}%
 \endlist}
-#######################################################################
+```
